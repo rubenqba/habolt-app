@@ -4,4 +4,7 @@ media_root
 static_root
 env
 .vscode
-.ambiente
+.ambiente.*
+.vagrant
+*.log
+\.*/
