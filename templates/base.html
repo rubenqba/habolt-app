@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block head_title %}{% endblock %}</title>
+  {% block extra_head %}
+  {% endblock %}
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+
+  <!-- flaticon -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/flaticon.css' %}" />
+
+  <!-- mega menu -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/mega-menu/mega_menu.css' %}" />
+
+  <!-- mega menu -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}" />
+
+  <!-- owl-carousel -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/owl-carousel/owl.carousel.css' %}" />
+
+  <!-- revolution -->
+  <link rel="stylesheet" type="text/css" href="{% static 'revolution/css/settings.css' %}">
+
+  <!-- magnific-popup -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup/magnific-popup.css' %}">
+
+  <!-- main style -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+  <!-- responsive -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}" />
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+</head>
+
+<body>
+  <!--=================================
+  loading -->
+  <div id="loading">
+    <div id="loading-center">
+      <img src="{% static 'images/loader6.gif' %}" alt="">
+    </div>
+  </div>
+  <!--=================================
+    loading -->
+
+  {% include "navbar.html" %}
+
+
+
+  {% block content %}
+  {% endblock content %}
+
+  {% block extra_body %}
+  {% endblock %}
+
+  {% include "footer.html" %}
+  {% include "scripts.html" %}
+
+  {% block extra_scripts %}
+  {% endblock extra_scripts %}
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+{% load static %}
+
+
+<!--=================================
+ jquery -->
+
+<!-- jquery  -->
+<script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+
+<!-- bootstrap -->
+<script type="text/javascript" src="{% static 'js/popper.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<!-- mega-menu -->
+<script type="text/javascript" src="{% static 'js/mega-menu/mega_menu.js' %}"></script>
+
+<!-- appear -->
+<script type="text/javascript" src="{% static 'js/jquery.appear.js' %}"></script>
+
+<!-- counter -->
+<script type="text/javascript" src="{% static 'js/counter/jquery.countTo.js' %}"></script>
+
+<!-- isotope -->
+<script type="text/javascript" src="{% static 'js/isotope/isotope.pkgd.min.js' %}"></script>
+
+<!-- owl-carousel -->
+<script type="text/javascript" src="{% static 'js/owl-carousel/owl.carousel.min.js' %}"></script>
+
+<!-- magnific -->
+<script type="text/javascript" src="{% static 'js/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+
+<!-- select -->
+<script type="text/javascript" src="{% static 'js/select/jquery-select.js' %}"></script>
+
+<!-- revolution -->
+<script type="text/javascript" src="{% static 'revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+<script type="text/javascript"
+  src="{% static 'revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+<script type="text/javascript"
+  src="{% static 'revolution/js/extensions/revolution.extension.carousel.min.js' %}"></script>
+<script type="text/javascript"
+  src="{% static 'revolution/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
+<script type="text/javascript"
+  src="{% static 'revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+<script type="text/javascript"
+  src="{% static 'revolution/js/extensions/revolution.extension.migration.min.js' %}"></script>
+<script type="text/javascript"
+  src="{% static 'revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+<script type="text/javascript"
+  src="{% static 'revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+<script type="text/javascript"
+  src="{% static 'revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
+
+<!-- custom -->
+<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+
+<script type="text/javascript">
+  (function ($) {
+    "use strict";
+
+    var tpj = jQuery;
+    var revapi8;
+    tpj(document).ready(function () {
+      if (tpj("#rev_slider_8_1").revolution == undefined) {
+        revslider_showDoubleJqueryError("#rev_slider_8_1");
+      } else {
+        revapi8 = tpj("#rev_slider_8_1").show().revolution({
+          sliderType: "standard",
+          sliderLayout: "fullwidth",
+          dottedOverlay: "none",
+          delay: 9000,
+          navigation: {
+            keyboardNavigation: "off",
+            keyboard_direction: "horizontal",
+            mouseScrollNavigation: "off",
+            mouseScrollReverse: "default",
+            onHoverStop: "off",
+            arrows: {
+              style: "erinyen",
+              enable: true,
+              hide_onmobile: false,
+              hide_onleave: false,
+              tmp: '<div class="tp-title-wrap">    <div class="tp-arr-imgholder"></div>    <div class="tp-arr-img-over"></div> <span class="tp-arr-titleholder">{{title}}</span> </div>',
+              left: {
+                h_align: "left",
+                v_align: "center",
+                h_offset: 20,
+                v_offset: 0
+              },
+              right: {
+                h_align: "right",
+                v_align: "center",
+                h_offset: 20,
+                v_offset: 0
+              }
+            }
+          },
+          visibilityLevels: [1240, 1024, 778, 480],
+          gridwidth: 1270,
+          gridheight: 960,
+          lazyType: "none",
+          shadow: 0,
+          spinner: "spinner3",
+          stopLoop: "off",
+          stopAfterLoops: -1,
+          stopAtSlide: -1,
+          shuffle: "off",
+          autoHeight: "off",
+          disableProgressBar: "on",
+          hideThumbsOnMobile: "off",
+          hideSliderAtLimit: 0,
+          hideCaptionAtLimit: 0,
+          hideAllCaptionAtLilmit: 0,
+          debugMode: false,
+          fallbacks: {
+            simplifyAll: "off",
+            nextSlideOnWindowFocus: "off",
+            disableFocusListener: false,
+          }
+        });
+      }
+    });
+  })(jQuery);
+
+</script>
