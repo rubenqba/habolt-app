@@ -79,89 +79,190 @@
 <!--=================================
       rev slider  -->
 
+<!--=================================
+ custom block -->
 
-<!--Section: Products v.3-->
-<section class="text-center mb-4">
-
-  <div class="row wow fadeIn">
-
-    {% for item in object_list %}
-    <div class=" col-lg-3 col-md-6 mb-4">
-
-      <div class="card">
-
-        <div class="view overlay">
-          {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"
-            class="card-img-top" {% endcomment %} <img src="{{ item.image.url }}" class="card-img-top">
-          <a href="{{ item.get_absolute_url }}">
-            <div class="mask rgba-white-slight"></div>
-          </a>
+<section class="custom-block-3 white-bg page-section-ptb">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 text-center">
+        <div class="title">
+          <h3>¡VIVE LA EXPERIENCIA! UN HABOLT ES ÚNICO</h3>
         </div>
-
-        <div class="card-body text-center">
-          <a href="" class="grey-text">
-            <h5>{{ item.get_category_display }}</h5>
-          </a>
-          <h5>
-            <strong>
-              <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
-                <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>
-              </a>
-            </strong>
-          </h5>
-
-          <h4 class="font-weight-bold blue-text">
-            <strong>$
-              {% if item.discount_price %}
-              {{ item.discount_price }}
-              {% else %}
-              {{ item.price }}
-              {% endif %}
-            </strong>
-          </h4>
+        <div class="content">
+          <p>Todos nuestros autos pasan por un riguroso proceso de valoración de 360°. Si no está en perfectas
+            condiciones no es Habolt,</p>
+          <strong style="display: block !important;">esto nos permite ofrecer una garantía mecánica de 12
+            meses.</strong>
 
         </div>
-
       </div>
-
+      <div class="col-lg-6 col-md-12">
+        <img class="img-fluid" src="images/car/11.png" alt="">
+      </div>
     </div>
-    {% endfor %}
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <div class="feature-box-3">
+          <div class="icon">
+            <i class="glyph-icon flaticon-beetle"></i>
+          </div>
+          <div class="content">
+            <h6>EXPERIENCIA ÚNICA </h6>
+            <p>Mucho mejor que un auto nuevo; sabemos que quieres estrenar de inmediato por eso nuestros autos están
+              listos y esperándote.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="feature-box-3">
+          <div class="icon">
+            <i class="glyph-icon flaticon-interface-1"></i>
+          </div>
+          <div class="content">
+            <h6>APOYO EN LOS TRAMITES</h6>
+            <p>En HABOLT nos encargamos de ayudarte a realizar todos los trámites legales para que puedas ofrecer tu
+              auto de inmediato. </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="feature-box-3">
+          <div class="icon">
+            <i class="glyph-icon flaticon-key"></i>
+          </div>
+          <div class="content">
+            <h6>7 DÍAS DE PRUEBA</h6>
+            <p>En HABOLT tienes 7 días y 150 km para probar tu auto, si no estas satisfecho con el, te devolvemos tu
+              dinero. Garantizado. </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="feature-box-3">
+          <div class="icon">
+            <i class="glyph-icon flaticon-wallet"></i>
+          </div>
+          <div class="content">
+            <h6>PRECIOS INMEJORABLES</h6>
+            <p>Quitamos a los intermediarios para poder ofrecerte a ti precios justos y la mejor calidad en tu próximo
+              auto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
 </section>
-<!--Section: Products v.3-->
 
-<!--Pagination-->
+<!--=================================
+   custom block -->
 
-{% if is_paginated %}
-<nav class="d-flex justify-content-center wow fadeIn">
-  <ul class="pagination pg-blue">
+<!--=================================
+  content-box -->
 
-    {% if page_obj.has_previous %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    </li>
-    {% endif %}
+<section class="content-box-main white-bg">
+  <div class="container">
+    <div class="row no-gutter">
+      <div class="col-lg-6 col-md-12 gray-bg overlay-bg-left">
+        <div class="content-box-5">
+          <div class="content-info">
+            <a href="{% url "core:list" %}">Estas buscando un Auto?</a>
+            <p>Search your car in our Inventory and request a quote on the vehicle of your choosing. </p>
+          </div>
+          <div class="content-box-img text-center">
+            <i class="glyph-icon flaticon-beetle"></i>
+            <img class="img-fluid center-block" src="static/images/car/13.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 overlay-bg-right dark-bg">
+        <div class="content-box-5">
+          <div class="content-info">
+            <a href="{% url "core:vende" %}">Quieres vender tu Auto?</a>
+            <p>Request search your car in our Inventory and a quote on the vehicle of your choosing. </p>
+          </div>
+          <div class="content-box-img text-center">
+            <i class="glyph-icon flaticon-key "></i>
+            <img class="img-fluid center-block" src="static/images/car/14.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <li class="page-item active">
-      <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
-        <span class="sr-only">(current)</span>
-      </a>
-    </li>
+<!--=================================
+         content-box -->
 
-    {% if page_obj.has_next %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>
-    {% endif %}
-  </ul>
-</nav>
-{% endif %}
+
+<!--=================================
+ feature-car -->
+
+<section class="feature-car gray-bg page-section-ptb">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-title">
+          <span>Check out our recent cars</span>
+          <h2>Feature Car </h2>
+          <div class="separator"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="owl-carousel owl-theme" data-nav-arrow="true" data-items="4" data-md-items="4" data-sm-items="2"
+          data-xs-items="2" data-space="15">
+          {% for item in object_list %}
+          <div class="item">
+            <div class="car-item text-center">
+              <div class="car-image">
+                <img class="img-fluid" src="{{ item.image.url }}" alt="">
+                <div class="car-overlay-banner">
+                  <ul>
+                    <!-- <li><a href="#"><i class="fa fa-link"></i></a></li> -->
+                    <li><a href="{{ item.get_absolute_url }}"><i class="fa fa-dashboard"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="car-list">
+                <ul class="list-inline">
+                  <li><i class="fa fa-registered"></i> {{ item.year }}</li>
+                  <li><i class="fa fa-cog"></i> {{ item.transmision }} </li>
+                  <li><i class="fa fa-shopping-cart"></i> {{ item.km }}</li>
+                </ul>
+              </div>
+              <div class="car-content">
+                <div class="star">
+                  <i class="fa fa-star orange-color"></i>
+                  <i class="fa fa-star orange-color"></i>
+                  <i class="fa fa-star orange-color"></i>
+                  <i class="fa fa-star orange-color"></i>
+                  <i class="fa fa-star-o orange-color"></i>
+                </div>
+                <a href="#">Acura Rsx</a>
+                <div class="separator"></div>
+                <div class="price">
+                  {% if item.discount_price %}
+                  <span class="old-price">${{ item.price }}</span>
+                  <span class="new-price">${{ item.discount_price }} </span>
+                  {% else %}
+                  <span class="new-price">${{ item.price }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--=================================
+   feature-car -->
+
+
 
 {% endblock content %}

@@ -372,6 +372,11 @@ class ItemDetailView(DetailView):
     model = Item
     template_name = "product.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['relacionados'] = Item.objects.all()
+        return context
+
 
 @login_required
 def add_to_cart(request, slug):
