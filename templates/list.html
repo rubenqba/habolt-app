@@ -158,7 +158,8 @@ product-listing  -->
                                 <div class="car-overlay-banner">
                                     <ul>
                                         <!--li><a href="#"><i class="fa fa-link"></i></a></li-->
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ item.get_absolute_url }}"><i
+                                                    class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -177,7 +178,7 @@ product-listing  -->
                                     <i class="fa fa-star orange-color"></i>
                                     <i class="fa fa-star-o orange-color"></i>
                                 </div>
-                                <a href="#">{{ item.title }}</a>
+                                <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
                                 <div class="separator"></div>
                                 <div class="price">
                                     {% if item.discount_price %}
