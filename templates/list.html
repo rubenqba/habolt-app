@@ -150,22 +150,23 @@ product-listing  -->
                     </div>
                 </div>
                 <div class="row">
+                    {% for item in object_list %}
                     <div class="col-lg-4">
                         <div class="car-item gray-bg text-center">
                             <div class="car-image">
-                                <img class="img-fluid" src="images/car/01.jpg" alt="">
+                                <img class="img-fluid" src="{{ item.image.url }}" alt="">
                                 <div class="car-overlay-banner">
                                     <ul>
-                                        <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                        <!--li><a href="#"><i class="fa fa-link"></i></a></li-->
                                         <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="car-list">
                                 <ul class="list-inline">
-                                    <li><i class="fa fa-registered"></i> 2016</li>
-                                    <li><i class="fa fa-cog"></i> Manual </li>
-                                    <li><i class="fa fa-shopping-cart"></i> 6,000 mi</li>
+                                    <li><i class="fa fa-registered"></i> {{ item.year }}</li>
+                                    <li><i class="fa fa-cog"></i> {{ item.transmision }} </li>
+                                    <li><i class="fa fa-shopping-cart"></i> {{ item.tipo }}</li>
                                 </ul>
                             </div>
                             <div class="car-content">
@@ -176,16 +177,20 @@ product-listing  -->
                                     <i class="fa fa-star orange-color"></i>
                                     <i class="fa fa-star-o orange-color"></i>
                                 </div>
-                                <a href="#">Acura Rsx</a>
+                                <a href="#">{{ item.title }}</a>
                                 <div class="separator"></div>
                                 <div class="price">
-                                    <span class="old-price">$35,568</span>
-                                    <span class="new-price">$32,698 </span>
+                                    {% if item.discount_price %}
+                                    <span class="old-price">${{ item.price }}</span>
+                                    <span class="new-price">${{ item.discount_price }} </span>
+                                    {% else %}
+                                    <span class="new-price">${{ item.price }}</span>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    {% endfor %}
                 </div>
                 <div class="pagination-nav d-flex justify-content-center">
                     <ul class="pagination">
