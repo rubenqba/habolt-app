@@ -1,3 +1,4 @@
+{% load static %}
 {% load cart_template_tags %}
 <!--=================================
  header -->
@@ -42,16 +43,18 @@
               <!-- menu logo -->
               <ul class="menu-logo">
                 <li>
-                  <a href="index.html"><img id="logo_img" src="static/images/logo-light.png" alt="logo"> </a>
+                  <a href="{% url "core:home" %}"><img id="logo_img" src="{% static 'images/logo-light.png' %}"
+                      alt="logo">
+                  </a>
                 </li>
               </ul>
               <!-- menu links -->
               <ul class="menu-links">
                 <!-- active class -->
-                <li class="active"><a href="javascript:void(0)"> Inicio</a></li>
-                <li class="active"><a href="javascript:void(0)"> ¿Por qué Habolt?</a></li>
-                <li class="active"><a href="javascript:void(0)"> Compra un auto</a></li>
-                <li class="active"><a href="javascript:void(0)"> vende tu auto</a></li>
+                <li class="active"><a href="{% url "core:home" %}"> Inicio</a></li>
+                <li class="active"><a href="{% url "core:nosotros" %}"> ¿Por qué Habolt?</a></li>
+                <li class="active"><a href="{% url "core:list" %}"> Compra un auto</a></li>
+                <li class="active"><a href="{% url "core:vende" %}"> vende tu auto</a></li>
                 <li class="active"><a href="javascript:void(0)"> login</a></li>
               </ul>
             </div>

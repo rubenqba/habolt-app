@@ -39,7 +39,7 @@
           data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[10,10,10,10]"
           data-paddingright="[30,30,30,30]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]"
           style="z-index: 9; white-space: nowrap; font-size: 14px; line-height: 18px; font-weight: 400; font-family:Open Sans; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
-          Comprar </div>
+          <a href="{% url "core:list" %}" style="color: white;">Comprar</a> </div>
       </li>
       <!-- SLIDE  -->
       <li data-index="rs-13" data-transition="fade" data-slotamount="default" data-hideafterloop="0"
@@ -69,7 +69,7 @@
           data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[10,10,10,10]"
           data-paddingright="[30,30,30,30]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]"
           style="z-index: 10; white-space: nowrap; font-size: 14px; line-height: 18px; font-weight: 400;  font-family:Open Sans; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
-          Vende </div>
+          <a href="{% url "core:vende" %}" style="color: white;"> vende </a> </div>
       </li>
     </ul>
     <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
@@ -86,7 +86,7 @@
   <div class="row wow fadeIn">
 
     {% for item in object_list %}
-    <div class="col-lg-3 col-md-6 mb-4">
+    <div class=" col-lg-3 col-md-6 mb-4">
 
       <div class="card">
 

@@ -5,7 +5,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'habolt-frontend-dev.us-east-1.elasticbeanstalk.com',
     'http://habolt-frontend-dev.us-east-1.elasticbeanstalk.com/',
-    'landing.habolt.mx'
+    'landing.habolt.mx',
+    'habolt.mx'
 ]
 
 INSTALLED_APPS += [

@@ -1,10 +1,12 @@
 from .base import *
 
 DEBUG = config('DEBUG', cast=bool)
-ALLOWED_HOSTS = ['habolt-frontend-dev.us-east-1.elasticbeanstalk.com',
-                 'http://habolt-frontend-dev.us-east-1.elasticbeanstalk.com/',
-                 'landing.habolt.mx'
-    ]
+ALLOWED_HOSTS = [
+    'habolt-frontend-dev.us-east-1.elasticbeanstalk.com',
+    'http://habolt-frontend-dev.us-east-1.elasticbeanstalk.com/',
+    'landing.habolt.mx',
+    'habolt.mx'
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},

@@ -7,9 +7,8 @@ from django_countries.fields import CountryField
 
 
 CATEGORY_CHOICES = (
-    ('S', 'Shirt'),
-    ('SW', 'Sport wear'),
-    ('OW', 'Outwear')
+    ('A', 'Autos'),
+    ('C', 'Classics'),
 )
 
 LABEL_CHOICES = (
@@ -41,6 +40,20 @@ class Item(models.Model):
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
     label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     slug = models.SlugField()
+
+    year = models.CharField(max_length=100, blank=True, null=True)
+    marca = models.CharField(max_length=100, blank=True, null=True)
+    km = models.CharField(max_length=100, blank=True, null=True)
+    modelo = models.CharField(max_length=100, blank=True, null=True)
+    version = models.CharField(max_length=150, blank=True, null=True)
+    codigo = models.CharField(max_length=100, blank=True, null=True)
+    tipo = models.CharField(max_length=100, blank=True, null=True)
+    color = models.CharField(max_length=100, blank=True, null=True)
+    cilindro = models.CharField(max_length=100, blank=True, null=True)
+    transmision = models.CharField(max_length=100, blank=True, null=True)
+    puertas = models.CharField(max_length=100, blank=True, null=True)
+    pasajeros = models.CharField(max_length=100, blank=True, null=True)
+
     description = models.TextField()
     image = models.ImageField()
 

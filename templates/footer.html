@@ -1,32 +1,48 @@
+{% load static %}
 <!--=================================
  footer -->
 
-<footer class="footer-3">
+<footer class="footer bg-3 bg-overlay-black-90">
   <div class="container">
     <div class="row">
-      <div class="col-lg-5 col-md-12">
-        <div class="about-content">
-          <h6 class="text-white"></h6>
-          <p class="text-gray">En Habolt estamos cambiando la forma de comprar y vender autos en México, al volverlo más
-            sencillo, transparente y con precios que te van a encantar.. </p>
-        </div>
+      <div class="col-md-12">
         <div class="social">
           <ul>
-            <li><a href="https://www.facebook.com/haboltmx/"> <i class="fa fa-facebook"></i> </a></li>
+            <li><a class="facebook" href="https://www.facebook.com/haboltmx/">facebook <i class="fa fa-facebook"></i>
+              </a></li>
+            <li><a class="twitter" href="https://www.instagram.com/mxhabolt/?hl=es-la">instagram <i
+                  class="fa fa-instagram"></i> </a></li>
+            <li><a class="facebook"
+                href="https://www.youtube.com/channel/UCwKoxeACEVEFooI9NaW0jHQ?view_as=subscriber">youtobe <i
+                  class="fa fa-youtube"></i> </a></li>
           </ul>
         </div>
       </div>
-      <div class="col-lg-7 col-md-12">
-
-      </div>
     </div>
-  </div>
-  <div class="copyright">
-    <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <div class="about-content">
+          <img class="img-fluid" id="logo-footer" src="{% static 'images/logo-light.png' %}" alt="">
+          <p>En Habolt estamos cambiando la forma de comprar y vender autos en México, al volverlo más
+            sencillo, transparente y con precios que te van a encantar..</p>
+        </div>
+        <div class="address">
+          <ul>
+            <li> <i class="fa fa-map-marker"></i><span>Carr. México-Toluca 5322, El Rosita, El Yaqui, 05340 Ciudad de
+                México, CDMX</span> </li>
+            <li> <i class="fa fa-phone"></i><span>(+52) 558 526 6545</span> </li>
+            <li> <i class="fa fa-envelope-o"></i><span>ayuda@habolt.mx</span> </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <hr />
+    <div class="copyright">
       <div class="row">
         <div class="col-lg-6 col-md-12">
           <div class="text-lg-left text-center">
-            <p>©Copyright <a href="#" target="_blank">Habolt</a></p>
+            <p>©Copyright 2019 <a href="#" target="_blank">habolt</a></p>
           </div>
         </div>
         <div class="col-lg-6 col-md-12">
@@ -43,8 +59,6 @@
 
 <!--=================================
  footer -->
-
-
 
 <!--=================================
  back to top -->
