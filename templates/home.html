@@ -85,20 +85,20 @@
 <section class="custom-block-3 white-bg page-section-ptb">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 col-md-12 text-center">
+      <div class="col-lg-6 col-md-12">
         <div class="title">
           <h3>¡VIVE LA EXPERIENCIA! UN HABOLT ES ÚNICO</h3>
         </div>
         <div class="content">
           <p>Todos nuestros autos pasan por un riguroso proceso de valoración de 360°. Si no está en perfectas
             condiciones no es Habolt,</p>
-          <strong style="display: block !important;">esto nos permite ofrecer una garantía mecánica de 12
+          <strong>esto nos permite ofrecer una garantía mecánica de 12
             meses.</strong>
 
         </div>
       </div>
       <div class="col-lg-6 col-md-12">
-        <img class="img-fluid" src="images/car/11.png" alt="">
+        <img class="img-fluid" src="static/images/car/11.png" alt="">
       </div>
     </div>
     <div class="row">
@@ -203,8 +203,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="section-title">
-          <span>Check out our recent cars</span>
-          <h2>Feature Car </h2>
+          <span>Revisa estos modelos</span>
+          <h2>Destacados </h2>
           <div class="separator"></div>
         </div>
       </div>
@@ -238,9 +238,9 @@
                   <i class="fa fa-star orange-color"></i>
                   <i class="fa fa-star orange-color"></i>
                   <i class="fa fa-star orange-color"></i>
-                  <i class="fa fa-star-o orange-color"></i>
+                  <i class="fa fa-star orange-color"></i>
                 </div>
-                <a href="#">Acura Rsx</a>
+                <a href="#">{{ item.title }}</a>
                 <div class="separator"></div>
                 <div class="price">
                   {% if item.discount_price %}
