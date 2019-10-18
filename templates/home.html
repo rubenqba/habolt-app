@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -218,7 +219,7 @@
           <div class="item">
             <div class="car-item text-center">
               <div class="car-image">
-                <img class="img-fluid" src="{{ item.image.url }}" alt="">
+                <img class="img-fluid" src="{% static item.image|safe %}" alt="">
                 <div class="car-overlay-banner">
                   <ul>
                     <!-- <li><a href="#"><i class="fa fa-link"></i></a></li> -->

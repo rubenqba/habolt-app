@@ -74,7 +74,7 @@ car-details  -->
                 <div class="item">
                   <div class="car-item gray-bg text-center">
                     <div class="car-image">
-                      <img class="img-fluid" src="{{ item.image.url }}" alt="">
+                      <img class="img-fluid" src="{% static item.image|safe %}" alt="">
                       <div class="car-overlay-banner">
                         <ul>
                           <li><a href="{{ item.get_absolute_url }}"><i class="fa fa-dashboard"></i></a></li>
