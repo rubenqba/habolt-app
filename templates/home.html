@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -14,11 +15,11 @@
       <!-- SLIDE  -->
       <li data-index="rs-12" data-transition="fade" data-slotamount="default" data-hideafterloop="0"
         data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300"
-        data-thumb="static/images/img/banner1.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide"
+        data-thumb="static/images/img/banner2.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide"
         data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
         data-param8="" data-param9="" data-param10="" data-description="">
         <!-- MAIN IMAGE -->
-        <img src="static/images/img/banner1.jpg" alt="" data-bgposition="center center" data-bgfit="cover"
+        <img src="static/images/img/banner2.jpg" alt="" data-bgposition="center center" data-bgfit="cover"
           data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
         <!-- LAYERS -->
 
@@ -29,8 +30,8 @@
           data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
           data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
           style="z-index: 6; white-space: nowrap; font-size: 70px; line-height: 70px; font-weight: 700; color: rgba(255, 255, 255, 1.00);font-family:Roboto;text-transform:uppercase;">
-          Los Mejores Seminuevos<br>
-          estan en Habolt </div>
+          COMPRA UN SEMINUEVO Y OBTéN<br>
+          12 MESES DE GARANTIA </div>
 
         <!-- LAYER NR. 5 -->
         <div class="tp-caption button red " id="slide-12-layer-8" data-x="62" data-y="center" data-voffset="20"
@@ -39,16 +40,16 @@
           data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[10,10,10,10]"
           data-paddingright="[30,30,30,30]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]"
           style="z-index: 9; white-space: nowrap; font-size: 14px; line-height: 18px; font-weight: 400; font-family:Open Sans; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
-          <a href="{% url "core:list" %}" style="color: white;">Comprar</a> </div>
+          <a href="{% url "core:list" %}" style="color: white;">Compra un auto</a> </div>
       </li>
       <!-- SLIDE  -->
       <li data-index="rs-13" data-transition="fade" data-slotamount="default" data-hideafterloop="0"
         data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300"
-        data-thumb="static/images/img/banner2.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide"
+        data-thumb="static/images/img/banner1.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide"
         data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
         data-param8="" data-param9="" data-param10="" data-description="">
         <!-- MAIN IMAGE -->
-        <img src="static/images/img/banner2.jpg" alt="" data-bgposition="center center" data-bgfit="cover"
+        <img src="static/images/img/banner1.jpg" alt="" data-bgposition="center center" data-bgfit="cover"
           data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
         <!-- LAYERS -->
 
@@ -59,8 +60,8 @@
           data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
           data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
           style="z-index: 6; white-space: nowrap; font-size: 70px; line-height: 70px; font-weight: 700; color: rgba(255, 255, 255, 1.00);font-family:Roboto;text-transform:uppercase;">
-          VENDE TU AUTO CON GARANTÍA <br>
-          INCLUIDA DE 12 MESES </div>
+          VÉNDENOS TU AUTO Y RECIBE <br>
+          LA MEJOR PROPUESTA </div>
 
         <!-- LAYER NR. 9 -->
         <div class="tp-caption button red " id="slide-13-layer-8" data-x="62" data-y="center" data-voffset="20"
@@ -69,7 +70,7 @@
           data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[10,10,10,10]"
           data-paddingright="[30,30,30,30]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]"
           style="z-index: 10; white-space: nowrap; font-size: 14px; line-height: 18px; font-weight: 400;  font-family:Open Sans; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
-          <a href="{% url "core:vende" %}" style="color: white;"> vende </a> </div>
+          <a href="{% url "core:vende" %}" style="color: white;"> vende tu auto</a> </div>
       </li>
     </ul>
     <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
@@ -90,10 +91,11 @@
           <h3>¡VIVE LA EXPERIENCIA! UN HABOLT ES ÚNICO</h3>
         </div>
         <div class="content">
-          <p>Todos nuestros autos pasan por un riguroso proceso de valoración de 360°. Si no está en perfectas
-            condiciones no es Habolt,</p>
-          <strong>esto nos permite ofrecer una garantía mecánica de 12
-            meses.</strong>
+          <p style="font-size: 16px;">Todos nuestros autos pasan por un riguroso proceso de valoración de 360°. Si no
+            está en perfectas
+            condiciones no es Habolt, esto nos permite ofrecer una garantía mecánica de 12
+            meses.</p>
+
 
         </div>
       </div>
@@ -171,7 +173,7 @@
           </div>
           <div class="content-box-img text-center">
             <i class="glyph-icon flaticon-beetle"></i>
-            <img class="img-fluid center-block" src="static/images/car/13.png" alt="">
+            <img class="img-fluid center-block" src="static/images/img/left.png" alt="">
           </div>
         </div>
       </div>
@@ -183,7 +185,7 @@
           </div>
           <div class="content-box-img text-center">
             <i class="glyph-icon flaticon-key "></i>
-            <img class="img-fluid center-block" src="static/images/car/14.png" alt="">
+            <img class="img-fluid center-block" src="static/images/img/right.png" alt="">
           </div>
         </div>
       </div>
@@ -217,7 +219,7 @@
           <div class="item">
             <div class="car-item text-center">
               <div class="car-image">
-                <img class="img-fluid" src="{{ item.image.url }}" alt="">
+                <img class="img-fluid" src="{% static item.image|safe %}" alt="">
                 <div class="car-overlay-banner">
                   <ul>
                     <!-- <li><a href="#"><i class="fa fa-link"></i></a></li> -->
