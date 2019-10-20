@@ -36,6 +36,19 @@
         </div>
       </div>
 
+      <div class="col-lg-3 col-md-6"></div>
+      <div class="col-lg-3 col-md-6"></div>
+      <div class="col-lg-3 col-md-6">
+        <div class="news-letter">
+          <h6 class="text-white">SUBSCRIBETE A NUESTRO BOLETIN DE NOTICIAS </h6>
+          <p>Mantente informado acerca de los mejores autos a los mejoreos precios.</p>
+          <form class="news-letter">
+            <input type="email" placeholder="Ingresa tu Email" class="form-control placeholder">
+            <a class="button red" href="#">Subscribete</a>
+          </form>
+        </div>
+      </div>
+
     </div>
     <hr />
     <div class="copyright">
@@ -47,9 +60,7 @@
         </div>
         <div class="col-lg-6 col-md-12">
           <ul class="list-inline text-lg-right text-center">
-            <li><a href="#">privacy policy </a> | </li>
-            <li><a href="#">terms and conditions </a> |</li>
-            <li><a href="#">contact us </a></li>
+            <li><a href="{% url "core:aviso" %}">Aviso de privacidad </a></li>
           </ul>
         </div>
       </div>
@@ -64,7 +75,7 @@
  back to top -->
 
 <div class="car-top">
-  <span><img src="static/images/car.png" alt=""></span>
+  <span><img src="{% static 'images/car.png' %}" alt=""></span>
 </div>
 
 <!--=================================

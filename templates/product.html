@@ -23,9 +23,8 @@
 <!--=================================
    inner-intro -->
 
-
 <!--=================================
-car-details  -->
+car-details -->
 
 <section class="car-details page-section-ptb">
   <div class="container">
@@ -35,7 +34,7 @@ car-details  -->
         <p>{{ object.version }}</p>
       </div>
       <div class="col-md-3">
-        <div class="car-price text-lg-right">
+        <div class="car-price text-md-right">
           <strong>$ {{ object.price }}</strong>
           <span></span>
         </div>
@@ -46,74 +45,13 @@ car-details  -->
       <div class="col-md-8">
         <div class="slider-slick">
           <div class="slider slider-for detail-big-car-gallery">
-            <img class="img-fluid" src="{{ item.image.url }}" alt="">
+            <img class="img-fluid" src="{% static item.image|safe %}" alt="">
           </div>
           <div class="slider slider-nav">
-            <img class="img-fluid" src="images/detail/thum/02.jpg" alt="">
-          </div>
-        </div>
-        <div id="tabs">
-          <ul class="tabs">
-            <li data-tabs="tab1" class="active"> <span aria-hidden="true" class="icon-diamond"></span> ¿Por qué nos
-              encantó? </li>
-            <!--li data-tabs="tab2"><span aria-hidden="true" class="icon-list"></span>Features & Options</li>
-            <li data-tabs="tab3"> <span aria-hidden="true" class="icon-equalizer"></span> Vehicle Overview</li-->
-          </ul>
-          <div id="tab1" class="tabcontent">
-            <p> {{ object.description }} </p>
+            <img class="img-fluid" style="width: 160px;" src="{% static item.image|safe %}" alt="">
           </div>
         </div>
 
-        <div class="feature-car">
-          <h6>Autos relacionados</h6>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="owl-carousel" data-nav-arrow="true" data-nav-dots="true" data-items="3" data-md-items="3"
-                data-sm-items="2" data-space="15">
-                {% for item in relacionados %}
-                <div class="item">
-                  <div class="car-item gray-bg text-center">
-                    <div class="car-image">
-                      <img class="img-fluid" src="{% static item.image|safe %}" alt="">
-                      <div class="car-overlay-banner">
-                        <ul>
-                          <li><a href="{{ item.get_absolute_url }}"><i class="fa fa-dashboard"></i></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="car-list">
-                      <ul class="list-inline">
-                        <li><i class="fa fa-registered"></i> {{ item.year }}</li>
-                        <li><i class="fa fa-cog"></i> {{ item.transmision }} </li>
-                        <li><i class="fa fa-shopping-cart"></i> {{ item.km }}</li>
-                      </ul>
-                    </div>
-                    <div class="car-content">
-                      <div class="star">
-                        <i class="fa fa-star orange-color"></i>
-                        <i class="fa fa-star orange-color"></i>
-                        <i class="fa fa-star orange-color"></i>
-                        <i class="fa fa-star orange-color"></i>
-                        <i class="fa fa-star-o orange-color"></i>
-                      </div>
-                      <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
-                      <div class="separator"></div>
-                      <div class="price">
-                        {% if item.discount_price %}
-                        <span class="old-price">${{ item.price }}</span>
-                        <span class="new-price">${{ item.discount_price }} </span>
-                        {% else %}
-                        <span class="new-price">${{ item.price }}</span>
-                        {% endif %}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="col-md-4">
         <div class="car-details-sidebar">
@@ -132,37 +70,112 @@ car-details  -->
               <li> <span>Pasajeros</span> <strong class="text-right">{{ object.pasajeros }}</strong></li>
             </ul>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-md-8  col-sm-8">
+        <div id="tabs">
+          <ul class="tabs">
+            <li data-tabs="tab1" class="active"> <span aria-hidden="true" class="icon-diamond"></span> ¿Por qué nos
+              encantó? </li>
+            <!--li data-tabs="tab2"><span aria-hidden="true" class="icon-list"></span>Features & Options</li>
+                <li data-tabs="tab3"> <span aria-hidden="true" class="icon-equalizer"></span> Vehicle Overview</li-->
+          </ul>
+          <div id="tab1" class="tabcontent">
+            <p> {{ object.description }} </p>
+          </div>
+        </div>
 
-          <div class="details-phone details-weight">
-            <div class="feature-box-3">
-              <div class="icon">
-                <i class="fa fa-headphones"></i>
-              </div>
-              <div class="content">
-                <h4>(+52) 558 526 6545 </h4>
-                <p>Llamanos! </p>
-              </div>
+      </div>
+      <div class="col-md-4">
+        <div class="car-details-sidebar">
+          <div class="details-location details-weight">
+            <h5>Ubicacion</h5>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10827.348442392575!2d-99.30470080381754!3d19.351140418877584!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x887fa13390e8396d!2sHabolt!5e0!3m2!1sen!2smx!4v1571601922216!5m2!1sen!2smx"
+              width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+          </div>
+        </div>
+        <div class="details-phone details-weight">
+          <div class="feature-box-3">
+            <div class="icon">
+              <i class="fa fa-headphones"></i>
+            </div>
+            <div class="content">
+              <h4>(+52) 558 526 6545 </h4>
+              <p>Llamanos! </p>
             </div>
           </div>
-          <div class="details-form contact-2">
-            <form class="gray-form">
-              <h5>Calculadora</h5>
-              <div class="form-group">
-                <label>PRECIO*</label>
-                <input type="text" class="form-control">
+        </div>
+        <div class="details-form contact-2">
+          <form class="gray-form">
+            <h5>Calculadora</h5>
+            <div class="form-group">
+              <label>PRECIO*</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Interes (%)*</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Periodo (Meses)*</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <a class="button red" href="#">Calcular</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="feature-car">
+      <h6>Autos relacionados</h6>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="owl-carousel" data-nav-arrow="true" data-nav-dots="true" data-items="3" data-md-items="3"
+            data-sm-items="2" data-space="15">
+            {% for item in relacionados %}
+            <div class="item">
+              <div class="car-item gray-bg text-center">
+                <div class="car-image">
+                  <img class="img-fluid" src="{% static item.image|safe %}" alt="">
+                  <div class="car-overlay-banner">
+                    <ul>
+                      <li><a href="{{ item.get_absolute_url }}"><i class="fa fa-link"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="car-list">
+                  <ul class="list-inline">
+                    <li><i class="fa fa-registered"></i> {{ item.year }}</li>
+                    <li><i class="fa fa-cog"></i> {{ item.transmision }} </li>
+                    <li><i class="fa fa-dashboard"></i> {{ item.km }}</li>
+                  </ul>
+                </div>
+                <div class="car-content">
+                  <div class="star">
+                    <i class="fa fa-star orange-color"></i>
+                    <i class="fa fa-star orange-color"></i>
+                    <i class="fa fa-star orange-color"></i>
+                    <i class="fa fa-star orange-color"></i>
+                    <i class="fa fa-star-o orange-color"></i>
+                  </div>
+                  <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+                  <div class="separator"></div>
+                  <div class="price">
+                    {% if item.discount_price %}
+                    <span class="old-price">${{ item.price }}</span>
+                    <span class="new-price">${{ item.discount_price }} </span>
+                    {% else %}
+                    <span class="new-price">${{ item.price }}</span>
+                    {% endif %}
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label>Interes (%)*</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label>Periodo (Meses)*</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <a class="button red" href="#">Calcular</a>
-              </div>
-            </form>
+            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -171,6 +184,6 @@ car-details  -->
 </section>
 
 <!--=================================
-  car-details -->
+  car-details  -->
 
 {% endblock content %}

@@ -31,5 +31,7 @@ urlpatterns = [
     path('request-refund/', RequestRefundView.as_view(), name='request-refund'),
     path('nosotros/', TemplateView.as_view(template_name='nosotros.html'),
          name='nosotros'),
-    path('vende/', TemplateView.as_view(template_name='vende.html'), name='vende')
+    path('vende/', TemplateView.as_view(template_name='vende.html'), name='vende'),
+    path('faq/', TemplateView.as_view(template_name='faq.html'), name='faq'),
+    path('aviso/', TemplateView.as_view(template_name='aviso.html'), name='aviso')
 ]

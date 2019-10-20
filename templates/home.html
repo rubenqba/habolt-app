@@ -34,12 +34,12 @@
           12 MESES DE GARANTIA </div>
 
         <!-- LAYER NR. 5 -->
-        <div class="tp-caption button red " id="slide-12-layer-8" data-x="62" data-y="center" data-voffset="20"
+        <div class="tp-caption button red " id="slide-12-layer-8" data-x="62" data-y="center" data-voffset="40"
           data-width="['auto']" data-height="['auto']" data-type="button" data-responsive_offset="on"
           data-frames='[{"delay":1120,"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"300","ease":"Linear.easeNone","force":true,"to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(35, 35, 35, 1.00);bg:rgba(255, 255, 255, 1.00);bs:solid;bw:0 0 0 0;"}]'
           data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[10,10,10,10]"
           data-paddingright="[30,30,30,30]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]"
-          style="z-index: 9; white-space: nowrap; font-size: 14px; line-height: 18px; font-weight: 400; font-family:Open Sans; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
+          style="z-index: 9; white-space: nowrap; font-size: 48px; line-height: 44px; font-weight: bold; font-family:Open Sans; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
           <a href="{% url "core:list" %}" style="color: white;">Compra un auto</a> </div>
       </li>
       <!-- SLIDE  -->
@@ -64,12 +64,12 @@
           LA MEJOR PROPUESTA </div>
 
         <!-- LAYER NR. 9 -->
-        <div class="tp-caption button red " id="slide-13-layer-8" data-x="62" data-y="center" data-voffset="20"
+        <div class="tp-caption button red " id="slide-13-layer-8" data-x="62" data-y="center" data-voffset="40"
           data-width="['auto']" data-height="['auto']" data-type="button" data-responsive_offset="on"
           data-frames='[{"delay":1120,"speed":1360,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"300","ease":"Linear.easeNone","force":true,"to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(35, 35, 35, 1.00);bg:rgba(255, 255, 255, 1.00);bs:solid;bw:0 0 0 0;"}]'
           data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[10,10,10,10]"
           data-paddingright="[30,30,30,30]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]"
-          style="z-index: 10; white-space: nowrap; font-size: 14px; line-height: 18px; font-weight: 400;  font-family:Open Sans; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
+          style="z-index: 10; white-space: nowrap; font-size: 48px; line-height: 44px; font-weight: bold;  font-family:Open Sans; outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
           <a href="{% url "core:vende" %}" style="color: white;"> vende tu auto</a> </div>
       </li>
     </ul>
@@ -174,7 +174,9 @@
           </div>
           <div class="content-box-img text-center">
             <i class="glyph-icon flaticon-beetle"></i>
-            <img class="img-fluid center-block" src="static/images/img/left.png" alt="">
+            <a href="{% url "core:list" %}">
+              <img class="img-fluid center-block" src="static/images/img/left.png" alt="">
+            </a>
           </div>
         </div>
       </div>
@@ -187,7 +189,9 @@
           </div>
           <div class="content-box-img text-center">
             <i class="glyph-icon flaticon-key "></i>
-            <img class="img-fluid center-block" src="static/images/img/right.png" alt="">
+            <a href="{% url "core:vende" %}">
+              <img class="img-fluid center-block" src="static/images/img/right.png" alt="">
+            </a>
           </div>
         </div>
       </div>
@@ -225,7 +229,7 @@
                 <div class="car-overlay-banner">
                   <ul>
                     <!-- <li><a href="#"><i class="fa fa-link"></i></a></li> -->
-                    <li><a href="{{ item.get_absolute_url }}"><i class="fa fa-dashboard"></i></a></li>
+                    <li><a href="{{ item.get_absolute_url }}"><i class="fa fa-link"></i></a></li>
                   </ul>
                 </div>
               </div>
@@ -233,7 +237,7 @@
                 <ul class="list-inline">
                   <li><i class="fa fa-registered"></i> {{ item.year }}</li>
                   <li><i class="fa fa-cog"></i> {{ item.transmision }} </li>
-                  <li><i class="fa fa-shopping-cart"></i> {{ item.km }}</li>
+                  <li><i class="fa fa-dashboard"></i> {{ item.km }}</li>
                 </ul>
               </div>
               <div class="car-content">

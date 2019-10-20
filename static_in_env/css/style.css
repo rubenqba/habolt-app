@@ -263,7 +263,7 @@ select { border: 1px solid #232323; color: #777; cursor: pointer; display: block
 #header.defualt { background: transparent; z-index: 999; padding: 0px; margin: 0px; position: absolute; width: 100%; }
 
 /*topbar*/
-.topbar { border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding: 10px 0px; font-family: 'Roboto', sans-serif; }
+.topbar { border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding: 10px 0px; font-family: 'Roboto', sans-serif; background: rgba(0,0,0,0.5); }
 .topbar li, .topbar li a { color: #ffffff; }
 .topbar-left li i { padding-right: 5px; }
 .topbar-right .list-inline li:last-child, .topbar-right li:last-child i { padding-right: 0px; }
