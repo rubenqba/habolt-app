@@ -57,12 +57,22 @@
               <!-- menu links -->
               <ul class="menu-links">
                 <!-- active class -->
-                <li class="active"><a href="{% url "core:home" %}"> Inicio</a></li>
+                <!-- <li class="active"><a href="{% url "core:home" %}"> Inicio</a></li> -->
                 <li class="active"><a href="{% url "core:nosotros" %}"> Nosotros</a></li>
                 <li class="active"><a href="{% url "core:faq" %}"> Preguntas frecuentes</a></li>
-                <li class="active"><a href="{% url "core:list" %}"> Compra un auto</a></li>
-                <li class="active"><a href="{% url "core:vende" %}"> vende tu auto</a></li>
-                <li class="active"><a href="javascript:void(0)"> login</a></li>
+                <li class="active">
+                  <a style="background: #223dff; border-radius: 0px;color:white;line-height: 44px;"
+                    href="{% url "core:list" %}">
+                    Compra un auto
+                  </a>
+                </li>
+                <li class="active">
+                  <a href="{% url "core:vende" %}"
+                    style="background: #ffbd00; border-radius: 0px;color:white;line-height: 44px;">
+                    vende tu auto
+                  </a>
+                </li>
+                <li> <a href=""></a> </li>
               </ul>
             </div>
           </div>

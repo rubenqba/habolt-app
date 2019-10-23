@@ -8,13 +8,20 @@
       <div class="col-md-12">
         <div class="social">
           <ul>
-            <li><a class="facebook" href="https://www.facebook.com/haboltmx/">facebook <i class="fa fa-facebook"></i>
-              </a></li>
-            <li><a class="twitter" href="https://www.instagram.com/mxhabolt/?hl=es-la">instagram <i
-                  class="fa fa-instagram"></i> </a></li>
-            <li><a class="facebook"
-                href="https://www.youtube.com/channel/UCwKoxeACEVEFooI9NaW0jHQ?view_as=subscriber">youtube <i
-                  class="fa fa-youtube"></i> </a></li>
+            <li></li>
+            <li style="text-align: center; ">
+              <a style="background: #223dff; border-radius: 0px;color:white;line-height: 44px"
+                href="{% url "core:list" %}">
+                Compra un auto
+              </a>
+            </li>
+            <li style="text-align: center;">
+              <a href="{% url "core:vende" %}"
+                style="background: #ffbd00; border-radius: 0px;color:white;line-height: 44px;">
+                vende tu auto
+              </a>
+            </li>
+            <li></li>
           </ul>
         </div>
       </div>
