@@ -7,8 +7,12 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, View
 from django.shortcuts import redirect
 from django.utils import timezone
+from django_filters.views import FilterView
+
+
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
+from .filters import ItemFilter
 
 import random
 import string
@@ -354,6 +358,19 @@ class ListView(ListView):
     paginate_by = 10
     template_name = "list.html"
 
+    def get_queryset(self):
+        filter_val = self.request.GET.get('busqueda', '')
+        new_context = Item.objects.filter(
+            title=filter_val,
+        )
+        return new_context
+
+
+def product_list(request):
+    filter = ItemFilter(request.GET, queryset=Item.objects.all())
+    print(filter)
+    return render(request, 'listt.html', {'filter': filter})
+
 
 class OrderSummaryView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
@@ -379,7 +396,11 @@ class ItemDetailView(DetailView):
 
 
 def test(request, slug):
-    return redirect("/")
+    print(slug)
+    context = {}
+    context['object'] = get_object_or_404(Item, slug=slug)
+    context['relacionados'] = Item.objects.all()
+    return render(request, 'product.html', context)
 
 
 @login_required

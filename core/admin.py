@@ -57,7 +57,7 @@ class AddressAdmin(admin.ModelAdmin):
 
 class ItemImageInline(admin.TabularInline):
     model = ItemImage
-    extra = 3
+    extra = 10
 
 
 class ItemAdmin(admin.ModelAdmin):
