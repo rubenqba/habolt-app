@@ -378,6 +378,10 @@ class ItemDetailView(DetailView):
         return context
 
 
+def test(request, slug):
+    return redirect("/")
+
+
 @login_required
 def add_to_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)

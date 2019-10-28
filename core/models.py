@@ -76,6 +76,11 @@ class Item(models.Model):
         })
 
 
+class ItemImage(models.Model):
+    item = models.ForeignKey(Item, related_name='images', on_delete='CASCADE')
+    image = models.ImageField()
+
+
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)

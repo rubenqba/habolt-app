@@ -45,10 +45,14 @@ car-details -->
       <div class="col-md-8">
         <div class="slider-slick">
           <div class="slider slider-for detail-big-car-gallery">
-            <img class="img-fluid" src="{% static item.image|safe %}" alt="">
+            {% for img in object.images.all %}
+            <img class="img-fluid" src="{{img.image.url}}" alt="">
+            {% endfor %}
           </div>
           <div class="slider slider-nav">
-            <img class="img-fluid" style="width: 160px;" src="{% static item.image|safe %}" alt="">
+            {% for img in object.images.all %}
+            <img class="img-fluid" style="width: 160px;" src="{{img.image.url}}" alt="">
+            {% endfor %}
           </div>
         </div>
 
@@ -143,7 +147,7 @@ car-details -->
             <div class="item">
               <div class="car-item gray-bg text-center">
                 <div class="car-image">
-                  <img class="img-fluid" src="{% static item.image|safe %}" alt="">
+                  <img class="img-fluid" src="{{ item.image.url }}" alt="">
                   <div class="car-overlay-banner">
                     <ul>
                       <li><a href="{{ item.get_absolute_url }}"><i class="fa fa-link"></i></a></li>
