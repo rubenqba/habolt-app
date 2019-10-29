@@ -20,8 +20,8 @@ app_name = 'core'
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
-    path('list/', ListView.as_view(), name='list'),
-    path('listt/', product_list),
+    path('listt/', ListView.as_view(), name='listt'),
+    path('list/', product_list, name='list'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
     path('order-summary/', OrderSummaryView.as_view(), name='order-summary'),
     path('product/<slug>/', ItemDetailView.as_view(), name='product'),

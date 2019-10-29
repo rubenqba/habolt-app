@@ -49,6 +49,7 @@ class Item(models.Model):
     codigo = models.CharField(max_length=100, blank=True, null=True)
     tipo = models.CharField(max_length=100, blank=True, null=True)
     color = models.CharField(max_length=100, blank=True, null=True)
+    color_int = models.CharField(max_length=100, blank=True, null=True)
     cilindro = models.CharField(max_length=100, blank=True, null=True)
     transmision = models.CharField(max_length=100, blank=True, null=True)
     puertas = models.CharField(max_length=100, blank=True, null=True)

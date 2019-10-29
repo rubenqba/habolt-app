@@ -358,13 +358,6 @@ class ListView(ListView):
     paginate_by = 10
     template_name = "list.html"
 
-    def get_queryset(self):
-        filter_val = self.request.GET.get('busqueda', '')
-        new_context = Item.objects.filter(
-            title=filter_val,
-        )
-        return new_context
-
 
 def product_list(request):
     filter = ItemFilter(request.GET, queryset=Item.objects.all())
