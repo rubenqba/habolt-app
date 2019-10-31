@@ -3,15 +3,37 @@
  footer -->
 
 <div class="btn-whatsapp flotante">
-  <a href="https://web.whatsapp.com/send?phone=5215531779640&text=Hola%20estoy%20interesado%20en%20comprar%20/%20vender%20un%20auto."
+  <a href="https://api.whatsapp.com/send?phone=5215531779640&text=Hola%20estoy%20interesado%20en%20comprar%20/%20vender%20un%20auto."
     target="_blank">
     <img src="http://s2.accesoperu.com/logos/btn_whatsapp.png" alt="">
   </a>
 </div>
 
+<div class="row algo" id="footer">
+  <div class="col-md-12">
+    <div class="social" style="margin-bottom: 0px;">
+      <ul>
+        <li></li>
+        <li style="text-align: center; ">
+          <a style="background: #223dff; border-radius: 0px;color:white;line-height: 44px" href="{% url "core:list" %}">
+            Compra un auto
+          </a>
+        </li>
+        <li style="text-align: center;">
+          <a href="{% url "core:vende" %}"
+            style="background: #ffbd00; border-radius: 0px;color:white;line-height: 44px;">
+            vende tu auto
+          </a>
+        </li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <footer class="footer bg-3 bg-overlay-black-90">
   <div class="container">
-    <div class="row">
+    <div class="row" id="footer">
       <div class="col-md-12">
         <div class="social">
           <ul>

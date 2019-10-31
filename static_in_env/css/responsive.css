@@ -545,3 +545,21 @@ h2 { font-size: 32px; }
   #header, .footer, .inner-intro, .feature-car, .details-social, .details-form, .details-form, .car-top { display: none; }
   #tabs .tabcontent { display: block !important; }
  }
+
+
+@media (max-width: 767px) { 
+  .inner-intro { 
+      background-attachment: inherit! important;
+  } 
+  .footer{
+    display: none;
+  }
+  .algo{
+    display: inline;
+    width: 100%;
+    margin: 0%;
+    position: fixed;
+    bottom: 0%;
+    z-index:99999;
+  }
+}
