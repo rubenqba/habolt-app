@@ -23,6 +23,44 @@ ADDRESS_CHOICES = (
 )
 
 
+class Kilometrajes(models.Model):
+    k_ini = models.IntegerField(blank=False)
+    k_fin = models.IntegerField(blank=False)
+    ano2019 = models.IntegerField(blank=False)
+    ano2018 = models.IntegerField(blank=False)
+    ano2017 = models.IntegerField(blank=False)
+    ano2016 = models.IntegerField(blank=False)
+    ano2015 = models.IntegerField(blank=False)
+    ano2014 = models.IntegerField(blank=False)
+    ano2013 = models.IntegerField(blank=False)
+    ano2012 = models.IntegerField(blank=False)
+    ano2011 = models.IntegerField(blank=False)
+    ano2010 = models.IntegerField(blank=False)
+
+
+class Carros(models.Model):
+    CONSECUTIVO = models.CharField(max_length=100)
+    MARCA = models.CharField(max_length=100)
+    NUEVO_USADO = models.CharField(max_length=100)
+    ANO_MODELO = models.CharField(max_length=100)
+    FORMULA = models.CharField(max_length=100)
+    SUBMARCA = models.CharField(max_length=100)
+    VERSIÓN = models.CharField(max_length=100)
+    PRECIO_VENTA = models.CharField(max_length=100)
+    PRECIO_COMPRA = models.CharField(max_length=100)
+    TIPO = models.CharField(max_length=100)
+    PRECIO_INTERMEDIO = models.CharField(max_length=100)
+    PRECIO_AGENCIA_CERTIFICADOS = models.CharField(max_length=100)
+    ALGO = models.CharField(max_length=100)
+    PRECIO_HABOLT = models.CharField(max_length=100)
+    TREINTA_DIAS = models.CharField(max_length=100, blank=True, null=True)
+    CONSIGNA = models.CharField(max_length=100)
+    PRÉSTAMO = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.VERSIÓN
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

@@ -1,6 +1,8 @@
+from import_export import resources
 from django.contrib import admin
 
-from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, UserProfile, ItemImage
+from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, UserProfile, ItemImage, Kilometrajes, Carros
+from import_export.admin import ImportExportModelAdmin
 
 
 def make_refund_accepted(modeladmin, request, queryset):
@@ -8,6 +10,18 @@ def make_refund_accepted(modeladmin, request, queryset):
 
 
 make_refund_accepted.short_description = 'Update orders to refund granted'
+
+
+class CarrosResource(resources.ModelResource):
+
+    class Meta:
+        model = Carros
+
+
+class KilometrajesResource(resources.ModelResource):
+
+    class Meta:
+        model = Kilometrajes
 
 
 class OrderAdmin(admin.ModelAdmin):
@@ -64,7 +78,21 @@ class ItemAdmin(admin.ModelAdmin):
     inlines = [ItemImageInline, ]
 
 
+class CarrosAdmin(ImportExportModelAdmin):
+    resource_class = CarrosResource
+
+
+class KilometrajesAdmin(ImportExportModelAdmin):
+    resource_class = KilometrajesResource
+
+
+admin.site.register(Kilometrajes, KilometrajesAdmin)
+admin.site.register(Carros, CarrosAdmin)
+
 admin.site.register(Item, ItemAdmin)
+
+# admin.site.register(Kilometrajes)
+# admin.site.register(Carros)
 
 # admin.site.register(Item)
 admin.site.register(OrderItem)
