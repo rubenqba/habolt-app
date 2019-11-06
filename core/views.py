@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -17,6 +18,8 @@ from .filters import ItemFilter
 import random
 import string
 import stripe
+import requests
+import json
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
@@ -37,6 +40,29 @@ def is_valid_form(values):
         if field == '':
             valid = False
     return valid
+
+
+def api_year(request, year):
+    url = "https://quoting.habolt.mx/quoting/get/year/{}".format(year)
+    res = requests.post(url).text
+    print(res)
+    return JsonResponse(res, safe=False)
+
+
+def api_marca(request, year, brand):
+    url = "https://quoting.habolt.mx/quoting/get/brand/{}?year={}".format(
+        brand, year)
+    res = requests.post(url).text
+    print(res)
+    return JsonResponse(res, safe=False)
+
+
+def api_model(request, year, brand, model):
+    url = "https://quoting.habolt.mx/quoting/get/model/{}?year={}&brand={}&model={}".format(
+        model, year, brand, model)
+    res = requests.post(url).text
+    print(res)
+    return JsonResponse(res, safe=False)
 
 
 class CheckoutView(View):

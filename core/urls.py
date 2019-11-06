@@ -13,13 +13,19 @@ from .views import (
     AddCouponView,
     RequestRefundView,
     test,
-    product_list
+    product_list,
+    api_year,
+    api_marca,
+    api_model
 )
 
 app_name = 'core'
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
+    path('api/year/<year>', api_year, name='api_year'),
+    path('api/brand/<year>/<brand>', api_marca, name='api_marca'),
+    path('api/model/<year>/<brand>/<model>', api_model, name='api_model'),
     path('listt/', ListView.as_view(), name='listt'),
     path('list/', product_list, name='list'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),

@@ -41,9 +41,9 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label>Año*</label>
-                            <div class="selected-box auto-hight">
-                                <select name="year" required>
-                                    <option></option>
+                            <div style="padding: 1px 1px;background: #f6f6f6;border-color: #f6f6f6;">
+                                <select id="algo" name="year" required>
+                                    <option value=""></option>
                                     <option value="2019">2019</option>
                                     <option value="2018">2018</option>
                                     <option value="2017">2017</option>
@@ -59,20 +59,16 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Marca*</label>
-                            <div class="selected-box auto-hight">
-                                <select name="marca" required>
-                                    <option></option>
-                                </select>
+                            <div style="padding: 1px 1px;background: #f6f6f6;border-color: #f6f6f6;">
+                                <select id="marca" name="marca" required> </select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label>Modelo*</label>
-                            <div class="selected-box auto-hight">
-                                <select name="model" required>
-                                    <option></option>
-                                </select>
+                            <div style="padding: 1px 1px;background: #f6f6f6;border-color: #f6f6f6;">
+                                <select id="model" name="model" required> </select>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
@@ -82,10 +78,8 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Version *</label>
-                        <div class="selected-box auto-hight">
-                            <select name="version" required>
-                                <option></option>
-                            </select>
+                        <div style="padding: 1px 1px;background: #f6f6f6;border-color: #f6f6f6;">
+                            <select id="version" name="version" required> </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -124,7 +118,101 @@
 {% endblock content %}
 
 {% block extra_scripts %}
+<script>
+    console.log('hdoias')
 
+    $(document).ready(function () {
+        $('#algo').change(function () {
+            var year = this.value
+            $('#marca').empty()
+            $('#model').empty()
+            $('#version').empty()
+            $.ajax({
+                "async": true,
+                "crossDomain": true,
+                url: "/api/year/" + year,
+                type: 'GET'
+            })
+                .done(function (response) {
+                    var obj = jQuery.parseJSON(response)
+                    glob = obj
+                    console.log(obj)
+                    $.each(obj, function (key, value) {
+                        offerts = value;
+                        $('#marca').append(
+                            $('<option></option>').val(value.brand).html(value.brand)
+                        );
+                    });
 
+                })
+                .fail(function () {
+
+                })
+                .always(function () {
+                });
+        })
+
+        $('#marca').change(function () {
+            var brand = this.value
+            var year = $('#algo').val()
+            $('#model').empty()
+            $('#version').empty()
+            $.ajax({
+                "async": true,
+                "crossDomain": true,
+                url: "/api/brand/" + year + "/" + brand,
+                type: 'GET'
+            })
+                .done(function (response) {
+                    var obj = jQuery.parseJSON(response)
+                    glob = obj
+                    console.log(obj)
+                    $.each(obj, function (key, value) {
+                        offerts = value;
+                        $('#model').append(
+                            $('<option></option>').val(value.model).html(value.model)
+                        );
+                    });
+
+                })
+                .fail(function () {
+
+                })
+                .always(function () {
+                });
+        })
+
+        $('#model').change(function () {
+            var model = this.value
+            var brand = $('#marca').val()
+            var year = $('#algo').val()
+            $('#version').empty()
+            $.ajax({
+                "async": true,
+                "crossDomain": true,
+                url: "/api/model/" + year + "/" + brand + "/" + model,
+                type: 'GET'
+            })
+                .done(function (response) {
+                    var obj = jQuery.parseJSON(response)
+                    glob = obj
+                    console.log(obj)
+                    $.each(obj, function (key, value) {
+                        offerts = value;
+                        $('#version').append(
+                            $('<option></option>').val(value.id).html(value.version)
+                        );
+                        console.log(value.version)
+                    });
+
+                })
+                .fail(function () {
+
+                })
+                .always(function () {
+                });
+        })
+    })
+</script>
 
 {% endblock extra_scripts %}
