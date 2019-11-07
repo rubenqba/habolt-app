@@ -16,7 +16,8 @@ from .views import (
     product_list,
     api_year,
     api_marca,
-    api_model
+    api_model,
+    api_check
 )
 
 app_name = 'core'
@@ -26,6 +27,8 @@ urlpatterns = [
     path('api/year/<year>', api_year, name='api_year'),
     path('api/brand/<year>/<brand>', api_marca, name='api_marca'),
     path('api/model/<year>/<brand>/<model>', api_model, name='api_model'),
+    path('api/check/<year>/<brand>/<model>/<version>/<km>',
+         api_check, name='api_check'),
     path('listt/', ListView.as_view(), name='listt'),
     path('list/', product_list, name='list'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),

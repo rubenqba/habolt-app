@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
@@ -12,7 +13,7 @@ from django_filters.views import FilterView
 
 
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
-from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
+from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile, Carros, Kilometrajes
 from .filters import ItemFilter
 
 import random
@@ -63,6 +64,42 @@ def api_model(request, year, brand, model):
     res = requests.post(url).text
     print(res)
     return JsonResponse(res, safe=False)
+
+
+def api_check(request, year, brand, model, version, km):
+    carro = Carros.objects.filter(
+        ANO_MODELO=year, MARCA=brand, SUBMARCA=model, VERSIÓN=version).values('PRECIO_HABOLT', 'TREINTA_DIAS', 'CONSIGNA', 'PRÉSTAMO')
+    # result = serializers.serialize('json', carro)
+    kms = converter(km)
+    key = 'ano{}'.format(year)
+
+    multi = Kilometrajes.objects.filter(
+        k_ini__lte=kms, k_fin__gte=kms).extra(select={'value': key}).values('value')
+
+    variable = multi[0]['value'] * 1000
+    precio = converter(carro[0]['PRECIO_HABOLT'])
+    treinta = converter(carro[0]['TREINTA_DIAS'])
+    consigna = converter(carro[0]['CONSIGNA'])
+    prestamo = converter(carro[0]['PRÉSTAMO'])
+    print(variable)
+    print(precio)
+    print(precio + variable)
+    data = {
+        'precio': format((precio + variable), ','),
+        'treinta': format((treinta + variable), ','),
+        'consigna': format((consigna + variable), ','),
+        'prestamo': format((prestamo + variable), ',')
+    }
+    return JsonResponse(data, safe=False)
+
+
+def converter(cambio):
+    try:
+        return int(cambio.replace(',', ''))
+    finally:
+        a = ''
+
+    return 0
 
 
 class CheckoutView(View):
