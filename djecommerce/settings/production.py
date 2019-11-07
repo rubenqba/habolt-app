@@ -15,6 +15,35 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'}
 ]
 
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        " verbose": {
+            "format": "%(asctime)s %(levelname)s %(module)s: %(message)s"
+        }
+    },
+    "handlers": {
+        "analyzer": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "/opt/python/log/analyzer.log",
+            "formatter": "verbose",
+        },
+
+    },
+    "loggers": {
+        "analyzer": {
+            "handlers": ["analyzer"], "level": "DEBUG", "propagate": True
+        },
+        '': {
+            'handlers': ['console', 'log_file'],
+            'level': 'DEBUG',
+        },
+    },
+}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
