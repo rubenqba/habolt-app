@@ -106,7 +106,8 @@ def api_check(request, year, brand, model, version, km):
 
 def converter(cambio):
     try:
-        return int(cambio.replace(',', ''))
+        if cambio:
+            return int(cambio.replace(',', ''))
     finally:
         a = ''
 
