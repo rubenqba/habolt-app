@@ -89,14 +89,16 @@ def api_check(request, year, brand, model, version, km):
             'precio': format((precio + variable), ','),
             'treinta': format((treinta + variable), ','),
             'consigna': format((consigna + variable), ','),
-            'prestamo': format((prestamo + variable), ',')
+            'prestamo': format((prestamo + variable), ','),
+            'data': carro
         }
     else:
         data = {
             'precio': 0,
             'treinta': 0,
             'consigna': 0,
-            'prestamo': 0
+            'prestamo': 0,
+            'data': carro
         }
 
     return JsonResponse(data, safe=False)
