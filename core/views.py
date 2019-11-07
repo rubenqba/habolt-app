@@ -68,7 +68,7 @@ def api_model(request, year, brand, model):
 
 def api_check(request, year, brand, model, version, km):
     carro = Carros.objects.filter(
-        ANO_MODELO=year, MARCA=brand, SUBMARCA=model, VERSIÓN=version).values('PRECIO_HABOLT', 'TREINTA_DIAS', 'CONSIGNA', 'PRÉSTAMO')
+        ANO_MODELO=year, MARCA=brand, SUBMARCA=model, VERSIÓN=version).values('PRECIO_HABOLT', 'TREINTA_DIAS', 'CONSIGNA', 'PRÉSTAMO').first()
     # result = serializers.serialize('json', carro)
     kms = converter(km)
     key = 'ano{}'.format(year)
@@ -77,19 +77,28 @@ def api_check(request, year, brand, model, version, km):
         k_ini__lte=kms, k_fin__gte=kms).extra(select={'value': key}).values('value')
 
     variable = multi[0]['value'] * 1000
-    precio = converter(carro[0]['PRECIO_HABOLT'])
-    treinta = converter(carro[0]['TREINTA_DIAS'])
-    consigna = converter(carro[0]['CONSIGNA'])
-    prestamo = converter(carro[0]['PRÉSTAMO'])
-    print(variable)
-    print(precio)
-    print(precio + variable)
-    data = {
-        'precio': format((precio + variable), ','),
-        'treinta': format((treinta + variable), ','),
-        'consigna': format((consigna + variable), ','),
-        'prestamo': format((prestamo + variable), ',')
-    }
+    if carro:
+        precio = converter(carro['PRECIO_HABOLT'])
+        treinta = converter(carro['TREINTA_DIAS'])
+        consigna = converter(carro['CONSIGNA'])
+        prestamo = converter(carro['PRÉSTAMO'])
+        print(variable)
+        print(precio)
+        print(precio + variable)
+        data = {
+            'precio': format((precio + variable), ','),
+            'treinta': format((treinta + variable), ','),
+            'consigna': format((consigna + variable), ','),
+            'prestamo': format((prestamo + variable), ',')
+        }
+    else:
+        data = {
+            'precio': 0,
+            'treinta': 0,
+            'consigna': 0,
+            'prestamo': 0
+        }
+
     return JsonResponse(data, safe=False)
 
 
