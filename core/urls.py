@@ -17,7 +17,9 @@ from .views import (
     api_year,
     api_marca,
     api_model,
-    api_check
+    api_check,
+    api_lead,
+    api_lead_end
 )
 
 app_name = 'core'
@@ -29,6 +31,10 @@ urlpatterns = [
     path('api/model/<year>/<brand>/<model>', api_model, name='api_model'),
     path('api/check/<year>/<brand>/<model>/<version>/<km>',
          api_check, name='api_check'),
+    path('api/lead/create/<name>/<mail>/<phone>/<cp>/<version>',
+         api_lead, name='api_lead'),
+    path('api/lead/update/<id>/<choose>/<date>/<time>',
+         api_lead_end, name='api_lead_end'),
     path('listt/', ListView.as_view(), name='listt'),
     path('list/', product_list, name='list'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
@@ -44,8 +50,8 @@ urlpatterns = [
     path('request-refund/', RequestRefundView.as_view(), name='request-refund'),
     path('nosotros/', TemplateView.as_view(template_name='nosotros.html'),
          name='nosotros'),
-    path('vende/', TemplateView.as_view(template_name='vende.html'), name='vende'),
-    path('vende2/', TemplateView.as_view(template_name='vende2.html'), name='vende2'),
+    path('vende2/', TemplateView.as_view(template_name='vende.html'), name='vende2'),
+    path('vende/', TemplateView.as_view(template_name='vende2.html'), name='vende'),
     path('faq/', TemplateView.as_view(template_name='faq.html'), name='faq'),
     path('aviso/', TemplateView.as_view(template_name='aviso.html'), name='aviso')
 ]

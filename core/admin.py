@@ -1,7 +1,7 @@
 from import_export import resources
 from django.contrib import admin
 
-from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, UserProfile, ItemImage, Kilometrajes, Carros
+from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, UserProfile, ItemImage, Kilometrajes, Carros, Leads
 from import_export.admin import ImportExportModelAdmin
 
 
@@ -94,7 +94,7 @@ admin.site.register(Item, ItemAdmin)
 # admin.site.register(Kilometrajes)
 # admin.site.register(Carros)
 
-# admin.site.register(Item)
+admin.site.register(Leads)
 admin.site.register(OrderItem)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Payment)

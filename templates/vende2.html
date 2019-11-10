@@ -35,8 +35,42 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div id="gracias" class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="">
+                    <p>
+                        <strong>!Felicidades!</strong> Estamos listos para hacer la valoración 360° de tu auto y
+                        comprártelo.<br>
+                        <br>
+                        Un guía de compra se pondrá en contacto contigo para confirmar la cita.<br>
+                        <br>
+                        Tus datos de contacto registrados son los siguientes:<br>
+                        <br>
+                        Nombre <strong><span id="v-name"></span></strong><br>
+                        Teléfono <strong><span id="v-phone"></span></strong><br>
+                        Correo electrónico <strong><span id="v-mail"></span></strong><br>
+                        <br>
+                        Oferta que seleccionaste <strong><span id="v-price"></span></strong><br>
+                        <strong>Válida al <span id="v-date">Dia de la cita</span></strong><br>
+                        <br>
+                        Día de la cita <strong><span id="v-date"></span></strong><br>
+                        Hora de la cita: <strong><span id="v-hour"></span></strong><br>
+                        Dirección: <strong>Carretera México Toluca No. 5322, Tlaxla, El Yaqui, Ciudad de México
+                            05300</strong> <br>
+                        <br>
+                        <strong>Tienes alguna duda? Contáctanos</strong><br>
+                        <strong>Teléfono</strong> +52 (55) 8526 6545<br>
+                        <strong>Correo</strong> ayuda@habolt.mx<br>
+
+                    </p>
+
+
+                </div>
+            </div>
+        </div>
+        <div id="formulario" class="row justify-content-center">
             <form action="" class="col-lg-8 col-md-12">
+                <input id="lead" type="hidden" value="">
                 <div class="">
                     <div class="gray-form">
                         <div class="row">
@@ -61,68 +95,93 @@
                             <div class="form-group col-md-6">
                                 <label>Marca*</label>
                                 <div style="padding: 1px 1px;background: #f6f6f6;border-color: #f6f6f6;">
-                                    <select id="marca" name="marca" required> </select>
+                                    <select id="marca" name="marca" required>
+                                        <option value=""></option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Modelo*</label>
                             <div style="padding: 1px 1px;background: #f6f6f6;border-color: #f6f6f6;">
-                                <select id="model" name="model" required> </select>
+                                <select id="model" name="model" required>
+                                    <option value=""></option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="phone">Version *</label>
                             <div style="padding: 1px 1px;background: #f6f6f6;border-color: #f6f6f6;">
-                                <select id="version" name="version" required> </select>
+                                <select id="version" name="version" required>
+                                    <option value=""></option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Kilometraje*</label>
-                            <input id="km" class="form-control" type="text" name="km" required>
-                        </div>
-                        <div class="form-group" id="oferta">
-                            <div class="remember-checkbox" id="s_compra">
-                                <input type="checkbox" name="compra" id="comp" value="1" />
-                                <label for="comp"> <strong id="compra"></strong> Contado </label>
-                            </div>
-                            <div class="remember-checkbox" id="s_treinta">
-                                <input type="checkbox" name="treinta" id="comp" value="1" />
-                                <label for="comp"><strong id="treinta"></strong> 30 dias</label>
-                            </div>
-                            <div class="remember-checkbox" id="s_consigna">
-                                <input type="checkbox" name="consigna" id="cons" value="1" />
-                                <label for="cons"><strong id="consigna"></strong> Consignación</label>
-                            </div>
-                            <div class="remember-checkbox" id="s_prestamo">
-                                <input type="checkbox" name="prestamo" id="pres" value="1" />
-                                <label for="pres"><strong id="prestamo"></strong> Préstamo</label>
-                            </div>
+                            <input id="km" class="form-control" type="number" name="km" required>
                         </div>
                         <div class="form-group">
                             <label>Nombre* </label>
-                            <input id="name" class="form-control" type="text" name="name" required>
+                            <input id="nombre" class="form-control" type="text" name="nombre" required>
                         </div>
                         <div class="form-group">
                             <label>Telefono *</label>
-                            <input id="phone" class="form-control" type="text" name="phone" required>
+                            <input id="tel" class="form-control" type="number" name="tel" required>
                         </div>
                         <div class="form-group">
                             <label>Email *</label>
-                            <input id="email" class="form-control" type="text" name="email" required>
+                            <input id="mail" class="form-control" type="text" name="mail" required>
                         </div>
                         <div class="form-group">
                             <label>C.P. *</label>
-                            <input id="cp" class="form-control" type="text" name="cp" required>
+                            <input id="cp" class="form-control" type="number" name="cp" required>
                         </div>
                         <div class="form-group">
                             <div class="remember-checkbox">
-                                <input type="checkbox" name="one" id="one" value="1" required />
-                                <label for="one">ACEPTO LOS TÉRMINOS Y CONDICIONES Y LA POLÍTICA DE PRIVACIDAD DE
+                                <input type="checkbox" name="aviso" id="aviso" value="1" required />
+                                <label for="aviso">ACEPTO LOS TÉRMINOS Y CONDICIONES Y LA POLÍTICA DE PRIVACIDAD DE
                                     HABOLT.</label>
                             </div>
                         </div>
-                        <button class="button red" type="submit">Conoce aquí tu cotización</button>
+                        <div class="form-group" id="oferta">
+                            <div class="remember-checkbox" id="s_compra">
+                                <input type="checkbox" name="compra" id="comp" />
+                                <label for="comp"> <strong id="compra"></strong> Contado </label>
+                            </div>
+                            <div class="remember-checkbox" id="s_treinta">
+                                <input type="checkbox" name="treinta" id="tres" />
+                                <label for="tres"><strong id="treinta"></strong> 30 dias</label>
+                            </div>
+                            <div class="remember-checkbox" id="s_consigna">
+                                <input type="checkbox" name="consigna" id="cons" />
+                                <label for="cons"><strong id="consigna"></strong> Consignación</label>
+                            </div>
+                            <div class="remember-checkbox" id="s_prestamo">
+                                <input type="checkbox" name="prestamo" id="pres" />
+                                <label for="pres"><strong id="prestamo"></strong> Préstamo</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha *</label>
+                                <input type="text" class="form-control" id="txtworkingdays" name="date">
+                            </div>
+                            <div class="form-group">
+                                <label>Hora *</label>
+                                <select class="form-control" name="time" id="time">
+                                    <option value=""></option>
+                                    <option value="">Seleccione</option>
+                                    <option value="9:00 a 11:00">9:00 a 11:00</option>
+                                    <option value="11:00 a 13:00">11:00 a 13:00</option>
+                                    <option value="14:00 a 16:00">14:00 a 16:00</option>
+                                    <option value="16:00 a 18:00">16:00 a 18:00</option>
+                                </select>
+                            </div>
+                        </div>
+                        <span id="enviar" class="button red" style="cursor: pointer;">Angenda tu cita</span>
+                        <br>
+                        <span id="siguiente" class="button red" style="cursor: pointer;">Conoce aquí tu
+                            cotización</span>
+                        <br><br><br><br>
                     </div>
                 </div>
             </form>
@@ -139,18 +198,97 @@
 <script>
     console.log('hdoias')
     $('#oferta').hide()
+    $('#gracias').hide()
+    $('#enviar').hide()
+    $("#txtworkingdays").datepicker({
+        beforeShowDay: function (date) {
+            var day = date.getDay();
+            return [(day != 0), ''];
+        }
+    });
+
+    function validateEmail(email) {
+        var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return reg.test(String(email).toLowerCase());
+    }
+
+    function calculator() {
+        var val = $("#km").val()
+        var model = $('#model').val()
+        var brand = $('#marca').val()
+        var year = $('#algo').val()
+        var version = $('#version').val()
+
+        var param = version.replace('/', '|')
+        var param = param.replace('/', '|')
+
+        $.ajax({
+            "async": true,
+            "crossDomain": true,
+            url: "/api/check/" + year + "/" + brand + "/" + model + "/" + param + "/" + val,
+            type: 'GET'
+        })
+            .done(function (response) {
+                //var obj = jQuery.parseJSON(response)
+                //glob = obj
+                console.log(response)
+                $('#compra').empty()
+                $('#treinta').empty()
+                $('#consigna').empty()
+                $('#prestamo').empty()
+                $('#oferta').show()
+                $('#enviar').show()
+                $('#siguiente').hide()
+
+                $('#compra').text(response.precio)
+                $('#treinta').text(response.treinta)
+                $('#consigna').text(response.consigna)
+                $('#prestamo').text(response.prestamo)
+                $('#comp').val(response.precio)
+                $('#tres').val(response.treinta)
+                $('#cons').val(response.consigna)
+                $('#pres').val(response.prestamo)
+
+            })
+            .fail(function () {
+
+            })
+            .always(function () {
+            });
+
+        var nombre = $('#nombre').val()
+        var tel = $('#tel').val()
+        var mail = $('#mail').val()
+        var cp = $('#cp').val()
+        var ver = year + "--" + brand + "--" + model + "--" + param + "--" + val
+
+        $.ajax({
+            "async": true,
+            "crossDomain": true,
+            url: "/api/lead/create/" + nombre + "/" + mail + "/" + tel + "/" + cp + "/" + ver,
+            type: 'GET'
+        }).done(function (response) {
+            //var obj = jQuery.parseJSON(response)
+            //glob = obj
+            console.log(response)
+            $('#lead').val(response.id)
+        })
+    }
 
     $(document).ready(function () {
         $('#algo').change(function () {
             var year = this.value
             $('#marca').empty()
-            $('#marca').append($('<option></option>'))
+            $('#marca').append($('<option></option>').val("").html("Seleccione"))
             $('#model').empty()
-            $('#model').append($('<option></option>'))
+            $('#model').append($('<option></option>').val(""))
             $('#version').empty()
-            $('#version').append($('<option></option>'))
+            $('#version').append($('<option></option>').val(""))
             $('#oferta').hide()
             $('#km').val('')
+
+            $('#enviar').hide()
+            $('#siguiente').show()
             $.ajax({
                 "async": true,
                 "crossDomain": true,
@@ -180,11 +318,14 @@
             var brand = this.value
             var year = $('#algo').val()
             $('#model').empty()
-            $('#model').append($('<option></option>'))
+            $('#model').append($('<option></option>').val("").html("Seleccione"))
             $('#version').empty()
-            $('#version').append($('<option></option>'))
+            $('#version').append($('<option></option>').val(""))
             $('#oferta').hide()
             $('#km').val('')
+
+            $('#enviar').hide()
+            $('#siguiente').show()
             $.ajax({
                 "async": true,
                 "crossDomain": true,
@@ -217,7 +358,10 @@
             $('#oferta').hide()
             $('#version').empty()
             $('#km').val('')
-            $('#version').append($('<option></option>'))
+            $('#version').append($('<option></option>').val("").html("Seleccione"))
+
+            $('#enviar').hide()
+            $('#siguiente').show()
             $.ajax({
                 "async": true,
                 "crossDomain": true,
@@ -247,42 +391,148 @@
         $('#version').change(function () {
             $('#oferta').hide()
             $('#km').val('')
+
+            $('#enviar').hide()
+            $('#siguiente').show()
         })
 
-        $("#km").blur(function (e) {
-            var val = $("#km").val()
+        $("#siguiente").click(function (e) {
+            var km = $("#km").val()
             var model = $('#model').val()
             var brand = $('#marca').val()
             var year = $('#algo').val()
             var version = $('#version').val()
-            if (val !== '') {
-                $.ajax({
-                    "async": true,
-                    "crossDomain": true,
-                    url: "/api/check/" + year + "/" + brand + "/" + model + "/" + version + "/" + val,
-                    type: 'GET'
-                })
-                    .done(function (response) {
-                        //var obj = jQuery.parseJSON(response)
-                        //glob = obj
-                        console.log(response)
-                        $('#compra').empty()
-                        $('#treinta').empty()
-                        $('#consigna').empty()
-                        $('#prestamo').empty()
-                        $('#oferta').show()
-                        $('#compra').text(response.precio)
-                        $('#treinta').text(response.treinta)
-                        $('#consigna').text(response.consigna)
-                        $('#prestamo').text(response.prestamo)
+            var nombre = $('#nombre').val()
+            var tel = $('#tel').val()
+            var mail = $('#mail').val()
+            var cp = $('#cp').val()
+            var aviso = $('#aviso').val()
 
-                    })
-                    .fail(function () {
-
-                    })
-                    .always(function () {
-                    });
+            if (year == "") {
+                $("#algo").focus()
+                $("#algo").css({ 'border': '1px solid #f73414' });
+                return true
             }
+            if (brand == "") {
+                $("#marca").focus()
+                $("#marca").css({ 'border': '1px solid #f73414' });
+                return true
+            }
+            if (model == "") {
+                $("#model").focus()
+                $("#model").css({ 'border': '1px solid #f73414' });
+                return true
+            }
+            if (version == "") {
+                $("#version").focus()
+                $("#version").css({ 'border': '1px solid #f73414' });
+                return true
+            }
+            if (km == "") {
+                $("#km").focus()
+                $("#km").css({ 'border': '1px solid #f73414' });
+                return true
+            }
+            if (nombre == "") {
+                $("#nombre").focus()
+                $("#nombre").css({ 'border': '1px solid #f73414' });
+                return true
+            }
+            if (tel == "" || tel.length < 8) {
+                $("tel").focus()
+                $("#tel").css({ 'border': '1px solid #f73414' });
+                return true
+            }
+
+            if (mail == "" || !validateEmail(mail)) {
+                $("#mail").focus()
+                $("#mail").css({ 'border': '1px solid #f73414' });
+                return true
+            }
+            if (cp == "") {
+                $("#cp").focus()
+                $("#cp").css({ 'border': '1px solid #f73414' });
+                return true
+            }
+            if ($('#aviso').is(':checked')) {
+
+            } else {
+                $("#aviso").focus()
+                alert("El campo de aviso de privacidad es obligatorio.")
+                return true
+            }
+
+            calculator()
+        })
+
+        $("#enviar").click(function (e) {
+            var comp = $('#comp').val()
+            var tres = $('#tres').val()
+            var cons = $('#cons').val()
+            var pres = $('#pres').val()
+            var date = $('#txtworkingdays').val()
+            var time = $('#time').val()
+
+            var choose = ""
+
+            if ($('#comp').is(':checked')) {
+                choose += comp + " Contado , "
+            }
+            if ($('#tres').is(':checked')) {
+                choose += tres + " 30 dias , "
+            }
+            if ($('#cons').is(':checked')) {
+                choose += cons + " consigna , "
+            }
+            if ($('#pres').is(':checked')) {
+                choose += pres + " prestamo , "
+            }
+            if (choose == "") {
+                $('#oferta').focus()
+                alert("Selecciona una cotizacion.")
+                return true
+            }
+
+            if (date.length < 1) {
+                $("#txtworkingdays").focus()
+                $("#txtworkingdays").css({ 'border': '1px solid #f73414' });
+                return true
+            }
+            if (time == "") {
+                $("#time").focus()
+                $("#time").css({ 'border': '1px solid #f73414' });
+                return true
+            }
+            var param = date.replace('/', '|')
+            var param = param.replace('/', '|')
+            $.ajax({
+                "async": true,
+                "crossDomain": true,
+                url: "/api/lead/update/" + $("#lead").val() + "/" + choose + "/" + param + "/" + time,
+                type: 'GET'
+            }).done(function (response) {
+                //var obj = jQuery.parseJSON(response)
+                //glob = obj
+                console.log(response)
+                var nombre = $('#nombre').val()
+                var tel = $('#tel').val()
+                var mail = $('#mail').val()
+
+                if (response == '1') {
+                    $("#formulario").hide()
+
+                    $("#v-name").text(nombre)
+                    $("#v-phone").text(tel)
+                    $("#v-mail").text(mail)
+                    $("#v-price").text(choose)
+                    $("#v-date").text(date)
+                    $("#v-hour").text(time)
+
+                    $("#gracias").show()
+                    window.scrollTo(0, 0)
+                }
+            })
+
         })
     })
 </script>

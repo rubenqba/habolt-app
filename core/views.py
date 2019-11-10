@@ -13,7 +13,7 @@ from django_filters.views import FilterView
 
 
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
-from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile, Carros, Kilometrajes
+from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile, Carros, Kilometrajes, Leads
 from .filters import ItemFilter
 
 import random
@@ -43,6 +43,25 @@ def is_valid_form(values):
     return valid
 
 
+def api_lead(request, name, mail, phone, cp, version):
+    version = version.replace('|', '/')
+    print(version)
+    new = Leads.objects.create(
+        nombre=name, mail=mail, tel=phone, cp=cp, version=version, eleccion="", status=""
+    )
+
+    return JsonResponse({'id': new.id}, safe=False)
+
+
+def api_lead_end(request, id, choose, date, time):
+    date = date.replace('|', '/')
+    print(date)
+    lead = Leads.objects.filter(id=id).update(
+        eleccion=choose, fecha=date, hora=time
+    )
+    return JsonResponse(lead, safe=False)
+
+
 def api_year(request, year):
     url = "https://quoting.habolt.mx/quoting/get/year/{}".format(year)
     res = requests.post(url).text
@@ -67,8 +86,10 @@ def api_model(request, year, brand, model):
 
 
 def api_check(request, year, brand, model, version, km):
+    version = version.replace('|', '/')
+    print(version)
     carro = Carros.objects.filter(
-        ANO_MODELO=year, MARCA=brand, SUBMARCA=model, VERSIÓN=version).values('PRECIO_HABOLT', 'TREINTA_DIAS', 'CONSIGNA', 'PRÉSTAMO').first()
+        ANO_MODELO=year, MARCA=brand, SUBMARCA=model, VERSIÓN=version).values('PRECIO_HABOLT', 'TREINTA_DIAS', 'CONSIGNA', 'PRÉSTAMO', 'id').first()
     # result = serializers.serialize('json', carro)
     kms = converter(km)
     key = 'ano{}'.format(year)

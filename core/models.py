@@ -23,6 +23,21 @@ ADDRESS_CHOICES = (
 )
 
 
+class Leads(models.Model):
+    nombre = models.CharField(max_length=100)
+    mail = models.CharField(max_length=100)
+    tel = models.CharField(max_length=100)
+    cp = models.CharField(max_length=100)
+    version = models.CharField(max_length=500)
+    eleccion = models.CharField(max_length=200)
+    status = models.CharField(max_length=100)
+    fecha = models.CharField(max_length=100, blank=True, null=True)
+    hora = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.id
+
+
 class Kilometrajes(models.Model):
     k_ini = models.IntegerField(blank=False)
     k_fin = models.IntegerField(blank=False)
