@@ -88,8 +88,9 @@
     <div class="row">
       <div class="col-lg-6 col-md-12">
         <div class="title">
-          <h3>¡VIVE LA EXPERIENCIA! <br> UN HABOLT ES ÚNICO, POR QUE NOSOTROS SI TE DAMOS 12 MESES DE GARANTIA INCLUIDA.
+          <h3>¡VIVE LA EXPERIENCIA! <br>
           </h3>
+          <h4>UN HABOLT ES ÚNICO, POR QUE NOSOTROS SI TE DAMOS 12 MESES DE GARANTIA INCLUIDA.</h4>
         </div>
         <div class="content">
           <p style="font-size: 16px;">Todos nuestros autos pasan por un riguroso proceso de valoración de 360°. Si no
@@ -265,13 +266,13 @@
               </div>
               <div class="car-content">
                 <div class="star">
-                  <i class="fa fa-star orange-color"></i>
-                  <i class="fa fa-star orange-color"></i>
-                  <i class="fa fa-star orange-color"></i>
-                  <i class="fa fa-star orange-color"></i>
-                  <i class="fa fa-star orange-color"></i>
+                  <i class="fa fa-star blue-color"></i>
+                  <i class="fa fa-star blue-color"></i>
+                  <i class="fa fa-star blue-color"></i>
+                  <i class="fa fa-star blue-color"></i>
+                  <i class="fa fa-star blue-color"></i>
                 </div>
-                <a href="#">{{ item.title }}</a>
+                <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
                 <div class="separator"></div>
                 <div class="price">
                   {% if item.discount_price %}
@@ -294,13 +295,82 @@
 <!--=================================
    feature-car -->
 
+<!--=================================
+  our History -->
+
+<section class="our-history white-bg page-section-ptb">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-title">
+          <h2>PORQUE TU AUTO SIEMPRE VALE</h2>
+          <div class="separator"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="timeline list-style-none">
+          <li>
+            <div class="timeline-badge">
+              <h4>01</h4>
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h5>Certificación:</h5>
+              </div>
+              <div class="timeline-body">
+                <p>Somos los únicos que damos una valoración 360°, parte por parte, detalle a detalle,
+                  porque no cualquier auto puede ser un Habolt. Es la manera en la que podemos darte
+                  12 meses de garantía. Nadie te lo da.</p>
+              </div>
+            </div>
+          </li>
+          <li class="timeline-inverted">
+            <div class="timeline-badge">
+              <h4>02</h4>
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h5>Periodo de prueba:</h5>
+              </div>
+              <div class="timeline-body">
+                <p>Prueba tu auto por 7 días y 150 km si no estas satisfecho
+                  te devolvemos tu dinero, así de simple.</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="timeline-badge">
+              <h4>03</h4>
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h5>Financiamiento:</h5>
+              </div>
+              <div class="timeline-body">
+                <p>Contamos con un mínimo de enganche del 5% el más bajo porque queremos que tengas un
+                  Habolt. Tenemos un plan de crédito especial para ti, incluso si no tienes historial
+                  crediticio.</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--=================================
+    our History-->
+
 
 
 
 <!--=================================
 testimonial -->
 
-<section class="testimonial-2 bg-3 bg-overlay-black-70 page-section-ptb">
+<!-- <section class="testimonial-2 bg-3 bg-overlay-black-70 page-section-ptb">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -353,7 +423,7 @@ testimonial -->
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!--=================================
    testimonial -->

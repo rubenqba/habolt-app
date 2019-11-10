@@ -57,15 +57,32 @@
                         Hora de la cita: <strong><span id="v-hour"></span></strong><br>
                         Dirección: <strong>Carretera México Toluca No. 5322, Tlaxla, El Yaqui, Ciudad de México
                             05300</strong> <br>
-                        <br>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15056.466307175342!2d-99.2784757!3d19.3641043!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa88cc4d5ee8d040!2sHabolt!5e0!3m2!1ses!2smx!4v1573400975704!5m2!1ses!2smx"
+                            width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                        <br><br>
+
+                        <p>Estás a un paso de vender tu auto, <strong>para agilizar el trámite asegúrate de traer los
+                                siguientes
+                                documentos:</strong></p>
+                        <ul>
+                            <li>Factura de origen y/o refacturas</li>
+                            <li>Identificación oficial.</li>
+                            <li>Tarjeta de circulación vigente a nombre del útlimo dueño del auto.</li>
+                            <li>Talón de verificación.</li>
+                            <li>Comprobantes de pago de tenencia hasta el año actual.</li>
+                            <li>Manuales originales.</li>
+                            <li>Bitácora de servicios.</li>
+                            <li>2 juegos de llaves.</li>
+                            <li>Tus datos bancarios para pagarte.</li>
+                        </ul>
+                        <br><br>
                         <strong>Tienes alguna duda? Contáctanos</strong><br>
                         <strong>Teléfono</strong> +52 (55) 8526 6545<br>
                         <strong>Correo</strong> ayuda@habolt.mx<br>
 
                     </p>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15056.466307175342!2d-99.2784757!3d19.3641043!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa88cc4d5ee8d040!2sHabolt!5e0!3m2!1ses!2smx!4v1573400975704!5m2!1ses!2smx"
-                        width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
 
                 </div>
             </div>
@@ -99,7 +116,8 @@
                                 <label>Marca*</label>
                                 <div>
                                     <select id="marca" name="marca"
-                                        style="height: 60px; background: #f6f6f6;border-color: #f6f6f6;" required>
+                                        style="max-width: 100%; height: 60px; background: #f6f6f6;border-color: #f6f6f6;"
+                                        required>
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -109,7 +127,8 @@
                             <label>Modelo*</label>
                             <div>
                                 <select id="model" name="model"
-                                    style="height: 60px; background: #f6f6f6;border-color: #f6f6f6;" required>
+                                    style="max-width: 100%; height: 60px; background: #f6f6f6;border-color: #f6f6f6;"
+                                    required>
                                     <option value=""></option>
                                 </select>
                             </div>
@@ -118,7 +137,8 @@
                             <label for="phone">Version *</label>
                             <div>
                                 <select id="version" name="version"
-                                    style="height: 60px; background: #f6f6f6;border-color: #f6f6f6;" required>
+                                    style="max-width: 100%; height: 60px; background: #f6f6f6;border-color: #f6f6f6;"
+                                    required>
                                     <option value=""></option>
                                 </select>
                             </div>
@@ -151,24 +171,28 @@
                             </div>
                         </div>
                         <div class="form-group" id="oferta">
-                            <div class="remember-checkbox" id="s_compra">
-                                <input type="checkbox" name="compra" id="comp" />
-                                <label for="comp"> <strong id="compra"></strong> Contado </label>
-                                <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°, firmamos
-                                    “El contrato de compra-venta” y TE PAGAMOS DE INMEDIATO el precio final acordado
-                                    después de la valoración. </p>
-                            </div>
+                            <br>
+                            <h6><strong>Estas son las opciones que en Habolt tenemos para comprarte tu auto. Selecciona
+                                    la(s) que
+                                    más te interese(n)</strong></h6><br>
                             <div class="remember-checkbox" id="s_treinta">
                                 <input type="checkbox" name="treinta" id="tres" />
-                                <label for="tres"><strong id="treinta"></strong> 30 dias</label>
+                                <label for="tres"><strong id="treinta"></strong> <strong>30 dias</strong></label>
                                 <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°, firmamos
                                     “El contrato de compra-venta” y tu auto lo exhibimos en nuestras instalaciones. Una
                                     vez transcurridos 30 días, te pagamos el precio final acordado después de la
                                     valoración.</p>
                             </div>
+                            <div class="remember-checkbox" id="s_compra">
+                                <input type="checkbox" name="compra" id="comp" />
+                                <label for="comp"> <strong id="compra"></strong> <strong>Contado</strong> </label>
+                                <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°, firmamos
+                                    “El contrato de compra-venta” y TE PAGAMOS DE INMEDIATO el precio final acordado
+                                    después de la valoración. </p>
+                            </div>
                             <div class="remember-checkbox" id="s_consigna">
                                 <input type="checkbox" name="consigna" id="cons" />
-                                <label for="cons"><strong id="consigna"></strong> Consignación</label>
+                                <label for="cons"><strong id="consigna"></strong> <strong>Consignación</strong></label>
                                 <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°, firmamos
                                     “El acuerdo de consignación” y tu auto se queda en nuestras instalaciones. Una vez
                                     que la venta se haya realizado, te pagamos el precio final acordado después de la
@@ -176,16 +200,16 @@
                             </div>
                             <div class="remember-checkbox" id="s_prestamo">
                                 <input type="checkbox" name="prestamo" id="pres" />
-                                <label for="pres"><strong id="prestamo"></strong> Préstamo</label>
+                                <label for="pres"><strong id="prestamo"></strong> <strong>Préstamo</strong></label>
                                 <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°,
                                     determinamos el préstamo final que se te puede otorgar y si estás de acuerdo
                                     firmamos “El contrato de préstamo”, tu auto se queda en nuestras instalaciones y
                                     puedes disponer de él nuevamente una vez liquidado el préstamo en su totalidad.
                                 </p>
                             </div>
-                            <p>Recuerda haber seleccionado las opciones que más te interesen. </p><br>
-                            <p>Estás a un solo paso de vender tu auto. Agenda una cita gratuita para que realicemos la
-                                valoración 360°. </p>
+                            <h6>Recuerda haber seleccionado las opciones que más te interesen. </h6><br>
+                            <h6>Estás a un solo paso de vender tu auto. Agenda una cita gratuita para que realicemos la
+                                valoración 360°. </h6><br>
                             <div class="form-group">
                                 <label>Fecha *</label>
                                 <input type="text" class="form-control" id="txtworkingdays" name="date">
@@ -193,7 +217,7 @@
                             <div class="form-group">
                                 <label>Hora *</label>
                                 <select class="form-control" name="time" id="time"
-                                    style="height: 60px; background: #f6f6f6;border-color: #f6f6f6;">
+                                    style="max-width: 100%; height: 60px; background: #f6f6f6;border-color: #f6f6f6;">
                                     <option value=""></option>
                                     <option value="">Seleccione</option>
                                     <option value="9:00 a 11:00">9:00 a 11:00</option>
@@ -203,7 +227,7 @@
                                 </select>
                             </div>
                         </div>
-                        <span id="enviar" class="button red" style="cursor: pointer;">Angenda tu cita</span>
+                        <span id="enviar" class="button red" style="cursor: pointer;">Agenda tu cita</span>
                         <br>
                         <span id="siguiente" class="button red" style="cursor: pointer;">Conoce aquí tu
                             cotización</span>
