@@ -11,6 +11,7 @@ from django.shortcuts import redirect
 from django.utils import timezone
 from django_filters.views import FilterView
 
+from pipedrive.client import Client
 
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile, Carros, Kilometrajes, Leads
@@ -45,9 +46,40 @@ def is_valid_form(values):
 
 def api_lead(request, name, mail, phone, cp, version):
     version = version.replace('|', '/')
+    # crear person
+    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
+    url = "https://api.pipedrive.com/v1/persons?api_token={}".format(token)
+    body = {
+        "name": name,
+        "email": mail,
+        "phone": phone
+    }
+    response = requests.post(url, data=body).text
+    resj = json.loads(response)
+    print(resj['data']['id'])
+
+    # crear deal
     print(version)
+    lista = version.split('--')
+    print(lista)
+    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
+    url = "https://api.pipedrive.com/v1/deals?api_token={}".format(token)
+    body = {
+        "title": "New Habol Datos Vende",
+        "50bf61363c6260dd0adbb42610ad21174b45d6ea": lista[1],
+        "399ed8723c5a919de01c51ce4fd50eae14891d9d": lista[2],
+        "1c4a744c38218968766102d798b3f9c40d7ddea9": lista[0],
+        "b2541bc70a0ced28452448f312a84ace5282234e": lista[3],
+        "5aa010b5d0db9a00cffd8cc3d9527f16ca6f25bf": lista[4],
+        "cc3795bd66ed72913f5571a6f67ca567d345d24d": "",
+        "1ea830209c4978cdc9685df905a7cdabf44f4475": cp,
+        "person_id": resj['data']['id']
+    }
+    deal = requests.post(url, data=body).text
+    res = json.loads(deal)
+    print(res['data']['id'])
     new = Leads.objects.create(
-        nombre=name, mail=mail, tel=phone, cp=cp, version=version, eleccion="", status=""
+        nombre=name, mail=mail, tel=phone, cp=cp, version=version, eleccion="", status=res['data']['id']
     )
 
     return JsonResponse({'id': new.id}, safe=False)
@@ -59,7 +91,33 @@ def api_lead_end(request, id, choose, date, time):
     lead = Leads.objects.filter(id=id).update(
         eleccion=choose, fecha=date, hora=time
     )
+    le = Leads.objects.get(id=id)
+    print(le.status)
+    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
+    url = "https://api.pipedrive.com/v1/deals/{}?api_token={}".format(
+        le.status, token)
+    body = {
+        "cc3795bd66ed72913f5571a6f67ca567d345d24d": choose,
+        "52d3869a66465bc7f1f8ecc90ba4a6572cc40a7e": date,
+        "b0191c0ba8a4d2d6c5c067bd72fda9ce0db68730": time
+    }
+    deal = requests.put(url, data=body).text
+    print(deal)
     return JsonResponse(lead, safe=False)
+
+
+def test_pipe(request, year):
+    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
+    url = "https://api.pipedrive.com/v1/persons?api_token={}".format(token)
+    body = {
+        "name": "name",
+        "email": "mail",
+        "phone": "phone"
+    }
+    res = requests.post(url, data=body).text
+    resj = json.loads(res)
+    print(resj['data']['id'])
+    return JsonResponse(res, safe=False)
 
 
 def api_year(request, year):

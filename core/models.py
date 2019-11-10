@@ -35,7 +35,7 @@ class Leads(models.Model):
     hora = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return self.id
+        return self.status
 
 
 class Kilometrajes(models.Model):

@@ -51,7 +51,7 @@
                         Correo electrónico <strong><span id="v-mail"></span></strong><br>
                         <br>
                         Oferta que seleccionaste <strong><span id="v-price"></span></strong><br>
-                        <strong>Válida al <span id="v-date">Dia de la cita</span></strong><br>
+                        <strong>Válida al <span id="v-cita"></span></strong><br>
                         <br>
                         Día de la cita <strong><span id="v-date"></span></strong><br>
                         Hora de la cita: <strong><span id="v-hour"></span></strong><br>
@@ -148,19 +148,38 @@
                             <div class="remember-checkbox" id="s_compra">
                                 <input type="checkbox" name="compra" id="comp" />
                                 <label for="comp"> <strong id="compra"></strong> Contado </label>
+                                <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°, firmamos
+                                    “El contrato de compra-venta” y TE PAGAMOS DE INMEDIATO el precio final acordado
+                                    después de la valoración. </p>
                             </div>
                             <div class="remember-checkbox" id="s_treinta">
                                 <input type="checkbox" name="treinta" id="tres" />
                                 <label for="tres"><strong id="treinta"></strong> 30 dias</label>
+                                <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°, firmamos
+                                    “El contrato de compra-venta” y tu auto lo exhibimos en nuestras instalaciones. Una
+                                    vez transcurridos 30 días, te pagamos el precio final acordado después de la
+                                    valoración.</p>
                             </div>
                             <div class="remember-checkbox" id="s_consigna">
                                 <input type="checkbox" name="consigna" id="cons" />
                                 <label for="cons"><strong id="consigna"></strong> Consignación</label>
+                                <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°, firmamos
+                                    “El acuerdo de consignación” y tu auto se queda en nuestras instalaciones. Una vez
+                                    que la venta se haya realizado, te pagamos el precio final acordado después de la
+                                    valoración.</p>
                             </div>
                             <div class="remember-checkbox" id="s_prestamo">
                                 <input type="checkbox" name="prestamo" id="pres" />
                                 <label for="pres"><strong id="prestamo"></strong> Préstamo</label>
+                                <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°,
+                                    determinamos el préstamo final que se te puede otorgar y si estás de acuerdo
+                                    firmamos “El contrato de préstamo”, tu auto se queda en nuestras instalaciones y
+                                    puedes disponer de él nuevamente una vez liquidado el préstamo en su totalidad.
+                                </p>
                             </div>
+                            <p>Recuerda haber seleccionado las opciones que más te interesen. </p><br>
+                            <p>Estás a un solo paso de vender tu auto. Agenda una cita gratuita para que realicemos la
+                                valoración 360°. </p>
                             <div class="form-group">
                                 <label>Fecha *</label>
                                 <input type="text" class="form-control" id="txtworkingdays" name="date">
@@ -503,6 +522,7 @@
                 $("#time").css({ 'border': '1px solid #f73414' });
                 return true
             }
+            var date2 = date
             var param = date.replace('/', '|')
             var param = param.replace('/', '|')
             $.ajax({
@@ -520,14 +540,17 @@
 
                 if (response == '1') {
                     $("#formulario").hide()
-
                     $("#v-name").text(nombre)
                     $("#v-phone").text(tel)
                     $("#v-mail").text(mail)
                     $("#v-price").text(choose)
-                    $("#v-date").text(date)
+                    $("#v-date").text(date2)
                     $("#v-hour").text(time)
-
+                    var date = new Date()
+                    date.setDate(date.getDate() + 7)
+                    var options = { year: 'numeric', month: 'long', day: 'numeric' }
+                    var nextdate = date.toLocaleDateString("es-ES", options)
+                    $("#v-cita").text(nextdate)
                     $("#gracias").show()
                     window.scrollTo(0, 0)
                 }
