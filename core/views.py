@@ -87,6 +87,8 @@ def api_lead(request, name, mail, phone, cp, version):
 
 def api_lead_end(request, id, choose, date, time):
     date = date.replace('|', '/')
+    activity_type = 10
+    key_string = "inspeccin_mec_est"
     print(date)
     lead = Leads.objects.filter(id=id).update(
         eleccion=choose, fecha=date, hora=time
