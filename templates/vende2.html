@@ -250,7 +250,15 @@
     $('#oferta').hide()
     $('#gracias').hide()
     $('#enviar').hide()
+    var dateToday = new Date();
     $("#txtworkingdays").datepicker({
+        minDate: dateToday,
+        onSelect: function (selectedDate) {
+            var option = this.id == "txtworkingdays",
+                instance = $(this).data("datepicker"),
+                date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+            dates.not(this).datepicker("option", option, date);
+        },
         beforeShowDay: function (date) {
             var day = date.getDay();
             return [(day != 0), ''];
