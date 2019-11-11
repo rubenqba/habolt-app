@@ -5,7 +5,8 @@ ALLOWED_HOSTS = [
     'habolt-frontend-dev.us-east-1.elasticbeanstalk.com',
     'http://habolt-frontend-dev.us-east-1.elasticbeanstalk.com/',
     'landing.habolt.mx',
-    'habolt.mx'
+    'habolt.mx',
+    '172.31.83.241'
 ]
 
 AUTH_PASSWORD_VALIDATORS = [
