@@ -2,11 +2,11 @@ from .base import *
 
 DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = [
-    'habolt-frontend-dev.us-east-1.elasticbeanstalk.com',
-    'http://habolt-frontend-dev.us-east-1.elasticbeanstalk.com/',
+    '172.31.83.241',
+    'production.gza9fs6f8w.us-east-1.elasticbeanstalk.com',
     'landing.habolt.mx',
-    'habolt.mx',
-    '172.31.83.241'
+    'www.habolt.mx',
+    'habolt.mx'
 ]
 
 AUTH_PASSWORD_VALIDATORS = [
