@@ -2,8 +2,7 @@ from .base import *
 
 DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = [
-    'habolt-frontend-dev.us-east-1.elasticbeanstalk.com',
-    'http://habolt-frontend-dev.us-east-1.elasticbeanstalk.com/',
+    'production.gza9fs6f8w.us-east-1.elasticbeanstalk.com',
     'landing.habolt.mx',
     'habolt.mx'
 ]
