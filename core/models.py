@@ -131,7 +131,8 @@ class Item(models.Model):
 
 
 class ItemImage(models.Model):
-    item = models.ForeignKey(Item, related_name='images', on_delete='CASCADE')
+    item = models.ForeignKey(
+        Item, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField()
 
 
