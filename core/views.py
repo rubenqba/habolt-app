@@ -106,18 +106,8 @@ def api_lead_end(request, id, choose, date, time):
     return JsonResponse(lead, safe=False)
 
 
-def test_pipe(request, year):
-    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
-    url = "https://api.pipedrive.com/v1/persons?api_token={}".format(token)
-    body = {
-        "name": "name",
-        "email": "mail",
-        "phone": "phone"
-    }
-    res = requests.post(url, data=body).text
-    resj = json.loads(res)
-    print(resj['data']['id'])
-    return JsonResponse(res, safe=False)
+def test_pipe(request):
+    return JsonResponse({'api': 'ok'}, safe=False)
 
 
 def api_year(request, year):
