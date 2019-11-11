@@ -5,6 +5,7 @@ ALLOWED_HOSTS = [
     '172.31.83.241',
     'production.gza9fs6f8w.us-east-1.elasticbeanstalk.com',
     'landing.habolt.mx',
+    'www.habolt.mx',
     'habolt.mx'
 ]
 
