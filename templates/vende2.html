@@ -179,7 +179,8 @@
                                     más te interese(n)</strong></h6><br>
                             <div class="remember-checkbox" id="s_treinta">
                                 <input type="checkbox" name="treinta" id="tres" />
-                                <label for="tres"><strong id="treinta"></strong> <strong>30 dias</strong></label>
+                                <label for="tres"><strong>$</strong><strong id="treinta"></strong> <strong>30
+                                        dias</strong></label>
                                 <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°, firmamos
                                     “El contrato de compra-venta” y tu auto lo exhibimos en nuestras instalaciones. Una
                                     vez transcurridos 30 días, te pagamos el precio final acordado después de la
@@ -187,14 +188,16 @@
                             </div>
                             <div class="remember-checkbox" id="s_compra">
                                 <input type="checkbox" name="compra" id="comp" />
-                                <label for="comp"> <strong id="compra"></strong> <strong>Contado</strong> </label>
+                                <label for="comp"><strong>$</strong><strong id="compra"></strong>
+                                    <strong>Contado</strong> </label>
                                 <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°, firmamos
                                     “El contrato de compra-venta” y TE PAGAMOS DE INMEDIATO el precio final acordado
                                     después de la valoración. </p>
                             </div>
                             <div class="remember-checkbox" id="s_consigna">
                                 <input type="checkbox" name="consigna" id="cons" />
-                                <label for="cons"><strong id="consigna"></strong> <strong>Consignación</strong></label>
+                                <label for="cons"><strong>$</strong><strong id="consigna"></strong>
+                                    <strong>Consignación</strong></label>
                                 <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°, firmamos
                                     “El acuerdo de consignación” y tu auto se queda en nuestras instalaciones. Una vez
                                     que la venta se haya realizado, te pagamos el precio final acordado después de la
@@ -202,7 +205,8 @@
                             </div>
                             <div class="remember-checkbox" id="s_prestamo">
                                 <input type="checkbox" name="prestamo" id="pres" />
-                                <label for="pres"><strong id="prestamo"></strong> <strong>Préstamo</strong></label>
+                                <label for="pres"><strong>$</strong><strong id="prestamo"></strong>
+                                    <strong>Préstamo</strong></label>
                                 <p>Si tu auto cumple con los estándares de calidad de nuestra valoración 360°,
                                     determinamos el préstamo final que se te puede otorgar y si estás de acuerdo
                                     firmamos “El contrato de préstamo”, tu auto se queda en nuestras instalaciones y
@@ -259,7 +263,7 @@
             var option = this.id == "txtworkingdays",
                 instance = $(this).data("datepicker"),
                 date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-            dates.not(this).datepicker("option", option, date);
+            //dates.not(this).datepicker("option", option, date);
         },
         beforeShowDay: function (date) {
             var day = date.getDay();
