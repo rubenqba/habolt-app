@@ -114,7 +114,7 @@ def test_pipe(request):
 
 def api_year(request, year):
     url = "https://quoting.habolt.mx/quoting/get/year/{}".format(year)
-    res = requests.post(url).text
+    res = requests.post(url, verify=False).text
     print(res)
     return JsonResponse(res, safe=False)
 
@@ -122,7 +122,7 @@ def api_year(request, year):
 def api_marca(request, year, brand):
     url = "https://quoting.habolt.mx/quoting/get/brand/{}?year={}".format(
         brand, year)
-    res = requests.post(url).text
+    res = requests.post(url, verify=False).text
     print(res)
     return JsonResponse(res, safe=False)
 
@@ -130,7 +130,7 @@ def api_marca(request, year, brand):
 def api_model(request, year, brand, model):
     url = "https://quoting.habolt.mx/quoting/get/model/{}?year={}&brand={}&model={}".format(
         model, year, brand, model)
-    res = requests.post(url).text
+    res = requests.post(url, verify=False).text
     print(res)
     return JsonResponse(res, safe=False)
 

@@ -29,8 +29,8 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="section-title">
-                    <span id="bienvenido">Bienvenido a</span>
-                    <h2 id="titu">REGISTRO DE VENTA</h2>
+                    <span id="bienvenido">Para conocer nuestra propuesta</span>
+                    <h2 id="titu">COMPLETA EL FORMULARIO</h2>
                     <div class="separator"></div>
                 </div>
             </div>
@@ -271,9 +271,92 @@
         }
     });
 
+    function bloqueo() {
+        $.blockUI({
+            message: 'Procesando ...', css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'
+            }
+        });
+    }
+
     function validateEmail(email) {
         var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return reg.test(String(email).toLowerCase());
+    }
+
+    function siguiente() {
+        var km = $("#km").val()
+        var model = $('#model').val()
+        var brand = $('#marca').val()
+        var year = $('#algo').val()
+        var version = $('#version').val()
+        var nombre = $('#nombre').val()
+        var tel = $('#tel').val()
+        var mail = $('#mail').val()
+        var cp = $('#cp').val()
+        var aviso = $('#aviso').val()
+
+        if (year == "") {
+            $("#algo").focus()
+            $("#algo").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (brand == "") {
+            $("#marca").focus()
+            $("#marca").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (model == "") {
+            $("#model").focus()
+            $("#model").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (version == "") {
+            $("#version").focus()
+            $("#version").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (km == "") {
+            $("#km").focus()
+            $("#km").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (nombre == "") {
+            $("#nombre").focus()
+            $("#nombre").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (tel == "" || tel.length < 8) {
+            $("tel").focus()
+            $("#tel").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+
+        if (mail == "" || !validateEmail(mail)) {
+            $("#mail").focus()
+            $("#mail").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (cp == "") {
+            $("#cp").focus()
+            $("#cp").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if ($('#aviso').is(':checked')) {
+
+        } else {
+            $("#aviso").focus()
+            alert("El campo de aviso de privacidad es obligatorio.")
+            return true
+        }
+
+        calculator()
     }
 
     function calculator() {
@@ -285,7 +368,9 @@
 
         var param = version.replace('/', '|')
         var param = param.replace('/', '|')
-
+        $("#bienvenido").text("!Listo!")
+        $("#titu").text("AQUÍ NUESTRA PROPUESTA")
+        bloqueo()
         $.ajax({
             "async": true,
             "crossDomain": true,
@@ -329,6 +414,7 @@
         var cp = $('#cp').val()
         var ver = year + "--" + brand + "--" + model + "--" + param + "--" + val
 
+
         $.ajax({
             "async": true,
             "crossDomain": true,
@@ -339,6 +425,8 @@
             //glob = obj
             console.log(response)
             $('#lead').val(response.id)
+        }).always(function () {
+            $.unblockUI();
         })
     }
 
@@ -356,6 +444,7 @@
 
             $('#enviar').hide()
             $('#siguiente').show()
+            bloqueo()
             $.ajax({
                 "async": true,
                 "crossDomain": true,
@@ -378,7 +467,8 @@
 
                 })
                 .always(function () {
-                });
+                    $.unblockUI();
+                })
         })
 
         $('#marca').change(function () {
@@ -393,6 +483,7 @@
 
             $('#enviar').hide()
             $('#siguiente').show()
+            bloqueo()
             $.ajax({
                 "async": true,
                 "crossDomain": true,
@@ -415,7 +506,8 @@
 
                 })
                 .always(function () {
-                });
+                    $.unblockUI();
+                })
         })
 
         $('#model').change(function () {
@@ -429,6 +521,7 @@
 
             $('#enviar').hide()
             $('#siguiente').show()
+            bloqueo()
             $.ajax({
                 "async": true,
                 "crossDomain": true,
@@ -452,7 +545,8 @@
 
                 })
                 .always(function () {
-                });
+                    $.unblockUI();
+                })
         })
 
         $('#version').change(function () {
@@ -463,73 +557,12 @@
             $('#siguiente').show()
         })
 
+        $("#aviso").click(function (e) {
+            siguiente()
+        })
+
         $("#siguiente").click(function (e) {
-            var km = $("#km").val()
-            var model = $('#model').val()
-            var brand = $('#marca').val()
-            var year = $('#algo').val()
-            var version = $('#version').val()
-            var nombre = $('#nombre').val()
-            var tel = $('#tel').val()
-            var mail = $('#mail').val()
-            var cp = $('#cp').val()
-            var aviso = $('#aviso').val()
-
-            if (year == "") {
-                $("#algo").focus()
-                $("#algo").css({ 'border': '1px solid #f73414' });
-                return true
-            }
-            if (brand == "") {
-                $("#marca").focus()
-                $("#marca").css({ 'border': '1px solid #f73414' });
-                return true
-            }
-            if (model == "") {
-                $("#model").focus()
-                $("#model").css({ 'border': '1px solid #f73414' });
-                return true
-            }
-            if (version == "") {
-                $("#version").focus()
-                $("#version").css({ 'border': '1px solid #f73414' });
-                return true
-            }
-            if (km == "") {
-                $("#km").focus()
-                $("#km").css({ 'border': '1px solid #f73414' });
-                return true
-            }
-            if (nombre == "") {
-                $("#nombre").focus()
-                $("#nombre").css({ 'border': '1px solid #f73414' });
-                return true
-            }
-            if (tel == "" || tel.length < 8) {
-                $("tel").focus()
-                $("#tel").css({ 'border': '1px solid #f73414' });
-                return true
-            }
-
-            if (mail == "" || !validateEmail(mail)) {
-                $("#mail").focus()
-                $("#mail").css({ 'border': '1px solid #f73414' });
-                return true
-            }
-            if (cp == "") {
-                $("#cp").focus()
-                $("#cp").css({ 'border': '1px solid #f73414' });
-                return true
-            }
-            if ($('#aviso').is(':checked')) {
-
-            } else {
-                $("#aviso").focus()
-                alert("El campo de aviso de privacidad es obligatorio.")
-                return true
-            }
-
-            calculator()
+            siguiente()
         })
 
         $("#enviar").click(function (e) {

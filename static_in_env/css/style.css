@@ -2061,7 +2061,7 @@ margin-left: -17px; line-height: 50px; }
         display:block;
         width:70px;
         height:70px;
-        color#fff;
+        color: #fff;
         position: fixed;
         left:20px;
         bottom:60px;
@@ -2072,4 +2072,19 @@ margin-left: -17px; line-height: 50px; }
 }
 .algo{
         display: none;
+}
+.contactanos{
+        display: none !important;
+}
+
+@media (max-width: 767px){
+        .btn-whatsapp {
+                display: none;
+        }
+        .car-top{
+                display: none;
+        }
+        .contactanos{
+                display: block !important;
+        }
 }

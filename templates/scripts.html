@@ -68,8 +68,11 @@
 <script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>
 <!-- custom -->
 <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
 
 <script type="text/javascript">
+
   (function ($) {
     "use strict";
 
@@ -137,4 +140,9 @@
     });
   })(jQuery);
 
+  $(document).ready(function () {
+    $("#contactanos").click(function (e) {
+      $(".topbar").show()
+    })
+  })
 </script>
