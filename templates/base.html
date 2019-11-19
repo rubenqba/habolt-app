@@ -9,6 +9,16 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
   <meta name="viewport" content="width = device-width, initial-scale = 1, maximum-scale = 1, user-scalable = 0" />
   <link rel='icon' href='{% static 'images/favicon.ico' %}' type='image/x-icon' />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152542264-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-152542264-1');
+  </script>
+
   <title>{% block head_title %}{% endblock %}</title>
   {% block extra_head %}
   {% endblock %}
