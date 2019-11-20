@@ -231,26 +231,26 @@ car-details -->
                 </div>
               </div>
             </div>
-            <!-- <div class="details-form contact-2">
+            <div class="details-form contact-2">
               <form class="gray-form">
                 <h5>Calculadora</h5>
                 <div class="form-group">
-                  <label>PRECIO*</label>
-                  <input type="text" class="form-control">
+                  <label>Enganche</label>
+                  <input id="enganche" type="text" class="form-control" value="">
+                  <input type="hidden" value="{{ object.price }}" id="precio">
                 </div>
                 <div class="form-group">
-                  <label>Interes (%)*</label>
-                  <input type="text" class="form-control">
+                  <label>$ {{ object.price }}</label>
                 </div>
                 <div class="form-group">
-                  <label>Periodo (Meses)*</label>
-                  <input type="text" class="form-control">
+                  <label>12 (Meses)* $ <strong id="doce"></strong></label>
+                  <label>24 (Meses)* $ <strong id="veinte"></strong></label>
                 </div>
                 <div class="form-group">
-                  <a class="button red" href="#">Calcular</a>
+                  <a id="calcular" class="button red" href="#">Calcular</a>
                 </div>
               </form>
-            </div> -->
+            </div>
           </div>
         </div>
         <div class="feature-car">
@@ -315,13 +315,52 @@ car-details -->
 
 {% block extra_scripts %}
 <script language="javascript">
+  function calculadora() {
+    var precio = $("#precio").val()
+    precio = parseInt(precio.replace(',', ''))
+    console.log('precio ' + precio)
+
+    var enganche = $("#enganche").val()
+
+    if (enganche == "") {
+      enganche = precio * 0.25
+    }
+    enganche = parseInt(enganche)
+    console.log('enganche ' + enganche)
+    precio = precio - enganche
+
+    var precio_final = precio * 1.1599
+    console.log('precio_final ' + precio_final)
+
+    var doce = precio_final / 12
+    console.log('doce ' + doce)
+
+    var veinte = precio_final / 24
+    console.log('veinte ' + veinte)
+    try {
+      eng = enganche.toFixed(0)
+    } catch (err) {
+      console.error(err)
+      eng = enganche
+    }
+
+    $("#enganche").val(eng)
+    $("#doce").text(doce.toFixed(2))
+    $("#veinte").text(veinte.toFixed(2))
+  }
   $(document).ready(function () {
+    calculadora()
+    $("#calcular").click(function (e) {
+      calculadora()
+      return true
+    })
+
     $("#txtworkingdays").datepicker({
       beforeShowDay: function (date) {
-        var day = date.getDay();
-        return [(day != 0), ''];
+        var day = date.getDay()
+        return [(day != 0), '']
       }
-    });
-  });
+    })
+  })
 </script>
 {% endblock extra_scripts %}
