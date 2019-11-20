@@ -73,6 +73,24 @@
 
 <script type="text/javascript">
 
+  function validateEmail2(email) {
+    var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return reg.test(String(email).toLowerCase());
+  }
+  function bloqueo2() {
+    $.blockUI({
+      message: 'Procesando ...', css: {
+        border: 'none',
+        padding: '15px',
+        backgroundColor: '#000',
+        '-webkit-border-radius': '10px',
+        '-moz-border-radius': '10px',
+        opacity: .5,
+        color: '#fff'
+      }
+    });
+  }
+
   (function ($) {
     "use strict";
 
@@ -142,7 +160,31 @@
 
   $(document).ready(function () {
     $("#contactanos").click(function (e) {
-      $(".topbar").show()
+      $(".topbar").toggle()
+    })
+
+    $("#btnnews").click(function (e) {
+      var mail = $('#mailnews').val()
+      if (mail == "" || !validateEmail2(mail)) {
+        alert("mail no valido")
+        return true
+      }
+      bloqueo2()
+      $.ajax({
+        "async": true,
+        "crossDomain": true,
+        url: "/api/newsletter/" + mail,
+        type: 'GET'
+      }).done(function (response) {
+        //var obj = jQuery.parseJSON(response)
+        //glob = obj
+        console.log(response)
+      }).always(function () {
+        $.unblockUI()
+        alert("Felizidades por tu subscripcion a nuestro boletin de noticias")
+      })
+
+
     })
   })
 </script>

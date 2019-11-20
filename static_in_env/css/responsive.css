@@ -551,7 +551,7 @@ h2 { font-size: 32px; }
   .inner-intro { 
       background-attachment: inherit! important;
   } 
-  .footer{
+  #social{
     display: none;
   }
   .algo{

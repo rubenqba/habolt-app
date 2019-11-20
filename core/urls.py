@@ -20,7 +20,8 @@ from .views import (
     api_check,
     api_lead,
     api_lead_end,
-    test_pipe
+    test_pipe,
+    api_newsletter
 )
 
 app_name = 'core'
@@ -28,6 +29,7 @@ app_name = 'core'
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('api/health', test_pipe, name='test_pipe'),
+    path('api/newsletter/<mail>', api_newsletter, name='api_newsletter'),
     path('api/year/<year>', api_year, name='api_year'),
     path('api/brand/<year>/<brand>', api_marca, name='api_marca'),
     path('api/model/<year>/<brand>/<model>', api_model, name='api_model'),

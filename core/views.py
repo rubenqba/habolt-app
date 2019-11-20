@@ -44,6 +44,19 @@ def is_valid_form(values):
     return valid
 
 
+def api_newsletter(request, mail):
+    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
+    url = "https://api.pipedrive.com/v1/deals?api_token={}".format(token)
+    body = {
+        "title": "Newsletter sub : {}".format(mail),
+        "stage_id": "8"
+    }
+    response = requests.post(url, data=body).text
+    resj = json.loads(response)
+
+    return JsonResponse(resj['data'], safe=False)
+
+
 def api_lead(request, name, mail, phone, cp, version):
     version = version.replace('|', '/')
     # crear person
