@@ -103,7 +103,7 @@
                     if (settings.mobile_settings.collapse === true) {
                         // append the mobile collapse trigger button
                         menu_logo_li.append('<div class="menu_chat">' +
-                            '<a href="https://web.whatsapp.com/send?phone=5215531779640&text=Hola%20estoy%20interesado%20en%20comprar%20/%20vender%20un%20auto.">' +
+                            '<a href="https://api.whatsapp.com/send?phone=5215531779640&text=Hola%20estoy%20interesado%20en%20comprar%20/%20vender%20un%20auto.">' +
                             '<i class="fa fa-whatsapp"></i> </a>' +
                             '</div>' +
                             '<div class="menu-mobile-collapse-trigger">' +

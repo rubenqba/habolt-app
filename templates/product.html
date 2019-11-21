@@ -100,13 +100,17 @@ car-details -->
                   decides que no te gustó puedes escoger otro auto de nuestro inventario o devolverlo de inmediato.
                 </p>
                 <p>Vive la experiencia, un HABOLT es único.</p>
-                <p>¿Quieres dejar tu auto a cuenta y llevarte un Habolt? </p>
-                <p>
-                  Una vez que agendes tu cita para ver el auto de tus sueños, también realizaremos la valoración 360º de
-                  tu
-                  auto y verificaremos que tu documentación esté en perfectas condiciones y si todo está en orden, lo
-                  tomamos como enganche. Si tienes alguna duda, coméntalo con tu asesor de experiencia HABOLT.
+                <p> <strong style="color: black;">DEJA TU AUTO A CUENTA Y LLEVATE UN HABOLT</strong> </p>
+                <p><a href="{% url "core:vende" %}">
+                    Una vez que agendes tu cita para ver el auto de tus sueños, también realizaremos la valoración 360º
+                    de
+                    tu
+                    auto y verificaremos que tu documentación esté en perfectas condiciones y si todo está en orden, lo
+                    tomamos como enganche. Si tienes alguna duda, coméntalo con tu asesor de experiencia HABOLT.</a>
                 </p>
+                <p> <strong style="color: black;">EXTIENDE TU GARANTÍA</strong> </p>
+                <P> Todos nuestros autos cuentan con 12 meses de garantía incluída y también tienes la posibilidad de
+                  extenderla por 12 meses más, pregunta por este servicio a tu asesor de experiencia HABOLT </P>
               </div>
             </div>
 
@@ -135,7 +139,8 @@ car-details -->
                               target="_blank" class="button red" id="make_an_offer_submit">Whats app</a>
                             <i class="fa fa-refresh fa-spin fa-3x fa-fw load_spiner" style="display: none;"></i>
 
-                            <a class="button red" id="make_an_offer_submit">(+52) 558 526 6545</a>
+                            <a class="button red" id="make_an_offer_submit" href="tel:558 526 6545">(+52) 558 526
+                              6545</a>
                             <i class="fa fa-refresh fa-spin fa-3x fa-fw load_spiner" style="display: none;"></i>
                             <!-- <a class="button red" id="make_an_offer_submit">Liga de pago</a>
                             <i class="fa fa-refresh fa-spin fa-3x fa-fw load_spiner" style="display: none;"></i> -->
@@ -233,21 +238,29 @@ car-details -->
             </div>
             <div class="details-form contact-2">
               <form class="gray-form">
-                <h5>Calculadora</h5>
+                <br><br>
+                <h5>Utiliza nuestra calculadora de financiamiento para conocer cuanto pagarás mensualmente de acuerdo a
+                  la opción que decidas.</h5>
                 <div class="form-group">
-                  <label>Enganche</label>
-                  <input id="enganche" type="text" class="form-control" value="">
+                  <label>Ingresa el monto que estas dispuesto a pagar de enganche:</label>
+                  <input id="enganche" type="number" class="form-control" value="">
                   <input type="hidden" value="{{ object.price }}" id="precio">
                 </div>
                 <div class="form-group">
-                  <label>$ {{ object.price }}</label>
+                  <label>Tu crédito será por: $ <strong id="credito"></strong></label>
                 </div>
                 <div class="form-group">
                   <label>12 (Meses)* $ <strong id="doce"></strong></label>
                   <label>24 (Meses)* $ <strong id="veinte"></strong></label>
+                  <label>36 (Meses)* $ <strong id="treinta"></strong></label>
+                  <label>48 (Meses)* $ <strong id="cuarenta"></strong></label>
+                </div>
+                <div>
+                  <label for="">**Este es un pre-cálculo de tus mensualidades, para conocer el cálculo final deberás
+                    llenar una solicitud de financiamiento con tu asesor de experiencia HABOLT.</label>
                 </div>
                 <div class="form-group">
-                  <a id="calcular" class="button red" href="#">Calcular</a>
+                  <span id="calcular" class="button red" href="#" style="cursor: pointer;">Calcular</span>
                 </div>
               </form>
             </div>
@@ -279,11 +292,11 @@ car-details -->
                     </div>
                     <div class="car-content">
                       <div class="star">
+                        <!-- <i class="fa fa-star orange-color"></i>
                         <i class="fa fa-star orange-color"></i>
                         <i class="fa fa-star orange-color"></i>
                         <i class="fa fa-star orange-color"></i>
-                        <i class="fa fa-star orange-color"></i>
-                        <i class="fa fa-star-o orange-color"></i>
+                        <i class="fa fa-star-o orange-color"></i> -->
                       </div>
                       <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
                       <div class="separator"></div>
@@ -321,11 +334,19 @@ car-details -->
     console.log('precio ' + precio)
 
     var enganche = $("#enganche").val()
+    var tmpeng = precio * 0.25
+    $("#enganche").attr({ "min": tmpeng.toString() })
 
     if (enganche == "") {
-      enganche = precio * 0.25
+      enganche = tmpeng
     }
     enganche = parseInt(enganche)
+
+    if (enganche < tmpeng) {
+      alert("el enganche debe ser minimo del 25% del valor del automovil")
+      $("#enganche").focus()
+      return false;
+    }
     console.log('enganche ' + enganche)
     precio = precio - enganche
 
@@ -337,6 +358,12 @@ car-details -->
 
     var veinte = precio_final / 24
     console.log('veinte ' + veinte)
+
+    var treinta = precio_final / 36
+    console.log('veinte ' + veinte)
+
+    var cuarenta = precio_final / 48
+    console.log('veinte ' + veinte)
     try {
       eng = enganche.toFixed(0)
     } catch (err) {
@@ -344,9 +371,14 @@ car-details -->
       eng = enganche
     }
 
+    $("#credito").text(precio)
     $("#enganche").val(eng)
     $("#doce").text(doce.toFixed(2))
     $("#veinte").text(veinte.toFixed(2))
+    $("#treinta").text(treinta.toFixed(2))
+    $("#cuarenta").text(cuarenta.toFixed(2))
+
+    return false
   }
   $(document).ready(function () {
     calculadora()
