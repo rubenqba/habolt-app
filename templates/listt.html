@@ -6,7 +6,7 @@
 <!--=================================
  inner-intro -->
 
-<section class="inner-intro bg-6 bg-overlay-black-70" style="height:200px;">
+<section class="inner-intro bg-6 bg-overlay-black-70">
     <div class="container">
         <div class="row text-center intro-title">
             <div class="col-md-6 text-md-left d-inline-block">
@@ -35,120 +35,130 @@ product-listing  -->
                             <h5>Filtros</h5>
                         </div>
                         <div class="clearfix">
-                            <form action="" method="GET">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <a href="#">Año</a>
-                                        <ul>
-                                            <li><span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="year" value=""> Todos
-                                                    </label>
-                                                </span></li>
-                                            <li><span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="year" value="2019"> 2019
-                                                    </label>
-                                                </span></li>
-                                            <li><span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="year" value="2018"> 2018
-                                                    </label>
-                                                </span></li>
-                                            <li><span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="year" value="2017"> 2017
-                                                    </label>
-                                                </span></li>
-                                            <li><span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="year" value="2016"> 2016
-                                                    </label>
-                                                </span></li>
-                                            <li><span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="year" value="2015"> 2015
-                                                    </label>
-                                                </span></li>
-                                            <li><span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="year" value="2014"> 2014
-                                                    </label>
-                                                </span></li>
-                                        </ul>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">Tipo</a>
-                                        <ul>
-                                            <li>
-                                                <span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="tipo" value=""> Todos
-                                                    </label>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="tipo" value="Sedan"> Sedan
-                                                    </label>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="tipo" value="SUV"> SUV
-                                                    </label>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="tipo" value="Hatch Back"> Hatch
-                                                        Back
-                                                    </label>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="tipo" value="Pick-Up"> Pick-Up
-                                                    </label>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">Estatus</a>
-                                        <ul>
-                                            <li>
-                                                <span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="label" value=""> Todos
-                                                    </label>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="label" value="P"> Disponible
-                                                    </label>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="label" value="S"> Apartado
-                                                    </label>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <button type="submit"
-                                    style="background: #223dff; border-radius: 0px;color:white;line-height: 44px; width: 100%;">Filtrar</button>
-                            </form>
-                            <a href="{% url "core:list" %}"> Limpiar filtros</a>
+                            <!-- <form action="" method="GET"> -->
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a href="#">Marca</a>
+                                    <ul>
+                                        {% include "marca.html" %}
+                                    </ul>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#">Año</a>
+                                    <ul>
+                                        <li><span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="year" value="2019"> 2019
+                                                </label>
+                                            </span></li>
+                                        <li><span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="year" value="2018"> 2018
+                                                </label>
+                                            </span></li>
+                                        <li><span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="year" value="2017"> 2017
+                                                </label>
+                                            </span></li>
+                                        <li><span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="year" value="2016"> 2016
+                                                </label>
+                                            </span></li>
+                                        <li><span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="year" value="2015"> 2015
+                                                </label>
+                                            </span></li>
+                                        <li><span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="year" value="2014"> 2014
+                                                </label>
+                                            </span></li>
+                                        <li><span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="year" value="2014"> 2013
+                                                </label>
+                                            </span></li>
+                                        <li><span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="year" value="2014"> 2012
+                                                </label>
+                                            </span></li>
+                                        <li><span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="year" value="2014"> 2011
+                                                </label>
+                                            </span></li>
+                                        <li><span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="year" value="2014"> 2010
+                                                </label>
+                                            </span></li>
+                                    </ul>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#">Tipo</a>
+                                    <ul>
+                                        <li>
+                                            <span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="tipo" value="Sedan"> Sedan
+                                                </label>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="tipo" value="SUV"> SUV
+                                                </label>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="tipo" value="Hatch Back"> Hatch
+                                                    Back
+                                                </label>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="tipo" value="Pick-Up"> Pick-Up
+                                                </label>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#">Estatus</a>
+                                    <ul>
+                                        <li>
+                                            <span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="label" value="P"> Disponible
+                                                </label>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="label" value="S"> Apartado
+                                                </label>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <!-- <button
+                                style="background: #223dff; border-radius: 0px;color:white;line-height: 44px; width: 100%;">Filtrar</button> -->
+                            <!-- </form> -->
+                            <div
+                                style="background: #ffbd00; border-radius: 0px;color:white;line-height: 44px; width: 100%; text-align: center">
+                                <a href="{% url "core:list" %}" style="color: white;"> Limpiar filtros</a>
+                            </div>
                         </div>
                     </div>
                     <div class="widget-banner">
@@ -163,67 +173,22 @@ product-listing  -->
                         <div class="col-lg-12">
                             <div class="price-search">
                                 <div class="search">
-                                    <i class="fa fa-search"></i>
-                                    <input type="search" class="form-control placeholder" placeholder="Buscar....">
+                                    <i class="fa fa-search" id="buscar"></i>
+                                    <input type="search" class="form-control placeholder" id="search"
+                                        placeholder="Buscar....">
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    {% for item in filter.qs %}
-                    <div class="col-lg-4">
-                        <div class="car-item gray-bg text-center">
-                            <div class="car-image">
-                                <img class="img-fluid" src="{{ item.image.url }}" alt="">
-                                <div class="car-overlay-banner">
-                                    <ul>
-                                        <!--li><a href="#"><i class="fa fa-link"></i></a></li-->
-                                        <li><a href="{{ item.get_absolute_url }}"><i class="fa fa-link"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="car-list">
-                                <ul class="list-inline">
-                                    <li><i class="fa fa-registered"></i> {{ item.year }}</li>
-                                    <li><i class="fa fa-cog"></i> {{ item.transmision }} </li>
-                                    <li><i class="fa fa-dashboard"></i> {{ item.km }}</li>
-                                </ul>
-                            </div>
-                            <div class="car-content">
-                                <div class="star">
-                                    <!-- <i class="fa fa-star orange-color"></i>
-                                    <i class="fa fa-star orange-color"></i>
-                                    <i class="fa fa-star orange-color"></i>
-                                    <i class="fa fa-star orange-color"></i>
-                                    <i class="fa fa-star orange-color"></i> -->
-                                </div>
-                                <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
-                                <div class="separator"></div>
-                                <div class="price">
-                                    {% if item.discount_price %}
-                                    <span class="old-price">${{ item.price }}</span>
-                                    <span class="new-price">${{ item.discount_price }} </span>
-                                    {% else %}
-                                    <span class="new-price">${{ item.price }}</span>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
+                <div id="parametros" style="color: black;">
+
                 </div>
-                <!-- <div class="pagination-nav d-flex justify-content-center">
-                    <ul class="pagination">
-                        <li><a href="#">«</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                </div> -->
+                <div class="row" id="productos">
+                    hola
+
+                </div>
             </div>
         </div>
     </div>
@@ -233,3 +198,196 @@ product-listing  -->
    product-listing  -->
 
 {% endblock content %}
+
+{% block extra_scripts %}
+<script>
+    function inicio() {
+        $('#productos').empty()
+        $.ajax({
+            "async": true,
+            "crossDomain": true,
+            url: "/api/cars",
+            type: 'GET'
+        }).done(function (response) {
+            var obj = response
+            console.log(obj)
+            $.each(obj, function (key, value) {
+                html = '<div class="col-lg-4">' +
+                    '<div class="car-item gray-bg text-center">' +
+                    '<div class="car-image">' +
+                    '<img class="img-fluid" src="' + value.image + '" alt="">' +
+                    '<div class="car-overlay-banner">' +
+                    '<ul>' +
+                    '<li><a href="' + value.get_absolute_url + '"><i class="fa fa-link"></i></a></li>' +
+                    '</ul>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="car-list">' +
+                    '<ul class="list-inline">' +
+                    '<li><i class="fa fa-registered"></i> ' + value.year + '</li>' +
+                    '<li><i class="fa fa-cog"></i> ' + value.transmision + ' </li>' +
+                    '<li><i class="fa fa-dashboard"></i> ' + value.km + '</li>' +
+                    '</ul>' +
+                    '</div>' +
+                    '<div class="car-content">' +
+                    '<div class="star"><br></div>' +
+                    '<a href="' + value.get_absolute_url + '">' + value.title + '</a>' +
+                    '<div class="separator"></div>' +
+                    '<div class="price">' +
+                    '<span class="new-price">$' + value.price + '</span>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>'
+                $('#productos').append(html)
+            });
+        }).always(function () {
+            //$.unblockUI();
+        })
+    }
+
+    $(document).ready(function () {
+        inicio()
+        $('#buscar').click(function (e) {
+            var busqueda = $('#search').val()
+            $('#productos').empty()
+            $.ajax({
+                "async": true,
+                "crossDomain": true,
+                url: "/api/search?search=" + busqueda,
+                type: 'GET'
+            }).done(function (response) {
+                var obj = response
+                console.log(obj)
+                $.each(obj, function (key, value) {
+                    html = '<div class="col-lg-4">' +
+                        '<div class="car-item gray-bg text-center">' +
+                        '<div class="car-image">' +
+                        '<img class="img-fluid" src="' + value.image + '" alt="">' +
+                        '<div class="car-overlay-banner">' +
+                        '<ul>' +
+                        '<li><a href="' + value.get_absolute_url + '"><i class="fa fa-link"></i></a></li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="car-list">' +
+                        '<ul class="list-inline">' +
+                        '<li><i class="fa fa-registered"></i> ' + value.year + '</li>' +
+                        '<li><i class="fa fa-cog"></i> ' + value.transmision + ' </li>' +
+                        '<li><i class="fa fa-dashboard"></i> ' + value.km + '</li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '<div class="car-content">' +
+                        '<div class="star"><br></div>' +
+                        '<a href="' + value.get_absolute_url + '">' + value.title + '</a>' +
+                        '<div class="separator"></div>' +
+                        '<div class="price">' +
+                        '<span class="new-price">$' + value.price + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>'
+                    $('#productos').append(html)
+                })
+            }).always(function () {
+                //$.unblockUI();
+            })
+
+        })
+
+        marca = []
+        year = []
+        label = []
+        tipo = []
+
+        $('input[type="checkbox"]').change(function (event) {
+            if (this.name == 'marca' && this.checked == true) {
+                marca.push(this.value)
+            } else if (this.name == 'marca' && this.checked !== true) {
+                marca.splice(marca.indexOf(this.value), 1)
+            }
+
+            if (this.name == 'year' && this.checked == true) {
+                year.push(this.value)
+            } else if (this.name == 'year' && this.checked !== true) {
+                year.splice(year.indexOf(this.value), 1)
+            }
+
+            if (this.name == 'tipo' && this.checked == true) {
+                tipo.push(this.value)
+            } else if (this.name == 'tipo' && this.checked !== true) {
+                tipo.splice(tipo.indexOf(this.value), 1)
+            }
+
+            if (this.name == 'label' && this.checked == true) {
+                label.push(this.value)
+            } else if (this.name == 'label' && this.checked !== true) {
+                label.splice(label.indexOf(this.value), 1)
+            }
+
+            $('#parametros').empty()
+            $.each(marca, function (key, value) {
+                $('#parametros').append(value + ' ')
+            })
+            $.each(year, function (key, value) {
+                $('#parametros').append(value + ' ')
+            })
+            $.each(tipo, function (key, value) {
+                $('#parametros').append(value + ' ')
+            })
+            $.each(label, function (key, value) {
+                $('#parametros').append(value + ' ')
+            })
+
+            $('#productos').empty()
+            url = '/api/cars?year=' + year + '&marca=' + marca + '&tipo=' + tipo + '&label=' + label
+            console.log(url)
+            $.ajax({
+                "async": true,
+                "crossDomain": true,
+                url: url,
+                type: 'GET'
+            }).done(function (response) {
+                var obj = response
+                console.log(obj)
+                $.each(obj, function (key, value) {
+                    html = '<div class="col-lg-4">' +
+                        '<div class="car-item gray-bg text-center">' +
+                        '<div class="car-image">' +
+                        '<img class="img-fluid" src="' + value.image + '" alt="">' +
+                        '<div class="car-overlay-banner">' +
+                        '<ul>' +
+                        '<li><a href="' + value.get_absolute_url + '"><i class="fa fa-link"></i></a></li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="car-list">' +
+                        '<ul class="list-inline">' +
+                        '<li><i class="fa fa-registered"></i> ' + value.year + '</li>' +
+                        '<li><i class="fa fa-cog"></i> ' + value.transmision + ' </li>' +
+                        '<li><i class="fa fa-dashboard"></i> ' + value.km + '</li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '<div class="car-content">' +
+                        '<div class="star"><br></div>' +
+                        '<a href="' + value.get_absolute_url + '">' + value.title + '</a>' +
+                        '<div class="separator"></div>' +
+                        '<div class="price">' +
+                        '<span class="new-price">$' + value.price + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>'
+                    $('#productos').append(html)
+                });
+            }).always(function () {
+                //$.unblockUI();
+            })
+
+        })
+
+    })
+
+</script>
+
+{% endblock extra_scripts %}

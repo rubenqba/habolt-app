@@ -21,7 +21,11 @@ from .views import (
     api_lead,
     api_lead_end,
     test_pipe,
-    api_newsletter
+    api_newsletter,
+    api_cars,
+    ListCarsView,
+    SearchCarsView,
+    api_compra
 )
 
 app_name = 'core'
@@ -29,6 +33,8 @@ app_name = 'core'
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('api/health', test_pipe, name='test_pipe'),
+    path('api/cars', ListCarsView.as_view(), name='api_cars'),
+    path('api/search', SearchCarsView.as_view(), name='api_search'),
     path('api/newsletter/<mail>', api_newsletter, name='api_newsletter'),
     path('api/year/<year>', api_year, name='api_year'),
     path('api/brand/<year>/<brand>', api_marca, name='api_marca'),
@@ -37,6 +43,8 @@ urlpatterns = [
          api_check, name='api_check'),
     path('api/lead/create/<name>/<mail>/<phone>/<cp>/<version>',
          api_lead, name='api_lead'),
+    path('api/compra/<name>/<mail>/<phone>/<choose>/<date>/<time>/<precio>/<car>',
+         api_compra, name='api_compra'),
     path('api/lead/update/<id>/<choose>/<date>/<time>',
          api_lead_end, name='api_lead_end'),
     path('listt/', ListView.as_view(), name='listt'),

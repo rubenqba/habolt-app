@@ -10,12 +10,17 @@ from django.views.generic import ListView, DetailView, View
 from django.shortcuts import redirect
 from django.utils import timezone
 from django_filters.views import FilterView
+from django_filters.rest_framework import DjangoFilterBackend
+
+from rest_framework import generics
+from rest_framework import filters
 
 from pipedrive.client import Client
 
+from .serializers import CarsSerializer
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile, Carros, Kilometrajes, Leads
-from .filters import ItemFilter
+from .filters import ItemFilterSet
 
 import random
 import string
@@ -44,6 +49,30 @@ def is_valid_form(values):
     return valid
 
 
+class SearchCarsView(generics.ListAPIView):
+    """
+    Provides a get method handler.
+    """
+    queryset = Item.objects.all()
+    serializer_class = CarsSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['slug', 'title', 'marca']
+
+
+class ListCarsView(generics.ListAPIView):
+    """
+    Provides a get method handler.
+    """
+    queryset = Item.objects.all()
+    serializer_class = CarsSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_class = ItemFilterSet
+
+
+def api_cars(request):
+    return JsonResponse({'ok': 'ok'})
+
+
 def api_newsletter(request, mail):
     token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
     url = "https://api.pipedrive.com/v1/deals?api_token={}".format(token)
@@ -55,6 +84,39 @@ def api_newsletter(request, mail):
     resj = json.loads(response)
 
     return JsonResponse(resj['data'], safe=False)
+
+
+def api_compra(request, name, mail, phone, choose, date, time, precio, car):
+    date = date.replace('|', '/')
+    # crear person
+    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
+    url = "https://api.pipedrive.com/v1/persons?api_token={}".format(token)
+    body = {
+        "name": name,
+        "email": mail,
+        "phone": phone
+    }
+    response = requests.post(url, data=body).text
+    resj = json.loads(response)
+    print(resj['data']['id'])
+
+    # crear deal
+    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
+    url = "https://api.pipedrive.com/v1/deals?api_token={}".format(token)
+    body = {
+        "title": "New Habol Compra: {} {}".format(car, precio),
+        "stage_id": "2",
+        "cc3795bd66ed72913f5571a6f67ca567d345d24d": choose,
+        "52d3869a66465bc7f1f8ecc90ba4a6572cc40a7e": date,
+        "b0191c0ba8a4d2d6c5c067bd72fda9ce0db68730": time,
+        "person_id": resj['data']['id']
+    }
+    deal = requests.post(url, data=body).text
+    res = json.loads(deal)
+    print('compra')
+    print(res['data']['id'])
+
+    return JsonResponse({'id': 'ok'}, safe=False)
 
 
 def api_lead(request, name, mail, phone, cp, version):
@@ -519,9 +581,9 @@ class ListView(ListView):
 
 
 def product_list(request):
-    filter = ItemFilter(request.GET, queryset=Item.objects.all())
-    print(filter)
-    return render(request, 'listt.html', {'filter': filter})
+    # filter = ItemFilter(request.GET, queryset=Item.objects.all())
+    # print(filter)
+    return render(request, 'listt.html', {'filter': ''})
 
 
 class OrderSummaryView(LoginRequiredMixin, View):

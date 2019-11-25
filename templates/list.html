@@ -6,7 +6,7 @@
 <!--=================================
  inner-intro -->
 
-<section class="inner-intro bg-1 bg-overlay-black-70" style="height:200px;">
+<section class="inner-intro bg-1 bg-overlay-black-70">
     <div class="container">
         <div class="row text-center intro-title">
             <div class="col-md-6 text-md-left d-inline-block">
@@ -36,6 +36,86 @@ product-listing  -->
                         </div>
                         <div class="clearfix">
                             <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a href="#">Marca</a>
+                                    <ul id="marca" style="display: none;">
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Acura"> Acura</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Audi"> Audi</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="BAIC"> BAIC</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="BMW"> BMW</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Buick"> Buick</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Cadillac"> Cadillac</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Chevrolet"> Chevrolet</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Chrysler"> Chrysler</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Dodge"> Dodge</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Fiat"> Fiat</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Ford"> Ford</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="GMC"> GMC</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Honda"> Honda</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Hyundai"> Hyundai</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Infiniti"> Infiniti</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="JAC"> JAC</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="JAC Comerciales"> JAC Comerciales</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Jeep"> Jeep</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Kia"> Kia</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Land Rover"> Land Rover</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Lincoln"> Lincoln</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Mazda"> Mazda</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Mini"> Mini</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Mitsubishi"> Mitsubishi</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Nissan "> Nissan </label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Nissan Comerciales"> Nissan Comerciales</label></span>
+                                        </li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Peugeot"> Peugeot</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Peugeot Comerciales"> Peugeot Comerciales</label></span>
+                                        </li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Porsche"> Porsche</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Ram Dodge Comerciales"> Ram Dodge
+                                                    Comerciales</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Renault"> Renault</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Seat"> Seat</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Suzuki"> Suzuki</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Toyota"> Toyota</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Volkswagen"> Volkswagen</label></span></li>
+                                        <li><span class="checkbox"><label><input type="checkbox" name="brand"
+                                                        value="Volvo"> Volvo</label></span></li>
+                                    </ul>
+                                </li>
                                 <li class="list-group-item">
                                     <a href="#">Year</a>
                                     <ul>
@@ -159,14 +239,13 @@ product-listing  -->
 
                 </div>
                 <div class="row">
-                    {% for item in object_list %}
+                    {% for item in filter.qs %}
                     <div class="col-lg-4">
                         <div class="car-item gray-bg text-center">
                             <div class="car-image">
                                 <img class="img-fluid" src="{{ item.image.url }}" alt="">
                                 <div class="car-overlay-banner">
                                     <ul>
-                                        <!--li><a href="#"><i class="fa fa-link"></i></a></li-->
                                         <li><a href="{{ item.get_absolute_url }}"><i class="fa fa-link"></i></a></li>
                                     </ul>
                                 </div>
@@ -179,13 +258,7 @@ product-listing  -->
                                 </ul>
                             </div>
                             <div class="car-content">
-                                <div class="star">
-                                    <!-- <i class="fa fa-star orange-color"></i>
-                                    <i class="fa fa-star orange-color"></i>
-                                    <i class="fa fa-star orange-color"></i>
-                                    <i class="fa fa-star orange-color"></i>
-                                    <i class="fa fa-star orange-color"></i> -->
-                                </div>
+                                <div class="star"><br></div>
                                 <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
                                 <div class="separator"></div>
                                 <div class="price">

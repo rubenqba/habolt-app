@@ -23,8 +23,13 @@ INSTALLED_APPS = [
     'django_filters',
     'import_export',
 
-    'core'
+    'core',
+    'rest_framework',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,5 +94,6 @@ AWS_SECRET_ACCESS_KEY = 'etx2YabhbK2H3pyffCZDYWT9wcMsECdWq3dtHQHa'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = 'media.habolt.mx'
 AWS_S3_REGION_NAME = 'us-east-1'
+AWS_DEFAULT_ACL = None
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True

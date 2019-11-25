@@ -172,21 +172,20 @@ car-details -->
                             <input type="hidden" name="action" value="schedule_test_drive" />
                             <div class="form-group">
                               <label>Nombre *</label>
-                              <input type="text" class="form-control" id="std_firstname" name="std_firstname"
-                                required />
+                              <input type="text" class="form-control" id="name" name="std_firstname" required />
                             </div>
                             <div class="form-group">
                               <label>Email *</label>
-                              <input type="text" class="form-control" id="std_email" name="std_email" required>
+                              <input type="text" class="form-control" id="mail" name="std_email" required>
                             </div>
                             <div class="form-group">
                               <label>Telefono *</label>
-                              <input type="text" class="form-control" id="std_phone" name="std_phone" required>
+                              <input type="text" class="form-control" id="tel" name="std_phone" required>
                             </div>
                             <div class="form-group">
                               <label>Auto *</label>
-                              <input type="text" class="form-control" id="std_day" name="std_day"
-                                value="{{ object.title }}" readonly>
+                              <input type="text" class="form-control" id="car" name="std_day" value="{{ object.title }}"
+                                readonly>
                             </div>
                             <div class="form-group">
                               <label>Fecha *</label>
@@ -194,24 +193,19 @@ car-details -->
                             </div>
                             <div class="form-group">
                               <label>Hora *</label>
-                              <select class="form-control" name="std_time" id="">
-                                <option value=""></option>
-                                <option value="09:00">9 am</option>
-                                <option value="10:00">10 am</option>
-                                <option value="11:00">11 am</option>
-                                <option value="12:00">12 pm</option>
-                                <option value="13:00">1 pm</option>
-                                <option value="14:00">2 pm</option>
-                                <option value="15:00">3 pm</option>
-                                <option value="16:00">4 pm</option>
-                                <option value="17:00">5 pm</option>
+                              <select class="form-control" name="std_time" id="time">
+                                <option value="">Seleccione</option>
+                                <option value="9:00 a 11:00">9:00 a 11:00</option>
+                                <option value="11:00 a 13:00">11:00 a 13:00</option>
+                                <option value="14:00 a 16:00">14:00 a 16:00</option>
+                                <option value="16:00 a 18:00">16:00 a 18:00</option>
                               </select>
                             </div>
                             <div class="form-group">
                               <div id="recaptcha2"></div>
                             </div>
                             <div class="form-group">
-                              <a class="button red" id="schedule_test_drive_submit">Agendar</a>
+                              <a class="button red" id="agendar">Agendar</a>
                               <i class="fa fa-refresh fa-spin fa-3x fa-fw load_spiner" style="display: none;"></i>
                             </div>
                           </form>
@@ -250,11 +244,24 @@ car-details -->
                   <label>Tu crédito será por: $ <strong id="credito"></strong></label>
                 </div>
                 <div class="form-group">
-                  <label>12 (Meses)* $ <strong id="doce"></strong></label>
-                  <label>24 (Meses)* $ <strong id="veinte"></strong></label>
-                  <label>36 (Meses)* $ <strong id="treinta"></strong></label>
-                  <label>48 (Meses)* $ <strong id="cuarenta"></strong></label>
+                  <div class="remember-checkbox" id="s_prestamo">
+                    <input type="checkbox" id="docev" />
+                    <label for="docev"><strong>12 (Meses)* $</strong><strong id="doce"></strong></label>
+                  </div>
+                  <div class="remember-checkbox" id="s_prestamo">
+                    <input type="checkbox" id="veintev" />
+                    <label for="veintev"><strong>24 (Meses)* $</strong><strong id="veinte"></strong></label>
+                  </div>
+                  <div class="remember-checkbox" id="s_prestamo">
+                    <input type="checkbox" id="treintav" />
+                    <label for="treintav"><strong>36 (Meses)* $</strong><strong id="treinta"></strong></label>
+                  </div>
+                  <div class="remember-checkbox" id="s_prestamo">
+                    <input type="checkbox" id="cuarentav" />
+                    <label for="cuarentav"><strong>48 (Meses)* $</strong><strong id="cuarenta"></strong></label>
+                  </div>
                 </div>
+
                 <div>
                   <label for="">**Este es un pre-cálculo de tus mensualidades, para conocer el cálculo final deberás
                     llenar una solicitud de financiamiento con tu asesor de experiencia HABOLT.</label>
@@ -292,11 +299,7 @@ car-details -->
                     </div>
                     <div class="car-content">
                       <div class="star">
-                        <!-- <i class="fa fa-star orange-color"></i>
-                        <i class="fa fa-star orange-color"></i>
-                        <i class="fa fa-star orange-color"></i>
-                        <i class="fa fa-star orange-color"></i>
-                        <i class="fa fa-star-o orange-color"></i> -->
+                        <br>
                       </div>
                       <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
                       <div class="separator"></div>
@@ -328,13 +331,22 @@ car-details -->
 
 {% block extra_scripts %}
 <script language="javascript">
-  function calculadora() {
-    var precio = $("#precio").val()
-    precio = parseInt(precio.replace(',', ''))
-    console.log('precio ' + precio)
+  function validateEmail(email) {
+    var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return reg.test(String(email).toLowerCase());
+  }
+  function numberWithCommas(number) {
+    var parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  }
 
-    var enganche = $("#enganche").val()
-    var tmpeng = precio * 0.25
+  function calculadora() {
+    precio = $("#precio").val()
+    precio = parseInt(precio.replace(',', ''))
+
+    enganche = $("#enganche").val()
+    tmpeng = precio * 0.25
     $("#enganche").attr({ "min": tmpeng.toString() })
 
     if (enganche == "") {
@@ -347,23 +359,14 @@ car-details -->
       $("#enganche").focus()
       return false;
     }
-    console.log('enganche ' + enganche)
+
     precio = precio - enganche
+    precio_final = precio * 1.1599
+    doce = precio_final / 12
+    veinte = precio_final / 24
+    treinta = precio_final / 36
+    cuarenta = precio_final / 48
 
-    var precio_final = precio * 1.1599
-    console.log('precio_final ' + precio_final)
-
-    var doce = precio_final / 12
-    console.log('doce ' + doce)
-
-    var veinte = precio_final / 24
-    console.log('veinte ' + veinte)
-
-    var treinta = precio_final / 36
-    console.log('veinte ' + veinte)
-
-    var cuarenta = precio_final / 48
-    console.log('veinte ' + veinte)
     try {
       eng = enganche.toFixed(0)
     } catch (err) {
@@ -371,28 +374,179 @@ car-details -->
       eng = enganche
     }
 
-    $("#credito").text(precio)
+    $("#credito").text(numberWithCommas(precio))
     $("#enganche").val(eng)
-    $("#doce").text(doce.toFixed(2))
-    $("#veinte").text(veinte.toFixed(2))
-    $("#treinta").text(treinta.toFixed(2))
-    $("#cuarenta").text(cuarenta.toFixed(2))
+    $("#doce").text(numberWithCommas(doce.toFixed(2)))
+    $("#veinte").text(numberWithCommas(veinte.toFixed(2)))
+    $("#treinta").text(numberWithCommas(treinta.toFixed(2)))
+    $("#cuarenta").text(numberWithCommas(cuarenta.toFixed(2)))
+
+    $("#docev").val(numberWithCommas(doce.toFixed(2)))
+    $("#veintev").val(numberWithCommas(veinte.toFixed(2)))
+    $("#treintav").val(numberWithCommas(treinta.toFixed(2)))
+    $("#cuarentav").val(numberWithCommas(cuarenta.toFixed(2)))
 
     return false
   }
+
+  function calcu_ini() {
+    precio = $("#precio").val()
+    precio = parseInt(precio.replace(',', ''))
+
+    enganche = $("#enganche").val()
+    tmpeng = precio * 0.25
+    $("#enganche").attr({ "min": tmpeng.toString() })
+
+    if (enganche == "") {
+      enganche = tmpeng
+    }
+    enganche = parseInt(enganche)
+
+    if (enganche < tmpeng) {
+      alert("el enganche debe ser minimo del 25% del valor del automovil")
+      $("#enganche").focus()
+      return false;
+    }
+
+    precio = precio - enganche
+    precio_final = precio * 1.1599
+    doce = precio_final / 12
+    veinte = precio_final / 24
+    treinta = precio_final / 36
+    cuarenta = precio_final / 48
+
+    try {
+      eng = enganche.toFixed(0)
+    } catch (err) {
+      console.error(err)
+      eng = enganche
+    }
+    console.log(eng)
+    $("#credito").text(numberWithCommas(precio))
+    $("#enganche").val(eng)
+    $("#doce").text(numberWithCommas(doce.toFixed(2)))
+    $("#veinte").text(numberWithCommas(veinte.toFixed(2)))
+    $("#treinta").text(numberWithCommas(treinta.toFixed(2)))
+    $("#cuarenta").text(numberWithCommas(cuarenta.toFixed(2)))
+
+    $("#docev").val(numberWithCommas(doce.toFixed(2)))
+    $("#veintev").val(numberWithCommas(veinte.toFixed(2)))
+    $("#treintav").val(numberWithCommas(treinta.toFixed(2)))
+    $("#cuarentav").val(numberWithCommas(cuarenta.toFixed(2)))
+
+    return false
+  }
+
   $(document).ready(function () {
-    calculadora()
+    calcu_ini()
     $("#calcular").click(function (e) {
       calculadora()
       return true
     })
 
+    $("#enganche").blur(function (e) {
+      calculadora()
+      return true
+    });
+
+    var dateToday = new Date();
     $("#txtworkingdays").datepicker({
+      minDate: dateToday,
+      onSelect: function (selectedDate) {
+        var option = this.id == "txtworkingdays",
+          instance = $(this).data("datepicker"),
+          date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+        //dates.not(this).datepicker("option", option, date);
+      },
       beforeShowDay: function (date) {
-        var day = date.getDay()
-        return [(day != 0), '']
+        var day = date.getDay();
+        return [(day != 0), ''];
       }
     })
+
+    $('#agendar').click(function (e) {
+      var nombre = $('#name').val()
+      var tel = $('#tel').val()
+      var mail = $('#mail').val()
+      var car = $('#car').val()
+      var date = $('#txtworkingdays').val()
+      var time = $('#time').val()
+      var precio = $("#precio").val()
+
+      var docev = $('#docev').val()
+      var veintev = $('#veintev').val()
+      var treintav = $('#treintav').val()
+      var cuarentav = $('#cuarentav').val()
+
+      if (nombre == "") {
+        $("#name").focus()
+        $("#name").css({ 'border': '1px solid #f73414' });
+        return true
+      }
+      if (tel == "" || tel.length < 8) {
+        $("tel").focus()
+        $("#tel").css({ 'border': '1px solid #f73414' });
+        return true
+      }
+
+      if (mail == "" || !validateEmail(mail)) {
+        $("#mail").focus()
+        $("#mail").css({ 'border': '1px solid #f73414' });
+        return true
+      }
+      if (car == "") {
+        $("#car").focus()
+        $("#car").css({ 'border': '1px solid #f73414' });
+        return true
+      }
+      if (date.length < 1) {
+        $("#txtworkingdays").focus()
+        $("#txtworkingdays").css({ 'border': '1px solid #f73414' });
+        return true
+      }
+      if (time == "") {
+        $("#time").focus()
+        $("#time").css({ 'border': '1px solid #f73414' });
+        return true
+      }
+
+      var choose = ""
+
+      if ($('#docev').is(':checked')) {
+        choose += docev + " , "
+      }
+      if ($('#veintev').is(':checked')) {
+        choose += veintev + " , "
+      }
+      if ($('#treintav').is(':checked')) {
+        choose += treintav + " , "
+      }
+      if ($('#cuarentav').is(':checked')) {
+        choose += cuarentav + " , "
+      }
+
+      console.log(choose)
+      var date2 = date
+      var param = date.replace('/', '|')
+      var param = param.replace('/', '|')
+
+      $.ajax({
+        "async": true,
+        "crossDomain": true,
+        url: "/api/compra/" + nombre + "/" + mail + "/" + tel + "/" + choose + "/" + param + "/" + time + "/" + car + "/" + precio,
+        type: 'GET'
+      }).done(function (response) {
+        console.log(response)
+        if (response.id == 'ok') {
+          alert("Tu cita a quedado registrada continua viendo nuestros modelos")
+          var delay = 200;
+          var url = '/list'
+          setTimeout(function () { window.location = url; }, delay);
+        }
+      })
+
+    })
+
   })
 </script>
 {% endblock extra_scripts %}
