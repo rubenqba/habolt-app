@@ -23,6 +23,9 @@ class ItemFilterSet(django_filters.FilterSet):
     year = ListFilter(field_name='year')
     label = ListFilter(field_name='label')
 
+    price = django_filters.RangeFilter()
+    km = django_filters.RangeFilter()
+
     class Meta:
         model = Item
-        fields = ['marca', 'tipo', 'year', 'label']
+        fields = ['marca', 'tipo', 'year', 'label', 'price', 'km']

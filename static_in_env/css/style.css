@@ -298,7 +298,7 @@ select { border: 1px solid #232323; color: #777; cursor: pointer; display: block
 .mega-menu .menu-links > li.active .drop-down-multilevel li.active .drop-down-multilevel li.active .drop-down-multilevel li a:hover { color: #ffbd00; }
 .mega-menu .row { margin-left: 0px; margin-right: 0px; }
 .mega-menu .col-md-12 { padding-left: 0px; padding-right: 0px; }
-.mega-menu.desktopTopFixed .menu-list-items { background: #323232; padding: 0px; }
+.mega-menu.desktopTopFixed .menu-list-items { background: #000; padding: 0px; }
 .mega-menu.desktopTopFixed .menu-logo { padding: 20px 0px; }
 .mega-menu.desktopTopFixed .search-top { padding: 26px 0; }
 .mega-menu.desktopTopFixed .search-top.search-top-open .search-box { top: 72px !important; border-bottom: 1px solid #f6f6f6; }

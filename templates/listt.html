@@ -151,6 +151,52 @@ product-listing  -->
                                         </li>
                                     </ul>
                                 </li>
+                                <li class="list-group-item">
+                                    <a href="#">Precio</a>
+                                    <ul>
+                                        <li>
+                                            <span class="checkbox">
+                                                <label>
+                                                    Precio desde
+                                                </label>
+                                                <input style="color: black; text-align: center;" type="number"
+                                                    id="p_ini" value="">
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="checkbox">
+                                                <label>
+                                                    Precio hasta
+                                                </label>
+                                                <input style="color: black; text-align: center;" type="number"
+                                                    id="p_fin" value="">
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#">Kilometraje</a>
+                                    <ul>
+                                        <li>
+                                            <span class="checkbox">
+                                                <label>
+                                                    Kilometraje desde
+                                                </label>
+                                                <input style="color: black; text-align: center;" type="number"
+                                                    id="k_ini" value="">
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="checkbox">
+                                                <label>
+                                                    Kilometraje hasta
+                                                </label>
+                                                <input style="color: black; text-align: center;" type="number"
+                                                    id="k_fin" value="">
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                             <!-- <button
                                 style="background: #223dff; border-radius: 0px;color:white;line-height: 44px; width: 100%;">Filtrar</button> -->
@@ -174,7 +220,7 @@ product-listing  -->
                             <div class="price-search">
                                 <div class="search">
                                     <i class="fa fa-search" id="buscar"></i>
-                                    <input type="search" class="form-control placeholder" id="search"
+                                    <input type="search" value="" class="form-control placeholder" id="search"
                                         placeholder="Buscar....">
                                 </div>
 
@@ -250,6 +296,10 @@ product-listing  -->
         inicio()
         $('#buscar').click(function (e) {
             var busqueda = $('#search').val()
+            console.log(busqueda)
+            if (busqueda == "Buscar....") {
+                busqueda = ''
+            }
             $('#productos').empty()
             $.ajax({
                 "async": true,
@@ -301,92 +351,125 @@ product-listing  -->
         tipo = []
 
         $('input[type="checkbox"]').change(function (event) {
-            if (this.name == 'marca' && this.checked == true) {
-                marca.push(this.value)
-            } else if (this.name == 'marca' && this.checked !== true) {
-                marca.splice(marca.indexOf(this.value), 1)
+            prueba(this)
+        })
+        $('#p_ini,#p_fin,#k_ini,#k_fin').keyup(function (e) {
+            if (e.keyCode == 13) {
+                prueba(this)
             }
-
-            if (this.name == 'year' && this.checked == true) {
-                year.push(this.value)
-            } else if (this.name == 'year' && this.checked !== true) {
-                year.splice(year.indexOf(this.value), 1)
-            }
-
-            if (this.name == 'tipo' && this.checked == true) {
-                tipo.push(this.value)
-            } else if (this.name == 'tipo' && this.checked !== true) {
-                tipo.splice(tipo.indexOf(this.value), 1)
-            }
-
-            if (this.name == 'label' && this.checked == true) {
-                label.push(this.value)
-            } else if (this.name == 'label' && this.checked !== true) {
-                label.splice(label.indexOf(this.value), 1)
-            }
-
-            $('#parametros').empty()
-            $.each(marca, function (key, value) {
-                $('#parametros').append(value + ' ')
-            })
-            $.each(year, function (key, value) {
-                $('#parametros').append(value + ' ')
-            })
-            $.each(tipo, function (key, value) {
-                $('#parametros').append(value + ' ')
-            })
-            $.each(label, function (key, value) {
-                $('#parametros').append(value + ' ')
-            })
-
-            $('#productos').empty()
-            url = '/api/cars?year=' + year + '&marca=' + marca + '&tipo=' + tipo + '&label=' + label
-            console.log(url)
-            $.ajax({
-                "async": true,
-                "crossDomain": true,
-                url: url,
-                type: 'GET'
-            }).done(function (response) {
-                var obj = response
-                console.log(obj)
-                $.each(obj, function (key, value) {
-                    html = '<div class="col-lg-4">' +
-                        '<div class="car-item gray-bg text-center">' +
-                        '<div class="car-image">' +
-                        '<img class="img-fluid" src="' + value.image + '" alt="">' +
-                        '<div class="car-overlay-banner">' +
-                        '<ul>' +
-                        '<li><a href="' + value.get_absolute_url + '"><i class="fa fa-link"></i></a></li>' +
-                        '</ul>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="car-list">' +
-                        '<ul class="list-inline">' +
-                        '<li><i class="fa fa-registered"></i> ' + value.year + '</li>' +
-                        '<li><i class="fa fa-cog"></i> ' + value.transmision + ' </li>' +
-                        '<li><i class="fa fa-dashboard"></i> ' + value.km + '</li>' +
-                        '</ul>' +
-                        '</div>' +
-                        '<div class="car-content">' +
-                        '<div class="star"><br></div>' +
-                        '<a href="' + value.get_absolute_url + '">' + value.title + '</a>' +
-                        '<div class="separator"></div>' +
-                        '<div class="price">' +
-                        '<span class="new-price">$' + value.price + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>'
-                    $('#productos').append(html)
-                });
-            }).always(function () {
-                //$.unblockUI();
-            })
-
         })
 
     })
+    function prueba(thiss) {
+        if (thiss.name == 'marca' && thiss.checked == true) {
+            marca.push(thiss.value)
+        } else if (thiss.name == 'marca' && thiss.checked !== true) {
+            marca.splice(marca.indexOf(thiss.value), 1)
+        }
+
+        if (thiss.name == 'year' && thiss.checked == true) {
+            year.push(thiss.value)
+        } else if (thiss.name == 'year' && thiss.checked !== true) {
+            year.splice(year.indexOf(thiss.value), 1)
+        }
+
+        if (thiss.name == 'tipo' && thiss.checked == true) {
+            tipo.push(thiss.value)
+        } else if (thiss.name == 'tipo' && thiss.checked !== true) {
+            tipo.splice(tipo.indexOf(thiss.value), 1)
+        }
+
+        if (thiss.name == 'label' && thiss.checked == true) {
+            label.push(thiss.value)
+        } else if (thiss.name == 'label' && thiss.checked !== true) {
+            label.splice(label.indexOf(thiss.value), 1)
+        }
+
+        $('#parametros').empty()
+        $.each(marca, function (key, value) {
+            $('#parametros').append(value + ' ')
+        })
+        $.each(year, function (key, value) {
+            $('#parametros').append(value + ' ')
+        })
+        $.each(tipo, function (key, value) {
+            $('#parametros').append(value + ' ')
+        })
+        $.each(label, function (key, value) {
+            $('#parametros').append(value + ' ')
+        })
+        var p_ini = $('#p_ini').val()
+        var p_fin = $('#p_fin').val()
+        var k_ini = $('#k_ini').val()
+        var k_fin = $('#k_fin').val()
+
+        if (p_ini !== "" && p_fin !== "") {
+            $('#parametros').append(' $' + p_ini + ' - $' + p_fin + ' ')
+        }
+        if (p_ini !== "" && p_fin == "") {
+            $('#parametros').append(' $' + p_ini + ' Minimo')
+        }
+        if (p_ini == "" && p_fin !== "") {
+            $('#parametros').append(' $' + p_fin + ' Maximo')
+        }
+
+
+        if (k_ini !== "" && k_fin !== "") {
+            $('#parametros').append(' ' + k_ini + ' Km - ' + k_fin + ' Km ')
+        }
+
+        if (k_ini !== "" && k_fin == "") {
+            $('#parametros').append(' ' + k_ini + ' Km Minimo')
+        }
+        if (k_ini == "" && k_fin !== "") {
+            $('#parametros').append(' $' + k_fin + ' Km Maximo')
+        }
+
+        $('#productos').empty()
+        url = '/api/cars?year=' + year + '&marca=' + marca + '&tipo=' + tipo + '&label=' + label + '&price_min=' + p_ini + '&price_max=' + p_fin + '&km_min=' + k_ini + '&km_max=' + k_fin
+        console.log(url)
+        $.ajax({
+            "async": true,
+            "crossDomain": true,
+            url: url,
+            type: 'GET'
+        }).done(function (response) {
+            var obj = response
+            console.log(obj)
+            $.each(obj, function (key, value) {
+                html = '<div class="col-lg-4">' +
+                    '<div class="car-item gray-bg text-center">' +
+                    '<div class="car-image">' +
+                    '<img class="img-fluid" src="' + value.image + '" alt="">' +
+                    '<div class="car-overlay-banner">' +
+                    '<ul>' +
+                    '<li><a href="' + value.get_absolute_url + '"><i class="fa fa-link"></i></a></li>' +
+                    '</ul>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="car-list">' +
+                    '<ul class="list-inline">' +
+                    '<li><i class="fa fa-registered"></i> ' + value.year + '</li>' +
+                    '<li><i class="fa fa-cog"></i> ' + value.transmision + ' </li>' +
+                    '<li><i class="fa fa-dashboard"></i> ' + value.km + '</li>' +
+                    '</ul>' +
+                    '</div>' +
+                    '<div class="car-content">' +
+                    '<div class="star"><br></div>' +
+                    '<a href="' + value.get_absolute_url + '">' + value.title + '</a>' +
+                    '<div class="separator"></div>' +
+                    '<div class="price">' +
+                    '<span class="new-price">$' + value.price + '</span>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>'
+                $('#productos').append(html)
+            });
+        }).always(function () {
+            //$.unblockUI();
+        })
+    }
 
 </script>
 

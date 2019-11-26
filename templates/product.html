@@ -241,9 +241,13 @@ car-details -->
                   <input type="hidden" value="{{ object.price }}" id="precio">
                 </div>
                 <div class="form-group">
+                  <span id="calcular" class="button red" href="#" style="cursor: pointer;">Calcular</span>
+                  <br>
                   <label>Tu crédito será por: $ <strong id="credito"></strong></label>
                 </div>
                 <div class="form-group">
+
+                  <label>Selecciona las opciones que te interesen y agenda una cita.</label>
                   <div class="remember-checkbox" id="s_prestamo">
                     <input type="checkbox" id="docev" />
                     <label for="docev"><strong>12 (Meses)* $</strong><strong id="doce"></strong></label>
@@ -266,8 +270,12 @@ car-details -->
                   <label for="">**Este es un pre-cálculo de tus mensualidades, para conocer el cálculo final deberás
                     llenar una solicitud de financiamiento con tu asesor de experiencia HABOLT.</label>
                 </div>
-                <div class="form-group">
-                  <span id="calcular" class="button red" href="#" style="cursor: pointer;">Calcular</span>
+                <div class="form-group"
+                  style="text-align: center; background: #ffbd00; border-radius: 0px;color:white;line-height: 40px;">
+
+                  <a data-toggle="modal" style="background: #ffbd00; border-radius: 0px;color:white;"
+                    data-target="#exampleModal2" data-whatever="@mdo" href="#" class="css_btn"><i
+                      class="fa fa-dashboard"></i>AGENDA UNA CITA</a>
                 </div>
               </form>
             </div>
