@@ -12,14 +12,61 @@ CATEGORY_CHOICES = (
 )
 
 LABEL_CHOICES = (
-    ('P', 'primary'),
-    ('S', 'secondary'),
-    ('D', 'danger')
+    ('P', 'Disponible'),
+    ('S', 'Apartado'),
+    ('D', 'otro')
 )
 
 ADDRESS_CHOICES = (
     ('B', 'Billing'),
     ('S', 'Shipping'),
+)
+
+TIPO_CHOICES = (
+    ('Sedan', 'Sedan'),
+    ('SUV', 'SUV'),
+    ('Hatch Back', 'Hatch Back'),
+    ('Pick-Up', 'Pick-Up'),
+    ('Minivan', 'Minivan'),
+)
+
+MARCA_CHOICES = (
+    ('Acura', 'Acura'),
+    ('Audi', 'Audi'),
+    ('BAIC', 'BAIC'),
+    ('BMW', 'BMW'),
+    ('Buick', 'Buick'),
+    ('Cadillac', 'Cadillac'),
+    ('Chevrolet', 'Chevrolet'),
+    ('Chrysler', 'Chrysler'),
+    ('Dodge', 'Dodge'),
+    ('Fiat', 'Fiat'),
+    ('Ford', 'Ford'),
+    ('GMC', 'GMC'),
+    ('Honda', 'Honda'),
+    ('Hyundai', 'Hyundai'),
+    ('Infiniti', 'Infiniti'),
+    ('JAC', 'JAC'),
+    ('JAC Comerciales', 'JAC Comerciales'),
+    ('Jeep', 'Jeep'),
+    ('Kia', 'Kia'),
+    ('Land Rover', 'Land Rover'),
+    ('Lincoln', 'Lincoln'),
+    ('Mazda', 'Mazda'),
+    ('Mini', 'Mini'),
+    ('Mitsubishi', 'Mitsubishi'),
+    ('Nissan ', 'Nissan '),
+    ('Nissan Comerciales', 'Nissan Comerciales'),
+    ('Peugeot', 'Peugeot'),
+    ('Peugeot Comerciales', 'Peugeot Comerciales'),
+    ('Porsche', 'Porsche'),
+    ('Ram Dodge Comerciales', 'Ram Dodge Comerciales'),
+    ('Renault', 'Renault'),
+    ('Seat', 'Seat'),
+    ('Suzuki', 'Suzuki'),
+    ('Toyota', 'Toyota'),
+    ('Volkswagen', 'Volkswagen'),
+    ('Volvo', 'Volvo'),
 )
 
 
@@ -88,19 +135,20 @@ class UserProfile(models.Model):
 
 class Item(models.Model):
     title = models.CharField(max_length=100)
-    price = models.CharField(max_length=100)
-    discount_price = models.FloatField(blank=True, null=True)
+    price = models.IntegerField(blank=False)
+    discount_price = models.IntegerField(blank=True, null=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
     label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     slug = models.SlugField()
 
-    year = models.CharField(max_length=100, blank=True, null=True)
-    marca = models.CharField(max_length=100, blank=True, null=True)
-    km = models.CharField(max_length=100, blank=True, null=True)
+    year = models.CharField(max_length=100, blank=False)
+    marca = models.CharField(choices=MARCA_CHOICES,
+                             max_length=100, blank=False)
+    km = models.IntegerField(blank=False)
     modelo = models.CharField(max_length=100, blank=True, null=True)
     version = models.CharField(max_length=150, blank=True, null=True)
     codigo = models.CharField(max_length=100, blank=True, null=True)
-    tipo = models.CharField(max_length=100, blank=True, null=True)
+    tipo = models.CharField(choices=TIPO_CHOICES, max_length=100, blank=False)
     color = models.CharField(max_length=100, blank=True, null=True)
     color_int = models.CharField(max_length=100, blank=True, null=True)
     cilindro = models.CharField(max_length=100, blank=True, null=True)
