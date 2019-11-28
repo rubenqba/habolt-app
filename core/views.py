@@ -208,10 +208,10 @@ def api_lead_end(request, id, choose, date, time):
     )
 
     email_message = EmailMessage(
-        subject='Mensaje de usuario',
+        subject='Habolt Vende tu Auto',
         body=body,
         from_email='support@habolt.mx',
-        to=['jj.cabreraarrieta@gmail.com'],
+        to=[le.mail],
     )
     email_message.content_subtype = 'html'
     email_message.send()
