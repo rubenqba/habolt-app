@@ -339,6 +339,19 @@ car-details -->
 
 {% block extra_scripts %}
 <script language="javascript">
+  function bloqueo() {
+    $.blockUI({
+      message: 'Procesando ...', css: {
+        border: 'none',
+        padding: '15px',
+        backgroundColor: '#000',
+        '-webkit-border-radius': '10px',
+        '-moz-border-radius': '10px',
+        opacity: .5,
+        color: '#fff'
+      }
+    });
+  }
   function validateEmail(email) {
     var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return reg.test(String(email).toLowerCase());
@@ -537,7 +550,8 @@ car-details -->
       var date2 = date
       var param = date.replace('/', '|')
       var param = param.replace('/', '|')
-
+      bloqueo()
+      $('#agendar').hide()
       $.ajax({
         "async": true,
         "crossDomain": true,
@@ -547,10 +561,13 @@ car-details -->
         console.log(response)
         if (response.id == 'ok') {
           alert("Tu cita a quedado registrada continua viendo nuestros modelos")
-          var delay = 200;
+          var delay = 20;
           var url = '/list'
           setTimeout(function () { window.location = url; }, delay);
         }
+      }).always(function () {
+        $.unblockUI();
+        $('#agendar').show()
       })
 
     })

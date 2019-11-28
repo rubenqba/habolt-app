@@ -100,7 +100,7 @@ def api_newsletter(request, mail):
     return JsonResponse(resj['data'], safe=False)
 
 
-def api_compra(request, name, mail, phone, choose, date, time, precio, car):
+def api_compra(request, name, mail, phone, choose, date, time, car, precio):
     date = date.replace('|', '/')
     # crear person
     token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
@@ -129,6 +129,28 @@ def api_compra(request, name, mail, phone, choose, date, time, precio, car):
     res = json.loads(deal)
     print('compra')
     print(res['data']['id'])
+
+    data = {
+        'name': name,
+        'mail': mail,
+        'phone': phone,
+        'date': date,
+        'time': time,
+        'car': car
+    }
+
+    body = render_to_string(
+        'mail/agenda-mail-habolt.html', data,
+    )
+
+    email_message = EmailMessage(
+        subject='Habolt Compra tu Auto',
+        body=body,
+        from_email='support@habolt.mx',
+        to=[mail],
+    )
+    email_message.content_subtype = 'html'
+    email_message.send()
 
     return JsonResponse({'id': 'ok'}, safe=False)
 
