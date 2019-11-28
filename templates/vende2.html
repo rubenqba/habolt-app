@@ -399,6 +399,19 @@
                 $('#cons').val(response.consigna)
                 $('#pres').val(response.prestamo)
 
+                if (response.precio == 0) {
+                    $('#s_compra').hide()
+                }
+                if (response.treinta == 0) {
+                    $('#s_treinta').hide()
+                }
+                if (response.consigna == 0) {
+                    $('#s_consigna').hide()
+                }
+                if (response.prestamo == 0) {
+                    $('#s_prestamo').hide()
+                }
+
                 window.scrollTo(0, 0)
 
             })

@@ -69,6 +69,18 @@ class AddressAdmin(admin.ModelAdmin):
     search_fields = ['user', 'street_address', 'apartment_address', 'zip']
 
 
+class LeadsAdmin(admin.ModelAdmin):
+    list_display = [
+        'nombre',
+        'version',
+        'eleccion',
+        'status',
+        'fecha',
+        'hora'
+    ]
+    search_fields = ['nombre', 'version', 'status']
+
+
 class ItemImageInline(admin.TabularInline):
     model = ItemImage
     extra = 10
@@ -94,7 +106,7 @@ admin.site.register(Item, ItemAdmin)
 # admin.site.register(Kilometrajes)
 # admin.site.register(Carros)
 
-admin.site.register(Leads)
+admin.site.register(Leads, LeadsAdmin)
 admin.site.register(OrderItem)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Payment)

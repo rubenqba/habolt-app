@@ -97,3 +97,13 @@ AWS_S3_REGION_NAME = 'us-east-1'
 AWS_DEFAULT_ACL = None
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+
+#EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'habolt.mx'
+EMAIL_HOST_PASSWORD = 'L4C0ntr$@2019'
+EMAIL_HOST_USER = 'support@habolt.mx'
+EMAIL_PORT = 465
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

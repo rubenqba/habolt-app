@@ -11,6 +11,8 @@ from django.shortcuts import redirect
 from django.utils import timezone
 from django_filters.views import FilterView
 from django_filters.rest_framework import DjangoFilterBackend
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
 
 from rest_framework import generics
 from rest_framework import filters
@@ -69,7 +71,19 @@ class ListCarsView(generics.ListAPIView):
     filter_class = ItemFilterSet
 
 
-def api_cars(request):
+def test_mail(request):
+    body = render_to_string(
+        'mail/valoracion-mail-habolt.html', {},
+    )
+
+    email_message = EmailMessage(
+        subject='Mensaje de usuario',
+        body=body,
+        from_email='support@habolt.mx',
+        to=['jj.cabreraarrieta@gmail.com'],
+    )
+    email_message.content_subtype = 'html'
+    email_message.send()
     return JsonResponse({'ok': 'ok'})
 
 
@@ -180,6 +194,28 @@ def api_lead_end(request, id, choose, date, time):
     }
     deal = requests.put(url, data=body).text
     print(deal)
+    lista = le.version.split('--')
+    data = {
+        'name': le.nombre,
+        'mail': le.mail,
+        'model': '{} {}'.format(lista[2], lista[3]),
+        'brand': lista[1],
+        'choose': choose
+    }
+
+    body = render_to_string(
+        'mail/valoracion-mail-habolt.html', data,
+    )
+
+    email_message = EmailMessage(
+        subject='Mensaje de usuario',
+        body=body,
+        from_email='support@habolt.mx',
+        to=['jj.cabreraarrieta@gmail.com'],
+    )
+    email_message.content_subtype = 'html'
+    email_message.send()
+
     return JsonResponse(lead, safe=False)
 
 
@@ -228,14 +264,32 @@ def api_check(request, year, brand, model, version, km):
         treinta = converter(carro['TREINTA_DIAS'])
         consigna = converter(carro['CONSIGNA'])
         prestamo = converter(carro['PRÉSTAMO'])
-        print(variable)
-        print(precio)
-        print(precio + variable)
+
+        if precio:
+            pp = format((precio + variable), ',')
+        else:
+            pp = 0
+
+        if treinta:
+            pt = format((treinta + variable), ',')
+        else:
+            pt = 0
+
+        if consigna:
+            pc = format((consigna + variable), ',')
+        else:
+            pc = 0
+
+        if prestamo:
+            ppr = format((prestamo + variable), ',')
+        else:
+            ppr = 0
+
         data = {
-            'precio': format((precio + variable), ','),
-            'treinta': format((treinta + variable), ','),
-            'consigna': format((consigna + variable), ','),
-            'prestamo': format((prestamo + variable), ','),
+            'precio': pp,
+            'treinta': pt,
+            'consigna': pc,
+            'prestamo': ppr,
             'data': carro
         }
     else:

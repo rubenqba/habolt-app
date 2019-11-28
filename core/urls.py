@@ -22,7 +22,7 @@ from .views import (
     api_lead_end,
     test_pipe,
     api_newsletter,
-    api_cars,
+    test_mail,
     ListCarsView,
     SearchCarsView,
     api_compra
@@ -33,6 +33,7 @@ app_name = 'core'
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('api/health', test_pipe, name='test_pipe'),
+    path('test/mail', test_mail, name='test_mail'),
     path('api/cars', ListCarsView.as_view(), name='api_cars'),
     path('api/search', SearchCarsView.as_view(), name='api_search'),
     path('api/newsletter/<mail>', api_newsletter, name='api_newsletter'),
