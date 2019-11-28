@@ -128,7 +128,6 @@ def api_compra(request, name, mail, phone, choose, date, time, car, precio):
     deal = requests.post(url, data=body).text
     res = json.loads(deal)
     print('compra')
-    print(res['data']['id'])
 
     data = {
         'name': name,
