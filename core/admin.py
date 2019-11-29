@@ -75,8 +75,10 @@ class LeadsAdmin(admin.ModelAdmin):
         'version',
         'eleccion',
         'status',
+        'tipo',
         'fecha',
-        'hora'
+        'hora',
+        'check'
     ]
     search_fields = ['nombre', 'version', 'status']
 

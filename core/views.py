@@ -100,6 +100,46 @@ def api_newsletter(request, mail):
     return JsonResponse(resj['data'], safe=False)
 
 
+def api_buscamos(request, name, mail, phone, version):
+    version = version.replace('|', '/')
+    # crear person
+    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
+    url = "https://api.pipedrive.com/v1/persons?api_token={}".format(token)
+    body = {
+        "name": name,
+        "email": mail,
+        "phone": phone
+    }
+    response = requests.post(url, data=body).text
+    resj = json.loads(response)
+    print(resj['data']['id'])
+
+    # crear deal
+    print(version)
+    lista = version.split('--')
+    print(lista)
+    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
+    url = "https://api.pipedrive.com/v1/deals?api_token={}".format(token)
+    body = {
+        "title": "Buscar Auto New Habol",
+        "stage_id": "2",
+        "50bf61363c6260dd0adbb42610ad21174b45d6ea": lista[1],
+        "399ed8723c5a919de01c51ce4fd50eae14891d9d": lista[2],
+        "1c4a744c38218968766102d798b3f9c40d7ddea9": lista[0],
+        "b2541bc70a0ced28452448f312a84ace5282234e": lista[3],
+        "cc3795bd66ed72913f5571a6f67ca567d345d24d": "",
+        "person_id": resj['data']['id']
+    }
+    deal = requests.post(url, data=body).text
+    res = json.loads(deal)
+    print(res['data']['id'])
+    new = Leads.objects.create(
+        nombre=name, mail=mail, tel=phone, cp="", version=version, eleccion="", status=res['data']['id'], tipo=3
+    )
+
+    return JsonResponse({'id': new.id}, safe=False)
+
+
 def api_compra(request, name, mail, phone, choose, date, time, car, precio):
     date = date.replace('|', '/')
     # crear person
@@ -128,6 +168,11 @@ def api_compra(request, name, mail, phone, choose, date, time, car, precio):
     deal = requests.post(url, data=body).text
     res = json.loads(deal)
     print('compra')
+    new = Leads.objects.create(
+        nombre=name, mail=mail, tel=phone,
+        cp="", version=car, eleccion=choose, status=res['data']['id'],
+        fecha=date, hora=time, tipo=2
+    )
 
     data = {
         'name': name,

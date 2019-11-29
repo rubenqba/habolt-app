@@ -1,0 +1,378 @@
+{% extends "base.html" %}
+{% block head_title %}Vende tu auto y recibe tu pago de inmediato{% endblock %}
+{% block content %}
+
+<!--=================================
+ inner-intro -->
+
+<section class="inner-intro bg-7 bg-overlay-black-70">
+    <div class="container">
+        <div class="row text-center intro-title">
+            <div class="col-md-6 text-md-left d-inline-block">
+                <h1 class="text-white">lo buscamos </h1>
+            </div>
+            <div class="col-md-6 text-md-right float-right">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--=================================
+       inner-intro -->
+
+
+<!--=================================
+ register-form  -->
+
+<section class="register-form page-section-ptb">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="section-title">
+                    <span id="bienvenido"></span>
+                    <h2 id="titu">el auto de tus sueños</h2>
+                    <div class="separator"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="formulario" class="row justify-content-center">
+            <form action="" class="col-lg-8 col-md-12">
+                <input id="lead" type="hidden" value="">
+                <div class="">
+                    <div class="gray-form">
+                        <div id="cliente">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Año*</label>
+                                    <div>
+                                        <select id="algo" name="year"
+                                            style="height: 60px; background: #f6f6f6;border-color: #f6f6f6;" required>
+                                            <option value=""></option>
+                                            <option value="2019">2019</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2011">2011</option>
+                                            <option value="2010">2010</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Marca*</label>
+                                    <div>
+                                        <select id="marca" name="marca"
+                                            style="max-width: 100%; height: 60px; background: #f6f6f6;border-color: #f6f6f6;"
+                                            required>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Modelo*</label>
+                                <div>
+                                    <select id="model" name="model"
+                                        style="max-width: 100%; height: 60px; background: #f6f6f6;border-color: #f6f6f6;"
+                                        required>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Version *</label>
+                                <div>
+                                    <select id="version" name="version"
+                                        style="max-width: 100%; height: 60px; background: #f6f6f6;border-color: #f6f6f6;"
+                                        required>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre* </label>
+                                <input id="nombre" class="form-control" type="text" name="nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefono *</label>
+                                <input id="tel" class="form-control" type="number" name="tel" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input id="mail" class="form-control" type="text" name="mail" required>
+                            </div>
+                            <div class="form-group">
+                                <div class="remember-checkbox">
+                                    <input type="checkbox" name="aviso" id="aviso" value="1" required />
+                                    <label for="aviso">ACEPTO LOS TÉRMINOS Y CONDICIONES Y LA POLÍTICA DE PRIVACIDAD DE
+                                        HABOLT.</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <span id="siguiente" class="button red" style="cursor: pointer;">Enviar</span>
+                        <br><br><br><br>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!--=================================
+   register-form  -->
+
+{% endblock content %}
+
+{% block extra_scripts %}
+<script>
+    function bloqueo() {
+        $.blockUI({
+            message: 'Procesando ...', css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'
+            }
+        });
+    }
+
+    function validateEmail(email) {
+        var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return reg.test(String(email).toLowerCase());
+    }
+
+    function siguiente() {
+        var model = $('#model').val()
+        var brand = $('#marca').val()
+        var year = $('#algo').val()
+        var version = $('#version').val()
+        var nombre = $('#nombre').val()
+        var tel = $('#tel').val()
+        var mail = $('#mail').val()
+        var aviso = $('#aviso').val()
+
+        if (year == "") {
+            $("#algo").focus()
+            $("#algo").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (brand == "") {
+            $("#marca").focus()
+            $("#marca").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (model == "") {
+            $("#model").focus()
+            $("#model").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (version == "") {
+            $("#version").focus()
+            $("#version").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (nombre == "") {
+            $("#nombre").focus()
+            $("#nombre").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if (tel == "" || tel.length < 8) {
+            $("tel").focus()
+            $("#tel").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+
+        if (mail == "" || !validateEmail(mail)) {
+            $("#mail").focus()
+            $("#mail").css({ 'border': '1px solid #f73414' });
+            return true
+        }
+        if ($('#aviso').is(':checked')) {
+
+        } else {
+            $("#aviso").focus()
+            alert("El campo de aviso de privacidad es obligatorio.")
+            return true
+        }
+
+        calculator()
+    }
+
+    function calculator() {
+        var model = $('#model').val()
+        var brand = $('#marca').val()
+        var year = $('#algo').val()
+        var version = $('#version').val()
+
+        var param = version.replace('/', '|')
+        var param = param.replace('/', '|')
+
+        var nombre = $('#nombre').val()
+        var tel = $('#tel').val()
+        var mail = $('#mail').val()
+        var cp = $('#cp').val()
+        var ver = year + "--" + brand + "--" + model + "--" + param
+
+        bloqueo()
+        $.ajax({
+            "async": true,
+            "crossDomain": true,
+            url: "/api/buscamos/create/" + nombre + "/" + mail + "/" + tel + "/" + ver,
+            type: 'GET'
+        }).done(function (response) {
+            console.log(response)
+            alert("ya tenemos tu eleccion pronto te enviaremos buenas noticias!!")
+            var delay = 20
+            var url = '/list'
+            setTimeout(function () { window.location = url; }, delay)
+        }).always(function () {
+            $.unblockUI();
+        })
+    }
+
+    $(document).ready(function () {
+        $('#algo').change(function () {
+            var year = this.value
+            $('#marca').empty()
+            $('#marca').append($('<option></option>').val("").html("Seleccione"))
+            $('#model').empty()
+            $('#model').append($('<option></option>').val(""))
+            $('#version').empty()
+            $('#version').append($('<option></option>').val(""))
+            $('#oferta').hide()
+            $('#km').val('')
+
+            $('#enviar').hide()
+            $('#siguiente').show()
+            bloqueo()
+            $.ajax({
+                "async": true,
+                "crossDomain": true,
+                url: "/api/year/" + year,
+                type: 'GET'
+            })
+                .done(function (response) {
+                    var obj = jQuery.parseJSON(response)
+                    glob = obj
+                    console.log(obj)
+                    $.each(obj, function (key, value) {
+                        offerts = value;
+                        $('#marca').append(
+                            $('<option></option>').val(value.brand).html(value.brand)
+                        );
+                    });
+
+                })
+                .fail(function () {
+
+                })
+                .always(function () {
+                    $.unblockUI();
+                })
+        })
+
+        $('#marca').change(function () {
+            var brand = this.value
+            var year = $('#algo').val()
+            $('#model').empty()
+            $('#model').append($('<option></option>').val("").html("Seleccione"))
+            $('#version').empty()
+            $('#version').append($('<option></option>').val(""))
+            $('#oferta').hide()
+            $('#km').val('')
+
+            $('#enviar').hide()
+            $('#siguiente').show()
+            bloqueo()
+            $.ajax({
+                "async": true,
+                "crossDomain": true,
+                url: "/api/brand/" + year + "/" + brand,
+                type: 'GET'
+            })
+                .done(function (response) {
+                    var obj = jQuery.parseJSON(response)
+                    glob = obj
+                    console.log(obj)
+                    $.each(obj, function (key, value) {
+                        offerts = value;
+                        $('#model').append(
+                            $('<option></option>').val(value.model).html(value.model)
+                        );
+                    });
+
+                })
+                .fail(function () {
+
+                })
+                .always(function () {
+                    $.unblockUI();
+                })
+        })
+
+        $('#model').change(function () {
+            var model = this.value
+            var brand = $('#marca').val()
+            var year = $('#algo').val()
+            $('#oferta').hide()
+            $('#version').empty()
+            $('#km').val('')
+            $('#version').append($('<option></option>').val("").html("Seleccione"))
+
+            $('#enviar').hide()
+            $('#siguiente').show()
+            bloqueo()
+            $.ajax({
+                "async": true,
+                "crossDomain": true,
+                url: "/api/model/" + year + "/" + brand + "/" + model,
+                type: 'GET'
+            })
+                .done(function (response) {
+                    var obj = jQuery.parseJSON(response)
+                    glob = obj
+                    console.log(obj)
+                    $.each(obj, function (key, value) {
+                        offerts = value;
+                        $('#version').append(
+                            $('<option></option>').val(value.version).html(value.version)
+                        );
+                        console.log(value.version)
+                    });
+
+                })
+                .fail(function () {
+
+                })
+                .always(function () {
+                    $.unblockUI();
+                })
+        })
+
+        $('#version').change(function () {
+            $('#oferta').hide()
+            $('#km').val('')
+
+            $('#enviar').hide()
+            $('#siguiente').show()
+        })
+
+        $("#aviso").click(function (e) {
+            siguiente()
+        })
+
+        $("#siguiente").click(function (e) {
+            siguiente()
+        })
+    })
+</script>
+
+{% endblock extra_scripts %}

@@ -25,7 +25,8 @@ from .views import (
     test_mail,
     ListCarsView,
     SearchCarsView,
-    api_compra
+    api_compra,
+    api_buscamos
 )
 
 app_name = 'core'
@@ -48,6 +49,8 @@ urlpatterns = [
          api_compra, name='api_compra'),
     path('api/lead/update/<id>/<choose>/<date>/<time>',
          api_lead_end, name='api_lead_end'),
+    path('api/buscamos/create/<name>/<mail>/<phone>/<version>',
+         api_buscamos, name='api_buscamos'),
     path('listt/', ListView.as_view(), name='listt'),
     path('list/', product_list, name='list'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
@@ -66,5 +69,6 @@ urlpatterns = [
     path('vende2/', TemplateView.as_view(template_name='vende.html'), name='vende2'),
     path('vende/', TemplateView.as_view(template_name='vende2.html'), name='vende'),
     path('faq/', TemplateView.as_view(template_name='faq.html'), name='faq'),
-    path('aviso/', TemplateView.as_view(template_name='aviso.html'), name='aviso')
+    path('aviso/', TemplateView.as_view(template_name='aviso.html'), name='aviso'),
+    path('buscamos/', TemplateView.as_view(template_name='buscamos.html'), name='buscamos')
 ]

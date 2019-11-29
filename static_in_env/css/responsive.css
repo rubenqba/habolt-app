@@ -127,7 +127,7 @@ Design and Developed by: potenzaglobalsolutions.com
 
 
 @media( max-width:992px) {
-.page-section-ptb { padding: 60px 0; }	
+.page-section-ptb { padding: 80px 0; }	
 .page-section-pt { padding-top: 60px ; }	
 .page-section-pb { padding-bottom: 60px; }	
 /* home 1 */
@@ -550,6 +550,7 @@ h2 { font-size: 32px; }
 @media (max-width: 767px) { 
   .inner-intro { 
       background-attachment: inherit! important;
+      display: none;
   } 
   #social{
     display: none;

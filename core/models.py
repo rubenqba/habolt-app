@@ -28,6 +28,11 @@ TIPO_CHOICES = (
     ('Hatch Back', 'Hatch Back'),
     ('Pick-Up', 'Pick-Up'),
     ('Minivan', 'Minivan'),
+    ('Coupe', 'Coupe'),
+    ('Wagon', 'Wagon'),
+    ('4x4', '4x4'),
+    ('Convertible', 'Convertible'),
+    ('Electrico', 'Electrico'),
 )
 
 MARCA_CHOICES = (
@@ -77,9 +82,11 @@ class Leads(models.Model):
     cp = models.CharField(max_length=100)
     version = models.CharField(max_length=500)
     eleccion = models.CharField(max_length=200)
-    status = models.CharField(max_length=100)
+    status = models.CharField(max_length=100, verbose_name="pipdrive")
     fecha = models.CharField(max_length=100, blank=True, null=True)
     hora = models.CharField(max_length=100, blank=True, null=True)
+    tipo = models.IntegerField(blank=False, default=1)
+    check = models.IntegerField(blank=False, default=0)
 
     def __str__(self):
         return self.status
