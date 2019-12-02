@@ -5,6 +5,11 @@ from django.db.models import Sum
 from django.shortcuts import reverse
 from django_countries.fields import CountryField
 
+STATUS = (
+    (0, "Draft"),
+    (1, "Publish")
+)
+
 
 CATEGORY_CHOICES = (
     ('A', 'Autos'),
@@ -75,6 +80,27 @@ MARCA_CHOICES = (
 )
 
 
+class Post(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    image = models.ImageField()
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=0)
+
+    class Meta:
+        ordering = ['-created_on']
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("core:post", kwargs={
+            'slug': self.slug
+        })
+
+
 class Leads(models.Model):
     nombre = models.CharField(max_length=100)
     mail = models.CharField(max_length=100)
@@ -87,6 +113,8 @@ class Leads(models.Model):
     hora = models.CharField(max_length=100, blank=True, null=True)
     tipo = models.IntegerField(blank=False, default=1)
     check = models.IntegerField(blank=False, default=0)
+    updated_on = models.DateTimeField(auto_now=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return self.status
@@ -146,7 +174,7 @@ class Item(models.Model):
     discount_price = models.IntegerField(blank=True, null=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
     label = models.CharField(choices=LABEL_CHOICES, max_length=1)
-    slug = models.SlugField()
+    slug = models.SlugField(max_length=200, unique=True)
 
     year = models.CharField(max_length=100, blank=False)
     marca = models.CharField(choices=MARCA_CHOICES,

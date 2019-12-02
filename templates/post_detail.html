@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_title %}Blog{% endblock %}
+{% block content %}
+
+<!--=================================
+ inner-intro -->
+
+<section class="inner-intro bg-5 bg-overlay-black-70">
+    <div class="container">
+        <div class="row text-center intro-title">
+            <div class="col-md-6 text-md-left d-inline-block">
+                <h1 class="text-white">{{ object.title }} </h1>
+            </div>
+            <div class="col-md-6 text-md-right float-right">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--=================================
+   inner-intro -->
+
+<!--=================================
+ blog  -->
+
+<section class="blog blog-single page-section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="blog-entry">
+                    <div class="blog-entry-image  clearfix">
+                        <div class="portfolio-item">
+                            <img class="img-fluid" style="width: 100%;" src="{{ object.image.url }}" alt="">
+                        </div>
+                    </div>
+                    <div class="entry-title">
+                        <a href="#">{{ object.title }}</a>
+                    </div>
+                    <div class="entry-content">
+                        <p>{{ object.content }}</p>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- ============================================ -->
+
+        </div>
+    </div>
+</section>
+
+<!--=================================
+      blog -->
+
+
+
+{% endblock content %}

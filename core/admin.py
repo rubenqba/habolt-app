@@ -1,7 +1,7 @@
 from import_export import resources
 from django.contrib import admin
 
-from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, UserProfile, ItemImage, Kilometrajes, Carros, Leads
+from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, UserProfile, ItemImage, Kilometrajes, Carros, Leads, Post
 from import_export.admin import ImportExportModelAdmin
 
 
@@ -83,6 +83,13 @@ class LeadsAdmin(admin.ModelAdmin):
     search_fields = ['nombre', 'version', 'status']
 
 
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'status', 'created_on')
+    list_filter = ("status",)
+    search_fields = ['title', 'content']
+    prepopulated_fields = {'slug': ('title',)}
+
+
 class ItemImageInline(admin.TabularInline):
     model = ItemImage
     extra = 10
@@ -108,6 +115,7 @@ admin.site.register(Item, ItemAdmin)
 # admin.site.register(Kilometrajes)
 # admin.site.register(Carros)
 
+admin.site.register(Post, PostAdmin)
 admin.site.register(Leads, LeadsAdmin)
 admin.site.register(OrderItem)
 admin.site.register(Order, OrderAdmin)

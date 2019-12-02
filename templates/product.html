@@ -35,7 +35,7 @@ car-details -->
       </div>
       <div class="col-md-3">
         <div class="car-price text-md-right">
-          <strong>$ {{ object.price }}</strong>
+          <strong id="press">$ {{ object.price }}</strong>
           <span></span>
         </div>
       </div>
@@ -93,21 +93,12 @@ car-details -->
               </ul>
               <div id="tab1" class="tabcontent">
                 <p> {{ object.description }} </p>
-                <p> Este auto pasó con éxito nuestra valoración 360º, cuenta con una garantía incluida de 12 meses. Lo
-                  hemos
-                  detallado para ti y está listo para que te lo lleves. Tienes 7 días o 150 km para probarlo y si al
-                  final
-                  decides que no te gustó puedes escoger otro auto de nuestro inventario o devolverlo de inmediato.
-                </p>
                 <p>Vive la experiencia, un HABOLT es único.</p>
-                <p> <strong style="color: black;">DEJA TU AUTO A CUENTA Y LLEVATE UN HABOLT</strong> </p>
-                <p><a href="{% url "core:vende" %}">
-                    Una vez que agendes tu cita para ver el auto de tus sueños, también realizaremos la valoración 360º
-                    de
-                    tu
-                    auto y verificaremos que tu documentación esté en perfectas condiciones y si todo está en orden, lo
-                    tomamos como enganche. Si tienes alguna duda, coméntalo con tu asesor de experiencia HABOLT.</a>
-                </p>
+                <p> <a href="{% url "core:vende" %}"
+                    style="background: #223dff; border-radius: 0px;color:white;line-height: 44px;padding: 8px 20px;">DEJA
+                    TU AUTO A CUENTA
+                    Y LLEVATE
+                    UN HABOLT</a></p>
                 <p> <strong style="color: black;">EXTIENDE TU GARANTÍA</strong> </p>
                 <P> Todos nuestros autos cuentan con 12 meses de garantía incluída y también tienes la posibilidad de
                   extenderla por 12 meses más, pregunta por este servicio a tu asesor de experiencia HABOLT </P>
@@ -194,11 +185,7 @@ car-details -->
                             <div class="form-group">
                               <label>Hora *</label>
                               <select class="form-control" name="std_time" id="time">
-                                <option value="">Seleccione</option>
-                                <option value="9:00 a 11:00">9:00 a 11:00</option>
-                                <option value="11:00 a 13:00">11:00 a 13:00</option>
-                                <option value="14:00 a 16:00">14:00 a 16:00</option>
-                                <option value="16:00 a 18:00">16:00 a 18:00</option>
+
                               </select>
                             </div>
                             <div class="form-group">
@@ -233,10 +220,10 @@ car-details -->
             <div class="details-form contact-2">
               <form class="gray-form">
                 <br><br>
-                <h5>Utiliza nuestra calculadora de financiamiento para conocer cuanto pagarás mensualmente de acuerdo a
-                  la opción que decidas.</h5>
+                <h5>calcula tú financiamiento</h5>
                 <div class="form-group">
-                  <label>Ingresa el monto que estas dispuesto a pagar de enganche:</label>
+                  <label>Ingresa el monto que estas dispuesto a pagar de enganche, EL MÍNIMO ES EL 25% DEL VALOR DEL
+                    AUTO.:</label>
                   <input id="enganche" type="number" class="form-control" value="">
                   <input type="hidden" value="{{ object.price }}" id="precio">
                 </div>
@@ -339,6 +326,11 @@ car-details -->
 
 {% block extra_scripts %}
 <script language="javascript">
+
+  var val = parseInt({{ object.price }});
+  val = numberWithCommas(val);
+  $('#press').text('$' + val);
+
   function bloqueo() {
     $.blockUI({
       message: 'Procesando ...', css: {
@@ -477,7 +469,21 @@ car-details -->
         var option = this.id == "txtworkingdays",
           instance = $(this).data("datepicker"),
           date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-        //dates.not(this).datepicker("option", option, date);
+        $('#time').empty()
+        var fecha = new Date(selectedDate)
+        if (fecha.getDay() == 6) {
+          algo = '<option value="">Seleccione</option>' +
+            '<option value="9:00 a 11:00">9:00 a 11:00</option>' +
+            '<option value="11:00 a 13:00">11:00 a 13:00</option>'
+          $('#time').append(algo)
+        } else {
+          algo = '<option value="">Seleccione</option>' +
+            '<option value="9:00 a 11:00">9:00 a 11:00</option>' +
+            '<option value="11:00 a 13:00">11:00 a 13:00</option>' +
+            '<option value="14:00 a 16:00">14:00 a 16:00</option>' +
+            '<option value="16:00 a 18:00">16:00 a 18:00</option>'
+          $('#time').append(algo)
+        }
       },
       beforeShowDay: function (date) {
         var day = date.getDay();
@@ -560,7 +566,7 @@ car-details -->
       }).done(function (response) {
         console.log(response)
         if (response.id == 'ok') {
-          alert("Tu cita a quedado registrada continua viendo nuestros modelos")
+          alert("Gracias por agendar una cita. En tu correo recibirás nuestra confirmación. Sigue navegando en Habolt.")
           var delay = 20;
           var url = '/list'
           setTimeout(function () { window.location = url; }, delay);

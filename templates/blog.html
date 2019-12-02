@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_title %}Blog{% endblock %}
+{% block content %}
+
+<!--=================================
+ inner-intro -->
+
+<section class="inner-intro bg-5 bg-overlay-black-70">
+    <div class="container">
+        <div class="row text-center intro-title">
+            <div class="col-md-6 text-md-left d-inline-block">
+                <h1 class="text-white">Blog </h1>
+            </div>
+            <div class="col-md-6 text-md-right float-right">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--=================================
+   inner-intro -->
+
+<!--=================================
+ blog  -->
+
+<section class="blog page-section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <span> </span>
+                    <h2>Nuestro Blog</h2>
+                    <div class="separator"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {% for item in object_list %}
+
+                <div class="blog-entry">
+                    <div class="blog-entry-image  clearfix">
+                        <div class="portfolio-item">
+                            <img class="img-fluid" style="height: 487px; width: 100%;" src="{{ item.image.url }}"
+                                alt="">
+                        </div>
+                    </div>
+                    <div class="entry-title">
+                        <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+                    </div>
+                    <div class="entry-share clearfix">
+                        <a class="button red float-left" href="{{ item.get_absolute_url }}"> Leer mas </a>
+                    </div>
+                </div>
+                <hr class="gray">
+                <!-- ============================================ -->
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--=================================
+      blog -->
+
+
+
+{% endblock content %}

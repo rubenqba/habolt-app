@@ -260,13 +260,13 @@
                 type: 'GET'
             })
                 .done(function (response) {
-                    var obj = jQuery.parseJSON(response)
+                    var obj = response
                     glob = obj
                     console.log(obj)
                     $.each(obj, function (key, value) {
                         offerts = value;
                         $('#marca').append(
-                            $('<option></option>').val(value.brand).html(value.brand)
+                            $('<option></option>').val(value).html(value)
                         );
                     });
 
@@ -299,13 +299,13 @@
                 type: 'GET'
             })
                 .done(function (response) {
-                    var obj = jQuery.parseJSON(response)
+                    var obj = response
                     glob = obj
                     console.log(obj)
                     $.each(obj, function (key, value) {
                         offerts = value;
                         $('#model').append(
-                            $('<option></option>').val(value.model).html(value.model)
+                            $('<option></option>').val(value).html(value)
                         );
                     });
 
@@ -337,15 +337,15 @@
                 type: 'GET'
             })
                 .done(function (response) {
-                    var obj = jQuery.parseJSON(response)
+                    var obj = response
                     glob = obj
                     console.log(obj)
                     $.each(obj, function (key, value) {
                         offerts = value;
                         $('#version').append(
-                            $('<option></option>').val(value.version).html(value.version)
+                            $('<option></option>').val(value).html(value)
                         );
-                        console.log(value.version)
+                        console.log(value)
                     });
 
                 })
