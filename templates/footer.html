@@ -60,8 +60,8 @@
         <div class="about-content">
           <br>
           <img class="img-fluid" id="logo-footer" src="{% static 'images/logo-light.png' %}" alt="">
-          <p>En Habolt estamos cambiando la forma de comprar y vender autos en México, al volverlo más
-            sencillo, transparente y con precios que te van a encantar..</p>
+          <p>En Habolt estamos cambiando la forma de comprar y vender autos en México, al volverlo más sencillo,
+            transparente y con precios que te van a encantar.</p>
         </div>
         <div class="address">
           <ul>
@@ -74,15 +74,23 @@
       </div>
 
       <div class="col-lg-3 col-md-6">
-
+        <br>
+        <h6 class="text-white"> MAPA </h6>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.1165770957646!2d-99.28066438509437!3d19.364104286923308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d201db98a11421%3A0xa88cc4d5ee8d040!2sHabolt!5e0!3m2!1ses-419!2smx!4v1575429247798!5m2!1ses-419!2smx"
+          width="100%" height="" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
       </div>
       <div class="col-lg-3 col-md-6">
+        <br>
         <h6 class="text-white"> <a href="{% url "core:blog" %}">BLOG</a> </h6>
+        <p>Te invitamos a leer los artículos más interesantes de la industria en nuestro blog que hemos creado
+          especialmente para ti.</p>
       </div>
       <div class="col-lg-3 col-md-6">
+        <br>
         <div class="news-letter">
           <h6 class="text-white">SUBSCRIBETE A NUESTRO BOLETIN DE NOTICIAS </h6>
-          <p>Mantente informado acerca de los mejores autos a los mejoreos precios.</p>
+          <p>Mantente informado acerca de los mejores autos a los mejores precios.</p>
           <form class="news-letter">
             <input type="email" id="mailnews" placeholder="Ingresa tu Email" class="form-control placeholder"><br>
             <span id="btnnews" class="button red" href="#">Subscribete</span>

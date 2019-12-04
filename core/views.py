@@ -191,7 +191,8 @@ def api_compra(request, name, mail, phone, choose, date, time, car, precio):
         subject='Habolt Compra tu Auto',
         body=body,
         from_email='support@habolt.mx',
-        to=[mail],
+        to=[mail, 'follow@habolt.mx', 'flozano@habolt.mx',
+            'alejandrolopezes@gmail.com'],
     )
     email_message.content_subtype = 'html'
     email_message.send()
@@ -277,7 +278,7 @@ def api_lead_end(request, id, choose, date, time):
         subject='Habolt Vende tu Auto',
         body=body,
         from_email='support@habolt.mx',
-        to=[le.mail],
+        to=[le.mail, 'follow@habolt.mx', 'flozano@habolt.mx'],
     )
     email_message.content_subtype = 'html'
     email_message.send()

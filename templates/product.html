@@ -93,6 +93,13 @@ car-details -->
               </ul>
               <div id="tab1" class="tabcontent">
                 <p> {{ object.description }} </p>
+                <p>Este auto es único y es un HABOLT por los siguientes puntos:</p>
+                <ul class="list-style-1">
+                  <li><i class="fa fa-check"></i> Valoración 360º exitosa.</li>
+                  <li><i class="fa fa-check"></i> 12 meses de garantía incluida.</li>
+                  <li><i class="fa fa-check"></i> 7 días o 150 km de prueba. </li>
+                </ul>
+                <br>
                 <p>Vive la experiencia, un HABOLT es único.</p>
                 <p> <a href="{% url "core:vende" %}"
                     style="background: #223dff; border-radius: 0px;color:white;line-height: 44px;padding: 8px 20px;">DEJA
@@ -213,17 +220,19 @@ car-details -->
                 </div>
                 <div class="content" style="text-align: center;">
                   <h4>(+52) 558 526 6545 </h4>
-                  <p>Llámanos gratis! </p>
+                  <p>¡Llámanos gratis! </p>
                 </div>
               </div>
             </div>
             <div class="details-form contact-2">
               <form class="gray-form">
                 <br><br>
-                <h5>calcula tú financiamiento</h5>
+                <h5>calcula tu financiamiento</h5>
                 <div class="form-group">
-                  <label>Ingresa el monto que estas dispuesto a pagar de enganche, EL MÍNIMO ES EL 25% DEL VALOR DEL
-                    AUTO.:</label>
+                  <label style="text-transform: lowercase;">Ingresa el monto que estás dispuesto a pagar de enganche, EL
+                    MÍNIMO ES EL 25% DEL VALOR
+                    DEL
+                    AUTO:</label>
                   <input id="enganche" type="number" class="form-control" value="">
                   <input type="hidden" value="{{ object.price }}" id="precio">
                 </div>
