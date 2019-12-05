@@ -372,6 +372,10 @@ product-listing  -->
             prueba(this)
         })
 
+        $('.del').click(function (event) {
+            alert(this)
+        })
+
     })
     function prueba(thiss) {
         if (thiss.name == 'marca' && thiss.checked == true) {
@@ -400,16 +404,16 @@ product-listing  -->
 
         $('#parametros').empty()
         $.each(marca, function (key, value) {
-            $('#parametros').append(value + ' ')
+            $('#parametros').append(value + ' <span onclick="del(\'marca_' + value + '\')" style="cursor: pointer;" > x </span>')
         })
         $.each(year, function (key, value) {
-            $('#parametros').append(value + ' ')
+            $('#parametros').append(value + ' <span onclick="del(\'year_' + value + '\')" style="cursor: pointer;" > x </span>')
         })
         $.each(tipo, function (key, value) {
-            $('#parametros').append(value + ' ')
+            $('#parametros').append(value + ' <span onclick="del(\'tipo_' + value + '\')" style="cursor: pointer;" > x </span>')
         })
         $.each(label, function (key, value) {
-            $('#parametros').append(value + ' ')
+            $('#parametros').append(value + ' <span onclick="del(\'label_' + value + '\')" style="cursor: pointer;" > x </span>')
         })
         var p_ini = $('#p_ini').val()
         var p_fin = $('#p_fin').val()
@@ -417,25 +421,25 @@ product-listing  -->
         var k_fin = $('#k_fin').val()
 
         if (p_ini !== "" && p_fin !== "") {
-            $('#parametros').append(' $' + p_ini + ' - $' + p_fin + ' ')
+            $('#parametros').append(' $' + p_ini + ' - $' + p_fin + ' <span onclick="del(\'pdos\')" style="cursor: pointer;" > x </span>')
         }
         if (p_ini !== "" && p_fin == "") {
-            $('#parametros').append(' $' + p_ini + ' Minimo')
+            $('#parametros').append(' $' + p_ini + ' Minimo <span onclick="del(\'p_ini\')" style="cursor: pointer;" > x </span>')
         }
         if (p_ini == "" && p_fin !== "") {
-            $('#parametros').append(' $' + p_fin + ' Maximo')
+            $('#parametros').append(' $' + p_fin + ' Maximo <span onclick="del(\'p_fin\')" style="cursor: pointer;" > x </span>')
         }
 
 
         if (k_ini !== "" && k_fin !== "") {
-            $('#parametros').append(' ' + k_ini + ' Km - ' + k_fin + ' Km ')
+            $('#parametros').append(' ' + k_ini + ' Km - ' + k_fin + ' Km <span onclick="del(\'kdos\')" style="cursor: pointer;" > x </span>')
         }
 
         if (k_ini !== "" && k_fin == "") {
-            $('#parametros').append(' ' + k_ini + ' Km Minimo')
+            $('#parametros').append(' ' + k_ini + ' Km Minimo <span onclick="del(\'k_ini\')" style="cursor: pointer;" > x </span>')
         }
         if (k_ini == "" && k_fin !== "") {
-            $('#parametros').append(' $' + k_fin + ' Km Maximo')
+            $('#parametros').append(' $' + k_fin + ' Km Maximo <span onclick="del(\'k_fin\')" style="cursor: pointer;" > x </span>')
         }
 
         $('#productos').empty()
@@ -532,6 +536,42 @@ product-listing  -->
         }).always(function () {
             //$.unblockUI();
         })
+    }
+
+    function del(remove) {
+        if (remove.indexOf('marca') != -1) {
+            var a = remove.split('_')
+            $('input[value="' + a[1] + '"]').prop("checked", false)
+            marca.splice(marca.indexOf(a[1]), 1)
+        } else if (remove.indexOf('year') != -1) {
+            var a = remove.split('_')
+            $('input[value="' + a[1] + '"]').prop("checked", false)
+            year.splice(marca.indexOf(a[1]), 1)
+        } else if (remove.indexOf('tipo') != -1) {
+            var a = remove.split('_')
+            $('input[value="' + a[1] + '"]').prop("checked", false)
+            tipo.splice(marca.indexOf(a[1]), 1)
+        } else if (remove.indexOf('label') != -1) {
+            var a = remove.split('_')
+            $('input[value="' + a[1] + '"]').prop("checked", false)
+            label.splice(marca.indexOf(a[1]), 1)
+        } else if (remove.indexOf('p_ini') != -1) {
+            $('#p_ini').val('')
+        } else if (remove.indexOf('p_fin') != -1) {
+            $('#p_fin').val('')
+        } else if (remove.indexOf('k_ini') != -1) {
+            $('#k_ini').val('')
+        } else if (remove.indexOf('k_fin') != -1) {
+            $('#k_fin').val('')
+        } else if (remove.indexOf('pdos') != -1) {
+            $('#p_ini').val('')
+            $('#p_fin').val('')
+        } else if (remove.indexOf('kdos') != -1) {
+            $('#k_ini').val('')
+            $('#k_fin').val('')
+        }
+
+        prueba('algo')
     }
 
 </script>

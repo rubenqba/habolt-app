@@ -122,7 +122,7 @@ def api_buscamos(request, name, mail, phone, version):
     url = "https://api.pipedrive.com/v1/deals?api_token={}".format(token)
     body = {
         "title": "Buscar Auto New Habol",
-        "stage_id": "2",
+        "stage_id": "9",
         "50bf61363c6260dd0adbb42610ad21174b45d6ea": lista[1],
         "399ed8723c5a919de01c51ce4fd50eae14891d9d": lista[2],
         "1c4a744c38218968766102d798b3f9c40d7ddea9": lista[0],
@@ -159,7 +159,7 @@ def api_compra(request, name, mail, phone, choose, date, time, car, precio):
     url = "https://api.pipedrive.com/v1/deals?api_token={}".format(token)
     body = {
         "title": "New Habol Compra: {} {}".format(car, precio),
-        "stage_id": "2",
+        "stage_id": "9",
         "cc3795bd66ed72913f5571a6f67ca567d345d24d": choose,
         "52d3869a66465bc7f1f8ecc90ba4a6572cc40a7e": date,
         "b0191c0ba8a4d2d6c5c067bd72fda9ce0db68730": time,
@@ -229,7 +229,8 @@ def api_lead(request, name, mail, phone, cp, version):
         "5aa010b5d0db9a00cffd8cc3d9527f16ca6f25bf": lista[4],
         "cc3795bd66ed72913f5571a6f67ca567d345d24d": "",
         "1ea830209c4978cdc9685df905a7cdabf44f4475": cp,
-        "person_id": resj['data']['id']
+        "person_id": resj['data']['id'],
+        "51720609d9b183523542d74a9d729fe5da9753f3": "ofertas"
     }
     deal = requests.post(url, data=body).text
     res = json.loads(deal)
