@@ -140,7 +140,7 @@ def api_buscamos(request, name, mail, phone, version, presupuesto):
     return JsonResponse({'id': new.id}, safe=False)
 
 
-def api_compra(request, name, mail, phone, choose, date, time, car, precio):
+def api_compra(request, name, mail, phone, choose, date, time, car, precio, ofertas):
     date = date.replace('|', '/')
     # crear person
     token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
@@ -163,7 +163,8 @@ def api_compra(request, name, mail, phone, choose, date, time, car, precio):
         "cc3795bd66ed72913f5571a6f67ca567d345d24d": choose,
         "52d3869a66465bc7f1f8ecc90ba4a6572cc40a7e": date,
         "b0191c0ba8a4d2d6c5c067bd72fda9ce0db68730": time,
-        "person_id": resj['data']['id']
+        "person_id": resj['data']['id'],
+        "51720609d9b183523542d74a9d729fe5da9753f3": ofertas
     }
     deal = requests.post(url, data=body).text
     res = json.loads(deal)

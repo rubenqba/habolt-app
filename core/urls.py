@@ -38,7 +38,7 @@ urlpatterns = [
          api_check, name='api_check'),
     path('api/lead/create/<name>/<mail>/<phone>/<cp>/<version>',
          api_lead, name='api_lead'),
-    path('api/compra/<name>/<mail>/<phone>/<choose>/<date>/<time>/<car>/<precio>',
+    path('api/compra/<name>/<mail>/<phone>/<choose>/<date>/<time>/<car>/<precio>/<ofertas>',
          api_compra, name='api_compra'),
     path('api/lead/update/<id>/<choose>/<date>/<time>',
          api_lead_end, name='api_lead_end'),

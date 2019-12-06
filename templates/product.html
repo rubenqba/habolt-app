@@ -547,18 +547,19 @@ car-details -->
       }
 
       var choose = "Eleccion : "
+      var ofertas = 'Opciones : 12 meses $ ' + docev + ' 24 meses $ ' + veintev + ' 36 meses $ ' + treintav + ' 48 meses $ ' + cuarentav
 
       if ($('#docev').is(':checked')) {
-        choose += docev + " , "
+        choose += '12 meses $ ' + docev + " , "
       }
       if ($('#veintev').is(':checked')) {
-        choose += veintev + " , "
+        choose += '24 meses $ ' + veintev + " , "
       }
       if ($('#treintav').is(':checked')) {
-        choose += treintav + " , "
+        choose += '36 meses $ ' + treintav + " , "
       }
       if ($('#cuarentav').is(':checked')) {
-        choose += cuarentav + " , "
+        choose += '48 meses $ ' + cuarentav + " , "
       }
 
       console.log(choose)
@@ -570,7 +571,7 @@ car-details -->
       $.ajax({
         "async": true,
         "crossDomain": true,
-        url: "/api/compra/" + nombre + "/" + mail + "/" + tel + "/" + choose + "/" + param + "/" + time + "/" + car + "/" + precio,
+        url: "/api/compra/" + nombre + "/" + mail + "/" + tel + "/" + choose + "/" + param + "/" + time + "/" + car + "/" + precio + "/" + ofertas,
         type: 'GET'
       }).done(function (response) {
         console.log(response)
