@@ -96,6 +96,17 @@ class ItemImageInline(admin.TabularInline):
 
 
 class ItemAdmin(admin.ModelAdmin):
+    list_display = [
+        'title',
+        'price',
+        'slug',
+        'year',
+        'marca',
+        'modelo',
+        'version',
+        'image'
+    ]
+    search_fields = ['title', 'slug', 'price']
     inlines = [ItemImageInline, ]
 
 

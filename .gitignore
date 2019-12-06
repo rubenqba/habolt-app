@@ -4,7 +4,13 @@ static_root
 env
 .vscode
 .ambiente.*
+.ambiente/.*
+.3ambient.*
+.3ambient/.*
 .vagrant
 *.log
 \.*/
 .vscode
+.DS_Store
+**/.DS_Store
+/nbproject
