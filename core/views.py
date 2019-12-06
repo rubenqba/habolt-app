@@ -100,7 +100,7 @@ def api_newsletter(request, mail):
     return JsonResponse(resj['data'], safe=False)
 
 
-def api_buscamos(request, name, mail, phone, version):
+def api_buscamos(request, name, mail, phone, version, presupuesto):
     version = version.replace('|', '/')
     # crear person
     token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
@@ -123,18 +123,18 @@ def api_buscamos(request, name, mail, phone, version):
     body = {
         "title": "Buscar Auto New Habol",
         "stage_id": "9",
+        "cc3795bd66ed72913f5571a6f67ca567d345d24d": presupuesto,
         "50bf61363c6260dd0adbb42610ad21174b45d6ea": lista[1],
         "399ed8723c5a919de01c51ce4fd50eae14891d9d": lista[2],
         "1c4a744c38218968766102d798b3f9c40d7ddea9": lista[0],
         "b2541bc70a0ced28452448f312a84ace5282234e": lista[3],
-        "cc3795bd66ed72913f5571a6f67ca567d345d24d": "",
         "person_id": resj['data']['id']
     }
     deal = requests.post(url, data=body).text
     res = json.loads(deal)
     print(res['data']['id'])
     new = Leads.objects.create(
-        nombre=name, mail=mail, tel=phone, cp="", version=version, eleccion="", status=res['data']['id'], tipo=3
+        nombre=name, mail=mail, tel=phone, cp="", version=version, eleccion=presupuesto, status=res['data']['id'], tipo=3
     )
 
     return JsonResponse({'id': new.id}, safe=False)
@@ -191,8 +191,7 @@ def api_compra(request, name, mail, phone, choose, date, time, car, precio):
         subject='Habolt Compra tu Auto',
         body=body,
         from_email='support@habolt.mx',
-        to=[mail, 'follow@habolt.mx', 'flozano@habolt.mx',
-            'alejandrolopezes@gmail.com'],
+        to=[mail, 'follow@habolt.mx', 'flozano@habolt.mx'],
     )
     email_message.content_subtype = 'html'
     email_message.send()
@@ -248,7 +247,7 @@ def api_lead_end(request, id, choose, date, time):
     key_string = "inspeccin_mec_est"
     print(date)
     lead = Leads.objects.filter(id=id).update(
-        eleccion=choose, fecha=date, hora=time
+        eleccion=choose, fecha=date, hora=time, check=1
     )
     le = Leads.objects.get(id=id)
     print(le.status)
@@ -294,7 +293,7 @@ def test_pipe(request):
 def api_year(request, year):
     vals = Carros.objects.filter(
         ANO_MODELO=year).distinct('MARCA').values_list('MARCA', flat=True)
-    #data = serializers.serialize('json', brands)
+    # data = serializers.serialize('json', brands)
     # url = "https://quoting.habolt.mx/quoting/get/year/{}".format(year)
     # res = requests.post(url, verify=False).text
     print(vals)
@@ -304,6 +303,7 @@ def api_year(request, year):
 def api_marca(request, year, brand):
     vals = Carros.objects.filter(
         ANO_MODELO=year, MARCA=brand).distinct('SUBMARCA').values_list('SUBMARCA', flat=True)
+    print(brand)
     # url = "https://quoting.habolt.mx/quoting/get/brand/{}?year={}".format(
     #     brand, year)
     # res = requests.post(url, verify=False).text
@@ -321,7 +321,7 @@ def api_model(request, year, brand, model):
     return JsonResponse(list(vals), safe=False)
 
 
-def api_check(request, year, brand, model, version, km):
+def api_check(request, year, brand, model, version, km, name, mail, phone, cp, ver):
     version = version.replace('|', '/')
     print(version)
     carro = Carros.objects.filter(
@@ -343,22 +343,22 @@ def api_check(request, year, brand, model, version, km):
         if precio:
             pp = format((precio + variable), ',')
         else:
-            pp = 0
+            pp = "0"
 
         if treinta:
             pt = format((treinta + variable), ',')
         else:
-            pt = 0
+            pt = "0"
 
         if consigna:
             pc = format((consigna + variable), ',')
         else:
-            pc = 0
+            pc = "0"
 
         if prestamo:
             ppr = format((prestamo + variable), ',')
         else:
-            ppr = 0
+            ppr = "0"
 
         data = {
             'precio': pp,
@@ -368,13 +368,82 @@ def api_check(request, year, brand, model, version, km):
             'data': carro
         }
     else:
+        pp = "0"
+        pt = "0"
+        pc = "0"
+        ppr = "0"
         data = {
-            'precio': 0,
-            'treinta': 0,
-            'consigna': 0,
-            'prestamo': 0,
+            'precio': pp,
+            'treinta': pt,
+            'consigna': pc,
+            'prestamo': ppr,
             'data': carro
         }
+
+    ofertas = "$ {} PAGO A 30 DÍAS, $ {} PAGO DE CONTADO, $ {} PAGO A CONSIGNACIÓN, $ {} SI NECESITAS UN PRÉSTAMO".format(
+        pt, pp, pc, ppr)
+    ofertas2 = "$ {} PAGO A 30 DÍAS <br> $ {} PAGO DE CONTADO <br> $ {} PAGO A CONSIGNACIÓN <br> $ {} SI NECESITAS UN PRÉSTAMO".format(
+        pt, pp, pc, ppr)
+    ver = ver.replace('|', '/')
+    # crear person
+    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
+    url = "https://api.pipedrive.com/v1/persons?api_token={}".format(token)
+    body = {
+        "name": name,
+        "email": mail,
+        "phone": phone
+    }
+    response = requests.post(url, data=body).text
+    resj = json.loads(response)
+    print(resj['data']['id'])
+
+    # crear deal
+    print(ver)
+    lista = ver.split('--')
+    print(lista)
+    token = "b3658f16e23ecc58e6ca38d5fd0009b29b3a7217"
+    url = "https://api.pipedrive.com/v1/deals?api_token={}".format(token)
+    body = {
+        "title": "New Habol Datos Vende",
+        "50bf61363c6260dd0adbb42610ad21174b45d6ea": lista[1],
+        "399ed8723c5a919de01c51ce4fd50eae14891d9d": lista[2],
+        "1c4a744c38218968766102d798b3f9c40d7ddea9": lista[0],
+        "b2541bc70a0ced28452448f312a84ace5282234e": lista[3],
+        "5aa010b5d0db9a00cffd8cc3d9527f16ca6f25bf": lista[4],
+        "cc3795bd66ed72913f5571a6f67ca567d345d24d": "",
+        "1ea830209c4978cdc9685df905a7cdabf44f4475": cp,
+        "person_id": resj['data']['id'],
+        "51720609d9b183523542d74a9d729fe5da9753f3": ofertas
+    }
+    deal = requests.post(url, data=body).text
+    res = json.loads(deal)
+    print(res['data']['id'])
+    new = Leads.objects.create(
+        nombre=name, mail=mail, tel=phone, cp=cp, version=ver, eleccion=ofertas, status=res[
+            'data']['id']
+    )
+
+    data2 = {
+        'name': name,
+        'mail': mail,
+        'version': lista,
+        'ofertas': ofertas2
+    }
+
+    body = render_to_string(
+        'mail/mail-habolt.html', data2,
+    )
+
+    email_message = EmailMessage(
+        subject='Habolt Vende tu Auto',
+        body=body,
+        from_email='support@habolt.mx',
+        to=[mail, 'follow@habolt.mx', 'flozano@habolt.mx'],
+    )
+    email_message.content_subtype = 'html'
+    email_message.send()
+
+    data['id'] = new.id
 
     return JsonResponse(data, safe=False)
 

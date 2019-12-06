@@ -50,7 +50,10 @@
                         Teléfono <strong><span id="v-phone"></span></strong><br>
                         Correo electrónico <strong><span id="v-mail"></span></strong><br>
                         <br>
+                        Año que seleccionaste <strong><span id="v-ano"></span></strong><br>
+                        Marca que seleccionaste <strong><span id="v-marca"></span></strong><br>
                         Modelo que seleccionaste <strong><span id="v-model"></span></strong><br>
+                        Version que seleccionaste <strong><span id="v-ver"></span></strong><br>
                         <br>
                         Oferta que seleccionaste <strong><span id="v-price"></span></strong><br>
                         <strong>Válida al <span id="v-cita"></span></strong><br>
@@ -186,6 +189,7 @@
                             <h6><strong>Estas son las opciones que en Habolt tenemos para comprarte tu auto. Selecciona
                                     la(s) que
                                     más te interese(n)</strong></h6><br>
+                            <p><strong style="color: black;" id="referencia"></strong></p>
                             <div class="remember-checkbox" id="s_treinta">
                                 <input type="checkbox" name="treinta" id="tres" />
                                 <label for="tres"><strong>$</strong><strong id="treinta"></strong> <strong>PAGO A 30
@@ -382,70 +386,74 @@
         var brand = $('#marca').val()
         var year = $('#algo').val()
         var version = $('#version').val()
-
+        var nombre = $('#nombre').val()
+        var tel = $('#tel').val()
+        var mail = $('#mail').val()
+        var cp = $('#cp').val()
+        version2 = version
         var param = version.replace('/', '|')
         var param = param.replace('/', '|')
+
+        var ver = year + "--" + brand + "--" + model + "--" + param + "--" + val
         $("#bienvenido").text("!Listo!")
         $("#titu").text("AQUÍ NUESTRA PROPUESTA")
         bloqueo()
         $.ajax({
             "async": true,
             "crossDomain": true,
-            url: "/api/check/" + year + "/" + brand + "/" + model + "/" + param + "/" + val,
+            url: "/api/check/" + year + "/" + brand + "/" + model + "/" + param + "/" + val + '/' + nombre + "/" + mail + "/" + tel + "/" + cp + "/" + ver,
             type: 'GET'
-        })
-            .done(function (response) {
-                //var obj = jQuery.parseJSON(response)
-                //glob = obj
-                console.log(response)
-                $('#compra').empty()
-                $('#treinta').empty()
-                $('#consigna').empty()
-                $('#prestamo').empty()
-                $('#oferta').show()
-                $('#enviar').show()
-                $('#siguiente').hide()
-                $('#cliente').hide()
+        }).done(function (response) {
+            //var obj = jQuery.parseJSON(response)
+            glob = JSON.stringify(response)
+            console.log(glob)
+            $('#compra').empty()
+            $('#treinta').empty()
+            $('#consigna').empty()
+            $('#prestamo').empty()
+            $('#oferta').show()
+            $('#enviar').show()
+            $('#siguiente').hide()
+            $('#cliente').hide()
 
-                $('#compra').text(response.precio)
-                $('#treinta').text(response.treinta)
-                $('#consigna').text(response.consigna)
-                $('#prestamo').text(response.prestamo)
-                $('#comp').val(response.precio)
-                $('#tres').val(response.treinta)
-                $('#cons').val(response.consigna)
-                $('#pres').val(response.prestamo)
+            $('#v-ano').text(year)
+            $('#v-marca').text(brand)
+            $('#v-model').text(model)
+            $('#v-ver').text(version2)
+            $('#referencia').text(year + ' - ' + brand + ' - ' + model + ' - ' + version2)
+            $('#lead').val(response.id)
 
-                if (response.precio == 0) {
-                    $('#s_compra').hide()
-                }
-                if (response.treinta == 0) {
-                    $('#s_treinta').hide()
-                }
-                if (response.consigna == 0) {
-                    $('#s_consigna').hide()
-                }
-                if (response.prestamo == 0) {
-                    $('#s_prestamo').hide()
-                }
+            $('#compra').text(response.precio)
+            $('#treinta').text(response.treinta)
+            $('#consigna').text(response.consigna)
+            $('#prestamo').text(response.prestamo)
+            $('#comp').val(response.precio)
+            $('#tres').val(response.treinta)
+            $('#cons').val(response.consigna)
+            $('#pres').val(response.prestamo)
 
-                window.scrollTo(0, 0)
+            if (response.precio == 0 || response.precio == "0") {
+                $('#s_compra').hide()
+            }
+            if (response.treinta == 0 || response.treinta == "0") {
+                $('#s_treinta').hide()
+            }
+            if (response.consigna == 0 || response.consigna == "0") {
+                $('#s_consigna').hide()
+            }
+            if (response.prestamo == 0 || response.prestamo == "0") {
+                $('#s_prestamo').hide()
+            }
 
-            })
-            .fail(function () {
+            window.scrollTo(0, 0)
 
-            })
-            .always(function () {
-            });
+        }).fail(function () {
 
-        var nombre = $('#nombre').val()
-        var tel = $('#tel').val()
-        var mail = $('#mail').val()
-        var cp = $('#cp').val()
-        var ver = year + "--" + brand + "--" + model + "--" + param + "--" + val
+        }).always(function () {
+            $.unblockUI()
+        });
 
-
-        $.ajax({
+        /*$.ajax({
             "async": true,
             "crossDomain": true,
             url: "/api/lead/create/" + nombre + "/" + mail + "/" + tel + "/" + cp + "/" + ver,
@@ -458,7 +466,7 @@
             $('#v-model').text(ver)
         }).always(function () {
             $.unblockUI();
-        })
+        })*/
     }
 
     $(document).ready(function () {
@@ -637,6 +645,7 @@
             var date2 = date
             var param = date.replace('/', '|')
             var param = param.replace('/', '|')
+            bloqueo()
             $.ajax({
                 "async": true,
                 "crossDomain": true,
@@ -670,6 +679,8 @@
                     $("#gracias").show()
                     window.scrollTo(0, 0)
                 }
+            }).always(function () {
+                $.unblockUI();
             })
 
         })

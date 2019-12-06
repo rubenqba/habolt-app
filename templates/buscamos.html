@@ -42,6 +42,10 @@
                 <div class="">
                     <div class="gray-form">
                         <div id="cliente">
+                            <div class="form-group">
+                                <label>¿Qué presupuesto tienes? * </label>
+                                <input id="presupuesto" class="form-control" type="number" name="presupuesto" required>
+                            </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>Año*</label>
@@ -158,7 +162,13 @@
         var tel = $('#tel').val()
         var mail = $('#mail').val()
         var aviso = $('#aviso').val()
+        var presupuesto = $('#presupuesto').val()
 
+        if (presupuesto == "") {
+            $("#presupuesto").focus()
+            $("#presupuesto").css({ 'border': '1px solid #f73414' });
+            return true
+        }
         if (year == "") {
             $("#algo").focus()
             $("#algo").css({ 'border': '1px solid #f73414' });
@@ -219,13 +229,14 @@
         var tel = $('#tel').val()
         var mail = $('#mail').val()
         var cp = $('#cp').val()
+        var presupuesto = $('#presupuesto').val()
         var ver = year + "--" + brand + "--" + model + "--" + param
 
         bloqueo()
         $.ajax({
             "async": true,
             "crossDomain": true,
-            url: "/api/buscamos/create/" + nombre + "/" + mail + "/" + tel + "/" + ver,
+            url: "/api/buscamos/create/" + nombre + "/" + mail + "/" + tel + "/" + ver + "/" + presupuesto,
             type: 'GET'
         }).done(function (response) {
             console.log(response)
