@@ -106,6 +106,7 @@ class ItemAdmin(admin.ModelAdmin):
         'version',
         'image'
     ]
+    search_fields = ['title', 'slug', 'price']
     inlines = [ItemImageInline, ]
 
 

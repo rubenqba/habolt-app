@@ -483,7 +483,7 @@ class ItemDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['relacionados'] = Item.objects.all()
+        context['relacionados'] = Item.objects.all()[:5]
         return context
 
 
